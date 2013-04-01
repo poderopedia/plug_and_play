@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Poderopedia admin</title>
+
+        <link rel="stylesheet" href="assets/css/bootstrap.css" />
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="assets/js/bootstrap.js"></script>
+    </head>
+
+    <body class="">
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="span12 clearfix">
+                        <h1 class="logo-admin"><a href="#"><span>Poderopedia admin</span></a></h1>
+
+                        <nav>
+                            <ul class="clearfix">
+                                <li><a class="" href="#">Explorar</a></li>
+                                <li><a class="" href="#">Crear</a></li>
+                            </ul>
+                        </nav>
+
+                        <div class="user">
+                            <img class="pic" src="assets/tmp/pic-user.jpg" alt=""/>
+                            <strong>Mónica Ventura</strong>
+                        </div>
+
+                        <form class="search">
+                            <div class="input-append">
+                                <input type="text" name="" id="" placeholder="Buscar en todo Poderopedia..."/>
+                                <button class="btn" type="button"><i class="icon-search"></i></button>
+                            </div>
+                        </form>     
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="span12">
+                    <h1>Todas las Páginas</h1>
+                </div>
+
+                <div class="span3 menu">
+                    <nav>
+                        <ul>
+                            <li class="collapsed"><a href="#">Escritorio</a></li>
+                            <li class="collapsed"><a href="#">Publicaciones</a></li>
+                            <li class="collapsed"><a href="#">Colaboraciones</a></li>
+                            <li class="expanded">
+                                <a href="#">Páginas</a>
+                                <ul>
+                                    <li class="active"><a href="#">Todas las páginas</a></li>
+                                    <li><a href="#">Agregar página nueva</a></li>
+                                </ul>
+                            </li>
+                            <li class="collapsed"><a href="#">Usuarios</a></li>
+                            <li class="collapsed"><a href="#">Configuración</a></li>
+                            <li class="collapsed"><a href="#">Plugins</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- END span3 -->
+
+                <div class="content">
+
+                    <div class="nav-content clearfix">
+                        <ul class="clearfix pull-left">
+                              <li class="active"><a href="#">Todas</a></li>
+                              <li><a href="#">Publicadas</a></li>
+                              <li><a href="#" rel="tooltip" title="345 Borradores">Borradores</a></li>
+                              <li><a href="#">Programadas</a></li>
+                              <li><a href="#">Eliminadas</a></li>
+                        </ul>
+    
+                        <form class="form-search pull-right">
+                            <div class="input-append">
+                                <input type="text" class="input-small search-query">
+                                <button type="submit" class="btn">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <button class="btn large">Acciones</button>
+                            <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                            <!-- dropdown menu links -->
+                            </ul>
+                        </div>
+                    
+                        <button class="btn" type="button">Aplicar</button>
+                        <span class="vertical-break"></span>
+
+                        <div class="btn-group">
+                            <button class="btn large">Todos</button>
+                            <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                            <!-- dropdown menu links -->
+                            </ul>
+                        </div>
+                    
+                        <div class="btn-group">
+                            <button class="btn large">Fecha</button>
+                            <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                            <!-- dropdown menu links -->
+                            </ul>
+                        </div>
+
+                        <button class="btn" type="button">Filtrar</button>
+                        <span class="vertical-break"></span>
+                        
+                        <div class="btn-group">
+                            <button class="btn btn-primary">Crear</button>
+                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                            <!-- dropdown menu links -->
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>E</th>
+                                <th>Título Página</th>
+                                <th>Estado</th>
+                                <th>Autor</th>
+                                <th>Fecha</th>
+                                <th class="align-center">Acciones</th>
+                            </tr>
+                        </thead>
+                    
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>hace 44 min.</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Equipo</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Mónica Ventura</a></td>
+                                <td>hace 1 hora</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Prensa</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Nombre Apellido</a></td>
+                                <td>h18/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Crea Poderopedia en tu País</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>14/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">- Página hija de ítem superior</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Estefanía Trisotti</a></td>
+                                <td>13/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>04/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>hace 44 min.</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Equipo</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Mónica Ventura</a></td>
+                                <td>hace 1 hora</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Prensa</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Nombre Apellido</a></td>
+                                <td>h18/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Crea Poderopedia en tu País</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>14/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">- Página hija de ítem superior</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Estefanía Trisotti</a></td>
+                                <td>13/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>04/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>hace 44 min.</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Equipo</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Mónica Ventura</a></td>
+                                <td>hace 1 hora</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Prensa</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Nombre Apellido</a></td>
+                                <td>h18/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Crea Poderopedia en tu País</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>14/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">- Página hija de ítem superior</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Estefanía Trisotti</a></td>
+                                <td>13/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>04/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>hace 44 min.</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Equipo</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Mónica Ventura</a></td>
+                                <td>hace 1 hora</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Prensa</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Nombre Apellido</a></td>
+                                <td>h18/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Crea Poderopedia en tu País</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>14/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="pagination pagination-centered">
+                        <ul>
+                            <li class="disabled"><a href="#">«</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>
+                    </div>
+
+                    <small>(8.520 Publicaciones)</small>
+
+                </div>
+                <!-- END span9 -->
+            </div>
+            <!-- END row -->
+
+        </div>
+        <!-- END Container -->
+
+        <footer>
+            <div class="border">
+                <div class="container">
+                    <div class="row titles">
+                        <div class="span2">Acerca de</div>
+                        <div class="span3">Comunidad</div>
+                        <div class="span3 developers">Desarrolladores</div>
+                        <div class="span3">Ayuda</div>
+                        <div class="span1 follow">Seguir</div>
+                    </div>
+                </div>
+            </div>
+            <div class="border2">
+                <div class="container">
+                    <div class="footer-nav row">
+                        <div class="span2">
+                            <ul>
+                                <li><a href="#">Qué es Poderopedia</a></li>
+                                <li><a href="#">Equipo</a></li>
+                                <li><a href="#">Prensa</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Contacto</a></li>
+                            </ul>
+                        </div>
+    
+                        <div class="span3">
+                            <ul>
+                                <li><a href="#">Crea Poderopedia en tu país</a></li>
+                                <li><a href="#">Súmate a nosotros</a></li>
+                                <li><a href="#">Sugiere un perfil</a></li>
+                                <li><a href="#">Sugiere una conexión</a></li>
+                                <li><a href="#">Apóyanos</a></li>
+                            </ul>
+                        </div>
+    
+                        <div class="span3 developers">
+                            <ul>
+                                <li><a href="#">API</a></li>
+                                <li><a href="#">Ontología</a></li>
+                                <li><a href="#">Usa nuestro código</a></li>
+                                <li><a href="#">Documentación</a></li>
+                                <li><a href="#">Foro Dev</a></li>
+                            </ul>
+                        </div>
+    
+                        <div class="span3">
+                            <ul>
+                                <li><a href="#">Guía paso a paso</a></li>
+                                <li><a href="#">Preguntas frecuentes</a></li>
+                                <li><a href="#">Lineamientos editoriales</a></li>
+                                <li><a href="#">Reportar errores</a></li>
+                                <li><a href="#">Reportar contenido inadecuado</a></li>
+                            </ul>
+                        </div>
+    
+                        <div class="span1 follow">
+                            <ul>
+                                <li><a href="#"><span class="ico-twitter"></span>Twitter</a></li>
+                                <li><a href="#"><span class="ico-facebook"></span>Facebook</a></li>
+                                <li><a href="#"><span class="ico-google"></span>Google +</a></li>
+                                <li><a href="#"><span class="ico-github"></span>Github</a></li>
+                                <li><a href="#"><span class="ico-rss"></span>RSS</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border">
+                <div class="container">
+                    <div class="clearfix">
+                        <h1 class="logo-poderopedia"><a href="#"><span>Poderopedia</span></a></h1>
+
+                        <ul class="legal clearfix">
+                            <li><a href="#">Términos de uso</a></li>
+                            <li>|</li>
+                            <li><a href="#">Política de Privacidad</a></li>
+                        </ul>
+
+                        <span class="support">Con el apoyo de: <a class="logo-knight" href="#"><span>Knight Foundation</span></a> <a class="logo-startup" href="#"><span>Start-up Chile</span></a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="container">
+                    <small>Un proyecto de <a href="#">Fundación Poderomedia 2012</a>. Todo el contenido, a menos que se indique lo contrario, bajo licencia Creative Commons 3.0. Hecho en Chile</small>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            $('a[rel="tooltip"]').tooltip();
+        </script>
+    </body>
+</html>
