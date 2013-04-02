@@ -41,6 +41,11 @@ response.generic_patterns = ['*'] if request.is_local else []
 
 from gluon.tools import Auth, Crud, Service, PluginManager, prettydate
 auth = Auth(db)
+
+from gluon.contrib.login_methods.oauth20_account import OAuthAccount
+auth.settings.login_form=OAuthAccount(client_id='451757221525971', client_secret='f96ace78e220d4371ad007aafce4fd83',
+                                      auth_url='https://graph.facebook.com/oauth/authorize',
+                                      token_url='https://graph.facebook.com/oauth/access_token',scope='user_photos,friends_photos')
 crud, service, plugins = Crud(db), Service(), PluginManager()
 
 ## create all tables needed by auth if not custom tables
