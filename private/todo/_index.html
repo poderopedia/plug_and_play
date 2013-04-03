@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="es">
     <head>
         <meta charset="utf-8">
@@ -10,25 +11,30 @@
 
     </head>
 
+    <!-- Header superior, incluye el logo, los botones explorar, crear, la imagen y nombre de usuario -->
     <body class="">
         <header>
             <div class="container">
                 <div class="row">
                     <div class="span12 clearfix">
+                        <!-- Logo poderopedia admin-->
                         <h1 class="logo-admin"><a href="#"><span>Poderopedia admin</span></a></h1>
 
                         <nav>
                             <ul class="clearfix">
+                                <!-- Botones explorar y crear-->
                                 <li><a class="" href="#">Explorar</a></li>
                                 <li><a class="" href="#">Crear</a></li>
                             </ul>
                         </nav>
 
+                        <!-- Foto y nombre del usuario --> 
                         <div class="user">
                             <img class="pic" src="assets/tmp/pic-user.jpg" alt=""/>
                             <strong>Mónica Ventura</strong>
                         </div>
 
+                        <!-- Barra de búsqueda --> 
                         <form class="search">
                             <div class="input-append">
                                 <input type="text" name="q" id="q" placeholder="Buscar en todo Poderopedia..."/>
@@ -39,20 +45,27 @@
                 </div>
             </div>
         </header>
+        <!-- End header superior -->
 
         <div class="container">
 
             <div class="row">
+                <!-- Título principal-->
                 <div class="span12">
                     <h1>Título Principal H1</h1>
                 </div>
+                <!-- End Título principal-->
 
+                <!-- Menú lateral-->
                 <div class="span3 menu">
                     <nav>
                         <ul>
+                            <!-- Item de menu:Datos básicos -->
                             <li class="collapsed"><a href="#">Datos Básicos</a></li>
+                            <!-- Item de menu:Perfil -->
                             <li class="collapsed"><a href="#">Perfil</a></li>
                             <li class="expanded">
+                                <!-- Item de menu:Conexiones-->
                                 <a href="#">Conexiones</a>
                                     <ul>
                                         <li class="active"><a href="#">Familia</a></li>
@@ -78,6 +91,8 @@
                                         <li><a href="#">Participación y cargos en ONG</a></li>
                                     </ul>
                             </li>
+
+                            <!-- Ítems de menu:Mapas,Fuentes,Documentos,Casos-->
                             <li class="collapsed"><a href="#">Mapas</a></li>
                             <li class="collapsed"><a href="#">Fuentes</a></li>
                             <li class="collapsed"><a href="#">Documentos</a></li>
@@ -85,7 +100,7 @@
                         </ul>
                     </nav>
                 </div>
-                <!-- END span3 -->
+                <!-- END Menú lateral -->
 
                 <div class="content">
                     <!-- acá va el contenido -->
@@ -99,9 +114,11 @@
         </div>
         <!-- END Container -->
 
+        <!-- Footer -->
         <footer>
             <div class="border">
                 <div class="container">
+                    <!-- Primer Menu footer -->
                     <div class="row titles">
                         <div class="span2">Acerca de</div>
                         <div class="span3">Comunidad</div>
@@ -109,9 +126,11 @@
                         <div class="span3">Ayuda</div>
                         <div class="span1 follow">Seguir</div>
                     </div>
+                    <!-- END primer menu footer-->
                 </div>
             </div>
             <div class="border2">
+                <!-- Menús de listas-->
                 <div class="container">
                     <div class="footer-nav row">
                         <div class="span2">
@@ -153,7 +172,7 @@
                                 <li><a href="#">Reportar contenido inadecuado</a></li>
                             </ul>
                         </div>
-    
+                    
                         <div class="span1 follow">
                             <ul>
                                 <li><a href="#"><span class="ico-twitter"></span>Twitter</a></li>
@@ -166,7 +185,9 @@
                     </div>
                 </div>
             </div>
+            <!-- END menús de listas-->
 
+            <!-- Menú de logos-->
             <div class="border">
                 <div class="container">
                     <div class="clearfix">
@@ -182,14 +203,17 @@
                     </div>
                 </div>
             </div>
+            <!-- END menu de logos-->
 
+            <!-- Menú de copyright-->
             <div>
                 <div class="container">
                     <small>Un proyecto de <a href="#">Fundación Poderomedia 2012</a>. Todo el contenido, a menos que se indique lo contrario, bajo licencia Creative Commons 3.0. Hecho en Chile</small>
                 </div>
             </div>
+            <!-- END menú de copyright-->
         </footer>
-
+        <!-- END footer-->
         <script>
             $('a[rel="tooltip"]').tooltip();
         </script>

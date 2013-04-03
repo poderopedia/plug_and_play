@@ -11,45 +11,59 @@
     </head>
 
     <body class="">
+         <!-- Header -->
         <header>
             <div class="container">
                 <div class="row">
+                    <!-- Logo Poderopedia admin -->
                     <div class="span12 clearfix">
                         <h1 class="logo-admin"><a href="#"><span>Poderopedia admin</span></a></h1>
+                        <!-- End Logo -->
 
+                        <!-- Botones Explorar y Crear -->
                         <nav>
                             <ul class="clearfix">
                                 <li><a class="" href="#">Explorar</a></li>
                                 <li><a class="" href="#">Crear</a></li>
                             </ul>
                         </nav>
+                        <!-- End Botones -->
 
+                        <!-- Foto y nombre del usuario -->
                         <div class="user">
                             <img class="pic" src="assets/tmp/pic-user.jpg" alt=""/>
                             <strong>Mónica Ventura</strong>
                         </div>
+                        <!-- End usuario -->
 
+                        <!-- Barra de búsqueda  -->
                         <form class="search">
                             <div class="input-append">
                                 <input type="text" name="q" id="q" placeholder="Buscar en todo Poderopedia..."/>
                                 <button class="btn" type="button"><i class="icon-search"></i></button>
                             </div>
-                        </form>     
+                        </form> 
+                        <!-- End búsqueda -->     
                     </div>
                 </div>
             </div>
         </header>
+        <!--End Header-->
 
         <div class="container">
 
             <div class="row">
+                <!-- Título -->
                 <div class="span12">
                     <h1>Todas las Publicaciones</h1>
                 </div>
+                <!--End Título-->
 
+                <!--Menú lateral-->
                 <div class="span3 menu">
                     <nav>
                         <ul>
+                            <!--Ítems de menú:Escritorio, Publicaciones, Colaboraciones, Páginas, Usuarios, Configuración, Plugins-->
                             <li class="collapsed"><a href="#">Escritorio</a></li>
                             <li class="expanded"><a href="#">Publicaciones</a>
                                 <ul>
@@ -69,9 +83,12 @@
                     </nav>
                 </div>
                 <!-- END span3 -->
+                <!-- End Menú lateral -->
 
                 <div class="content">
+                    <!-- Main Content -->
 
+                    <!-- Primer menú-->
                     <div class="nav-content clearfix">
                         <ul class="clearfix pull-left">
                               <li class="active"><a href="#">Todas</a></li>
@@ -79,15 +96,19 @@
                               <li><a href="#" rel="tooltip" title="345 Borradores">Borradores</a></li>
                               <li><a href="#">Programados</a></li>
                         </ul>
-    
+                    <!--End primer menú-->
+
+                    <!-- Cuadro de búsqueda -->
                         <form class="form-search pull-right">
                             <div class="input-append">
                                 <input type="text" class="input-small search-query">
                                 <button type="submit" class="btn">Buscar</button>
                             </div>
                         </form>
+                        <!-- End cuadro de búsqueda -->
                     </div>
 
+                    <!-- toolbar -->
                     <div class="btn-toolbar">
                         <div class="btn-group">
                             <button class="btn large">Acciones</button>
@@ -134,9 +155,10 @@
                             <!-- dropdown menu links -->
                             </ul>
                         </div>
+                        <!-- END toolbar-->
                     </div>
 
-
+                    <!-- Main table -->
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -370,14 +392,18 @@
 
                 </div>
                 <!-- END span9 -->
+                <!--END main table-->
             </div>
             <!-- END row -->
 
         </div>
         <!-- END Container -->
+        <!-- END main content -->
 
+        <!-- Footer -->
         <footer>
             <div class="border">
+                <!-- Primer Menu footer -->
                 <div class="container">
                     <div class="row titles">
                         <div class="span2">Acerca de</div>
@@ -387,9 +413,11 @@
                         <div class="span1 follow">Seguir</div>
                     </div>
                 </div>
+                <!-- END primer menu footer-->
             </div>
             <div class="border2">
                 <div class="container">
+                    <!-- Menús de listas-->
                     <div class="footer-nav row">
                         <div class="span2">
                             <ul>
@@ -441,10 +469,12 @@
                             </ul>
                         </div>
                     </div>
+                    <!-- END menús de listas-->
                 </div>
             </div>
 
             <div class="border">
+                <!-- Menú de logos-->
                 <div class="container">
                     <div class="clearfix">
                         <h1 class="logo-poderopedia"><a href="#"><span>Poderopedia</span></a></h1>
@@ -458,14 +488,18 @@
                         <span class="support">Con el apoyo de: <a class="logo-knight" href="#"><span>Knight Foundation</span></a> <a class="logo-startup" href="#"><span>Start-up Chile</span></a></span>
                     </div>
                 </div>
+                <!-- END menu de logos-->
             </div>
 
             <div>
+                <!-- Copyright-->
                 <div class="container">
                     <small>Un proyecto de <a href="#">Fundación Poderomedia 2012</a>. Todo el contenido, a menos que se indique lo contrario, bajo licencia Creative Commons 3.0. Hecho en Chile</small>
                 </div>
+                <!-- END Copyright-->
             </div>
         </footer>
+        <!-- END footer-->
 
         <script>
             $('a[rel="tooltip"]').tooltip();
