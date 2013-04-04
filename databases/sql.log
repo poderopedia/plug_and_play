@@ -453,3 +453,25 @@ CREATE TABLE importer(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
+timestamp: 2013-04-04T12:56:08.639917
+CREATE TABLE documentCloud(
+    id INT AUTO_INCREMENT NOT NULL,
+    dc_id VARCHAR(255),
+    file VARCHAR(255),
+    title VARCHAR(255),
+    source VARCHAR(255),
+    description LONGTEXT,
+    related_article VARCHAR(255),
+    published_url VARCHAR(255),
+    access VARCHAR(255),
+    project INT,
+    data VARCHAR(255),
+    secure VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
