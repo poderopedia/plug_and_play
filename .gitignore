@@ -3,3 +3,13 @@ databases/
 errors/
 *.pyc
 *~
+
+models/app_config.py
+
+private/auth.key
+
+databases/sql.log
+
+databases/sql.log
+
+databases/sql.log

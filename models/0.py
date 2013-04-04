@@ -2,19 +2,33 @@ from gluon.storage import Storage
 settings = Storage()
 
 settings.migrate = True
-settings.title = 'Poderopedia Plug & Play'
+settings.title = 'Poderopedia'
 settings.subtitle = 'powered by Poderopedia'
-settings.author = 'Poderopedia'
+settings.author = 'Juan Eduardo'
 settings.author_email = 'dev@poderopedia.com'
 settings.keywords = ''
 settings.description = ''
-settings.layout_theme = 'Default'
-settings.database_uri = 'sqlite://storage.sqlite'
-settings.security_key = 'c05fcf75-9979-4291-833e-178cf3e73a37'
-settings.email_server = 'localhost'
-settings.email_sender = 'you@example.com'
-settings.email_login = ''
-settings.login_method = 'local'
+settings.layout_theme = 'default'
+settings.database_uri = 'mysql://testing:powertest@localhost/powertest'
+settings.security_key = 'b0336a10-e263-487f-b744-719b83741aeb'
 settings.login_config = ''
 settings.plugins = []
+TEXT_EDITOR = 'amy'
+
+response.title = request.application
+response.subtitle = T('Redes de Poder en la Política y Negocios')
+response.meta.author = 'Equipo Poderopedia'
+response.meta.description = T('Redes de Poder en la Política y Negocios')
+response.meta.keywords = 'Redes, Poder, Negocios, Política'
+
+endYear=int(request.now.strftime('%Y'))
+day_list=[x for x in range(1,32)]
+day_list.append('Sin Fecha')
+day_list.append('')
+month_list=[x for x in range(1,13)]
+month_list.append('Sin Fecha')
+month_list.append('')
+year_list=[x for x in range(1900,endYear+10)]
+year_list.append('Sin Fecha')
+year_list.append('')
 
