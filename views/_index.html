@@ -1,18 +1,83 @@
-<!doctype html>
+<!--[if HTML5]><![endif]-->
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="{{=T.accepted_language or 'en'}}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <title>{{=response.title or request.application}}</title>
+    <!--[if !HTML5]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+    <![endif]-->
+    <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+    <!-- Always force latest IE rendering engine
+         (even in intranet) & Chrome Frame
+         Remove this if you use the .htaccess -->
 
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <title>Poderopedia admin</title>
+    <meta charset="utf-8" />
 
-        <link rel="stylesheet" href="assets/css/bootstrap.css" />
-        <link rel="stylesheet" href="assets/css/style.css" />
-        <!--<script src="assets/js/less-1.3.0.min.js"></script>-->
 
-    </head>
+    <!-- meta tags for facebook -->
 
-    <!-- Header superior, incluye el logo, los botones explorar, crear, la imagen y nombre de usuario -->
+    <meta property="og:title" content="{{ =FACEBOOK['TITLE'] }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{{ =FACEBOOK['URL'] }}"/>
+    <meta property="og:image" content="{{ =FACEBOOK['IMAGE_URL'] }}"/>
+    <meta property="og:site_name" content="Poderopedia.org"/>
+    <meta property="fb:app_id" content="{{ =FACEBOOK['APP_ID'] }}" />
+    <meta property="og:description" content="{{ =FACEBOOK['DESCRIPTION'] }}"/>
+    <meta property="og:article:published_time" content="{{ =request.now }}"> <!-- ISO 8601 pubdate -->
+
+    <!-- meta tags for twitter -->
+
+    <meta property="twitter:site" content="{{ =TWITTER['NICK'] }}">
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:url" content="{{ =TWITTER['URL'] }}">
+    <meta property="twitter:title" content="{{ =TWITTER['TITLE'] }}">
+    <meta property="twitter:description" content="{{ =TWITTER['DESCRIPTION'] }}">
+    <meta property="twitter:image" content="{{ =TWITTER['IMAGE_URL'] }}">
+
+    <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+    <meta name="application-name" content="{{=request.application}}" />
+
+    <!-- Speaking of Google, don't forget to set your site up:
+         http://google.com/webmasters -->
+    <meta name="google-site-verification" content="" />
+
+    <!--  Mobile Viewport Fix
+          j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+          device-width: Occupy full width of the screen in its current orientation
+          initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+          user-scalable = yes allows the user to zoom in -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+         HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr.custom.js')}}"></script>
+
+    <!-- include stylesheets -->
+    {{
+    response.files.append(URL('static','css/web2py.css'))
+    response.files.append(URL('static','css/bootstrap.min.css'))
+    response.files.append(URL('static','css/bootstrap-responsive.min.css'))
+    response.files.append(URL('static','css/web2py_bootstrap.css'))
+    response.files.append(URL('static','css/style.css'))
+    }}
+
+    {{include 'web2py_ajax.html'}}
+    <noscript><link href="{{=URL('static', 'css/web2py_bootstrap_nojs.css')}}" rel="stylesheet" type="text/css" /></noscript>
+    {{block head}}{{end}}
+
+</head>
+
+
     <body class="">
+        <!-- Header superior, incluye el logo, los botones explorar, crear, la imagen y nombre de usuario -->
         <header>
             <div class="container">
                 <div class="row">
@@ -30,7 +95,7 @@
 
                         <!-- Foto y nombre del usuario --> 
                         <div class="user">
-                            <img class="pic" src="assets/tmp/pic-user.jpg" alt=""/>
+                            <img class="pic" src="../private/todo/assets/tmp/pic-user.jpg" alt=""/>
                             <strong>Mónica Ventura</strong>
                         </div>
 
