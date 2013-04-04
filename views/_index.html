@@ -79,6 +79,7 @@
     <body class="">
         <!-- Header superior, incluye el logo, los botones explorar, crear, la imagen y nombre de usuario -->
         <header>
+            {{block header}}
             <div class="container">
                 <div class="row">
                     <div class="span12 clearfix">
@@ -109,6 +110,7 @@
                     </div>
                 </div>
             </div>
+            {{end}}
         </header>
         <!-- End header superior -->
 
@@ -124,6 +126,7 @@
                 <!-- Menú lateral-->
                 <div class="span3 menu">
                     <nav>
+                        {{block lateral_menu}}
                         <ul>
                             <!-- Item de menu:Datos básicos -->
                             <li class="collapsed"><a href="#">Datos Básicos</a></li>
@@ -163,14 +166,15 @@
                             <li class="collapsed"><a href="#">Documentos</a></li>
                             <li class="collapsed"><a href="#">Casos</a></li>
                         </ul>
+                        {{end}}
                     </nav>
                 </div>
                 <!-- END Menú lateral -->
 
+                <!-- acá va el contenido -->
                 <div class="content">
-                    <!-- acá va el contenido -->
-
-
+                    {{block content}}
+                    {{end}}
                 </div>
                 <!-- END span9 -->
             </div>
@@ -181,6 +185,7 @@
 
         <!-- Footer -->
         <footer>
+            {{block footer}}
             <div class="border">
                 <div class="container">
                     <!-- Primer Menu footer -->
@@ -277,6 +282,7 @@
                 </div>
             </div>
             <!-- END menú de copyright-->
+            {{end}}
         </footer>
         <!-- END footer-->
         <script>
