@@ -2,4 +2,5 @@
 __author__ = 'Evolutiva'
 
 def index():
-    return locals()
+    a_form = SQLForm(db.persona)
+    return dict(form= a_form)
