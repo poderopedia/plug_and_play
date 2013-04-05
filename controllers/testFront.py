@@ -23,10 +23,13 @@ def usuarios_general():
     return locals()
     
 def publicaciones_casos():
+    #grilla de publicaciones casos
     return locals()
     
 def publicaciones_organizaciones():
+    #grilla de publicaciones organizaciones
     return locals()
     
 def usuarios_historial():
+    #historial de usuarios
     return locals()
