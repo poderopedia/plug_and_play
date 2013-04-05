@@ -1,5 +1,13 @@
 {{extend '_index.html'}}
 {{block content}}
 <h3>Contenido</h3>
+<a href="{{ =URL('display') }}">lista</a>
+{{ = a_error }}
 {{ =form }}
+<h2>Submitted Fields:</h2>
+{{ =BEAUTIFY(request.vars)}}
+<h2>Accepted Fields:</h2>
+{{ =BEAUTIFY(form.vars)}}
+<h2>Errors:</h2>
+{{ =BEAUTIFY(form.errors)}}  
 {{end}}
