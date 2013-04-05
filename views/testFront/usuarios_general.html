@@ -2,319 +2,317 @@
 {{block title}}
 Lista General de Usuarios
 {{end}}
-    <div class="content">
-                <!-- Main Content -->
-                    <div class="nav-content clearfix">
-                        <!-- Primer Menú -->
-                        <ul class="clearfix pull-left">
-                              <li class="active"><a href="#">Todas</a></li>
-                              <li><a href="#">SuperAdministradores</a></li>
-                              <li><a href="#">Administradores</a></li>
-                              <li><a href="#">Editores</a></li>
-                              <li><a href="#">Autores</a></li>
-                              <li><a href="#">Colaboradores</a></li>
-                        </ul>
-                        <!-- END Primer Menú -->
 
-                        <!--<form class="form-search pull-right">
-                            <input type="text" class="input-medium search-query">
-                            <button type="submit" class="btn">Buscar</button>
-                        </form>-->
+        <!-- Main Content -->
+            <div class="nav-content clearfix">
+                <!-- Primer Menú -->
+                <ul class="clearfix pull-left">
+                      <li class="active"><a href="#">Todas</a></li>
+                      <li><a href="#">SuperAdministradores</a></li>
+                      <li><a href="#">Administradores</a></li>
+                      <li><a href="#">Editores</a></li>
+                      <li><a href="#">Autores</a></li>
+                      <li><a href="#">Colaboradores</a></li>
+                </ul>
+                <!-- END Primer Menú -->
 
-                        <!-- Barra búsqueda -->
-                        <form class="form-search pull-right">
-                            <div class="input-append">
-                                <input type="text" class="input-small search-query">
-                                <button type="submit" class="btn">Buscar</button>
-                            </div>
-                        </form>
-                        <!-- END barra búsqeda -->
+                <!--<form class="form-search pull-right">
+                    <input type="text" class="input-medium search-query">
+                    <button type="submit" class="btn">Buscar</button>
+                </form>-->
+
+                <!-- Barra búsqueda -->
+                <form class="form-search pull-right">
+                    <div class="input-append">
+                        <input type="text" class="input-small search-query">
+                        <button type="submit" class="btn">Buscar</button>
                     </div>
-
-                    <!-- Toolbar -->
-                    <div class="btn-toolbar">
-                        <div class="btn-group">
-                            <button class="btn large">Acciones</button>
-                            <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                            <!-- dropdown menu links -->
-                            </ul>
-                        </div>
-                    
-                        <button class="btn" type="button">Aplicar</button>
-                        <span class="vertical-break"></span>
-
-                        <div class="btn-group">
-                            <button class="btn large">Todos</button>
-                            <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                            <!-- dropdown menu links -->
-                            </ul>
-                        </div>
-                    
-                        <div class="btn-group">
-                            <button class="btn large">Fecha</button>
-                            <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                            <!-- dropdown menu links -->
-                            </ul>
-                        </div>
-
-                        <button class="btn" type="button">Filtrar</button>
-                        <span class="vertical-break"></span>
-                        
-                        <div class="btn-group">
-                            <button class="btn btn-primary">Crear</button>
-                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                            <!-- dropdown menu links -->
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- END toolbar -->
-
-
-                    <!-- Tabla principal -->
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>S</th>
-                                <th>Nombre</th>
-                                <th>ROL</th>
-                                <th>E-mail</th>
-                                <th>Última Act.</th>
-                                <th class="align-center">Acciones</th>
-                            </tr>
-                        </thead>
-                    
-                        <tbody>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td><span class="label label-important">SUP</span></td>
-                                <td><a href="#">miguelpaz@gmail.com</a></td>
-                                <td>hace 44 min.</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Mónica Ventura</a></td>
-                                <td><span class="label label-important">SUP</span></td>
-                                <td><a href="#">monicaventura@algo.com</a></td>
-                                <td>hace 1 hora</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Estefanía Trisotti</a></td>
-                                <td><span class="label label-yellow">EDI</span></td>
-                                <td><a href="#">hola@tri.cl</a></td>
-                                <td>h18/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">José Luis Valenzuela</a></td>
-                                <td><span class="label label-info">AUT</span></td>
-                                <td><a href="#">jose.luizval@algo.com</a></td>
-                                <td>14/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Diego Gómez</a></td>
-                                <td><span class="label label-blue">COL</span></td>
-                                <td><a href="#">email@gmail.com</a></td>
-                                <td>13/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td><span class="label label-important">SUP</span></td>
-                                <td><a href="#">miguelpaz@gmail.com</a></td>
-                                <td>hace 44 min.</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Mónica Ventura</a></td>
-                                <td><span class="label label-important">SUP</span></td>
-                                <td><a href="#">monicaventura@algo.com</a></td>
-                                <td>hace 1 hora</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Estefanía Trisotti</a></td>
-                                <td><span class="label label-yellow">EDI</span></td>
-                                <td><a href="#">hola@tri.cl</a></td>
-                                <td>h18/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">José Luis Valenzuela</a></td>
-                                <td><span class="label label-info">AUT</span></td>
-                                <td><a href="#">jose.luizval@algo.com</a></td>
-                                <td>14/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Diego Gómez</a></td>
-                                <td><span class="label label-blue">COL</span></td>
-                                <td><a href="#">email@gmail.com</a></td>
-                                <td>13/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td><span class="label label-important">SUP</span></td>
-                                <td><a href="#">miguelpaz@gmail.com</a></td>
-                                <td>hace 44 min.</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Mónica Ventura</a></td>
-                                <td><span class="label label-important">SUP</span></td>
-                                <td><a href="#">monicaventura@algo.com</a></td>
-                                <td>hace 1 hora</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Estefanía Trisotti</a></td>
-                                <td><span class="label label-yellow">EDI</span></td>
-                                <td><a href="#">hola@tri.cl</a></td>
-                                <td>h18/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">José Luis Valenzuela</a></td>
-                                <td><span class="label label-info">AUT</span></td>
-                                <td><a href="#">jose.luizval@algo.com</a></td>
-                                <td>14/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Diego Gómez</a></td>
-                                <td><span class="label label-blue">COL</span></td>
-                                <td><a href="#">email@gmail.com</a></td>
-                                <td>13/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td><span class="label label-important">SUP</span></td>
-                                <td><a href="#">miguelpaz@gmail.com</a></td>
-                                <td>hace 44 min.</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Mónica Ventura</a></td>
-                                <td><span class="label label-important">SUP</span></td>
-                                <td><a href="#">monicaventura@algo.com</a></td>
-                                <td>hace 1 hora</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Estefanía Trisotti</a></td>
-                                <td><span class="label label-yellow">EDI</span></td>
-                                <td><a href="#">hola@tri.cl</a></td>
-                                <td>h18/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">José Luis Valenzuela</a></td>
-                                <td><span class="label label-info">AUT</span></td>
-                                <td><a href="#">jose.luizval@algo.com</a></td>
-                                <td>14/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Diego Gómez</a></td>
-                                <td><span class="label label-blue">COL</span></td>
-                                <td><a href="#">email@gmail.com</a></td>
-                                <td>13/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Mónica Ventura</a></td>
-                                <td><span class="label label-important">SUP</span></td>
-                                <td><a href="#">monicaventura@algo.com</a></td>
-                                <td>hace 1 hora</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                    
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><a href="#">Estefanía Trisotti</a></td>
-                                <td><span class="label label-yellow">EDI</span></td>
-                                <td><a href="#">hola@tri.cl</a></td>
-                                <td>h18/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                    <!-- END tabla principal -->
-                    
-                    <div class="pagination pagination-centered">
-                        <ul>
-                            <li class="disabled"><a href="#">«</a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>
-                    </div>
-                    <!-- END Main Content -->
-                    <small>(8.520 Publicaciones)</small>
-
-                </div>
-                <!-- END span9 -->
+                </form>
+                <!-- END barra búsqeda -->
             </div>
-            <!-- END row -->
+
+            <!-- Toolbar -->
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <button class="btn large">Acciones</button>
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                    <!-- dropdown menu links -->
+                    </ul>
+                </div>
+
+                <button class="btn" type="button">Aplicar</button>
+                <span class="vertical-break"></span>
+
+                <div class="btn-group">
+                    <button class="btn large">Todos</button>
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                    <!-- dropdown menu links -->
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn large">Fecha</button>
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                    <!-- dropdown menu links -->
+                    </ul>
+                </div>
+
+                <button class="btn" type="button">Filtrar</button>
+                <span class="vertical-break"></span>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary">Crear</button>
+                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                    <!-- dropdown menu links -->
+                    </ul>
+                </div>
+            </div>
+            <!-- END toolbar -->
+
+
+            <!-- Tabla principal -->
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>S</th>
+                        <th>Nombre</th>
+                        <th>ROL</th>
+                        <th>E-mail</th>
+                        <th>Última Act.</th>
+                        <th class="align-center">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Miguel Paz</a></td>
+                        <td><span class="label label-important">SUP</span></td>
+                        <td><a href="#">miguelpaz@gmail.com</a></td>
+                        <td>hace 44 min.</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Mónica Ventura</a></td>
+                        <td><span class="label label-important">SUP</span></td>
+                        <td><a href="#">monicaventura@algo.com</a></td>
+                        <td>hace 1 hora</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Estefanía Trisotti</a></td>
+                        <td><span class="label label-yellow">EDI</span></td>
+                        <td><a href="#">hola@tri.cl</a></td>
+                        <td>h18/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">José Luis Valenzuela</a></td>
+                        <td><span class="label label-info">AUT</span></td>
+                        <td><a href="#">jose.luizval@algo.com</a></td>
+                        <td>14/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Diego Gómez</a></td>
+                        <td><span class="label label-blue">COL</span></td>
+                        <td><a href="#">email@gmail.com</a></td>
+                        <td>13/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Miguel Paz</a></td>
+                        <td><span class="label label-important">SUP</span></td>
+                        <td><a href="#">miguelpaz@gmail.com</a></td>
+                        <td>hace 44 min.</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Mónica Ventura</a></td>
+                        <td><span class="label label-important">SUP</span></td>
+                        <td><a href="#">monicaventura@algo.com</a></td>
+                        <td>hace 1 hora</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Estefanía Trisotti</a></td>
+                        <td><span class="label label-yellow">EDI</span></td>
+                        <td><a href="#">hola@tri.cl</a></td>
+                        <td>h18/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">José Luis Valenzuela</a></td>
+                        <td><span class="label label-info">AUT</span></td>
+                        <td><a href="#">jose.luizval@algo.com</a></td>
+                        <td>14/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Diego Gómez</a></td>
+                        <td><span class="label label-blue">COL</span></td>
+                        <td><a href="#">email@gmail.com</a></td>
+                        <td>13/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Miguel Paz</a></td>
+                        <td><span class="label label-important">SUP</span></td>
+                        <td><a href="#">miguelpaz@gmail.com</a></td>
+                        <td>hace 44 min.</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Mónica Ventura</a></td>
+                        <td><span class="label label-important">SUP</span></td>
+                        <td><a href="#">monicaventura@algo.com</a></td>
+                        <td>hace 1 hora</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Estefanía Trisotti</a></td>
+                        <td><span class="label label-yellow">EDI</span></td>
+                        <td><a href="#">hola@tri.cl</a></td>
+                        <td>h18/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">José Luis Valenzuela</a></td>
+                        <td><span class="label label-info">AUT</span></td>
+                        <td><a href="#">jose.luizval@algo.com</a></td>
+                        <td>14/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Diego Gómez</a></td>
+                        <td><span class="label label-blue">COL</span></td>
+                        <td><a href="#">email@gmail.com</a></td>
+                        <td>13/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Miguel Paz</a></td>
+                        <td><span class="label label-important">SUP</span></td>
+                        <td><a href="#">miguelpaz@gmail.com</a></td>
+                        <td>hace 44 min.</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Mónica Ventura</a></td>
+                        <td><span class="label label-important">SUP</span></td>
+                        <td><a href="#">monicaventura@algo.com</a></td>
+                        <td>hace 1 hora</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Estefanía Trisotti</a></td>
+                        <td><span class="label label-yellow">EDI</span></td>
+                        <td><a href="#">hola@tri.cl</a></td>
+                        <td>h18/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">José Luis Valenzuela</a></td>
+                        <td><span class="label label-info">AUT</span></td>
+                        <td><a href="#">jose.luizval@algo.com</a></td>
+                        <td>14/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Diego Gómez</a></td>
+                        <td><span class="label label-blue">COL</span></td>
+                        <td><a href="#">email@gmail.com</a></td>
+                        <td>13/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Mónica Ventura</a></td>
+                        <td><span class="label label-important">SUP</span></td>
+                        <td><a href="#">monicaventura@algo.com</a></td>
+                        <td>hace 1 hora</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><a href="#">Estefanía Trisotti</a></td>
+                        <td><span class="label label-yellow">EDI</span></td>
+                        <td><a href="#">hola@tri.cl</a></td>
+                        <td>h18/04/2013</td>
+                        <td class="align-center"><i class="icon-cog"></i></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <!-- END tabla principal -->
+
+            <div class="pagination pagination-centered">
+                <ul>
+                    <li class="disabled"><a href="#">«</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">»</a></li>
+                </ul>
+            </div>
+            <!-- END Main Content -->
+            <small>(8.520 Publicaciones)</small>
 
         </div>
-        <!-- END Container -->
+        <!-- END span9 -->
+    </div>
+    <!-- END row -->
+
