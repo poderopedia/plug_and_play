@@ -11,7 +11,7 @@
 
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
-    db = DAL('sqlite://storage.sqlite',pool_size=1,check_reserved=['all'])
+    db = DAL('mysql://plugandplayuser:plugandplayuser@localhost/plugandplaydb')
 else:
     ## connect to Google BigTable (optional 'google:datastore://namespace')
     db = DAL('google:datastore')
@@ -90,3 +90,19 @@ use_janrain(auth, filename='private/janrain.key')
 mail.settings.server = settings.email_server
 mail.settings.sender = settings.email_sender
 mail.settings.login = settings.email_login
+
+
+## Plugin ckeditor
+
+from plugin_ckeditor import CKEditor
+ckeditor = CKEditor(db)
+ckeditor.define_tables()
+
+#tabla de prueba, no se alcanzó a implementar
+#db.define_table('suggestions',
+#    Field('user_id', 'integer'),
+#    Field('text', 'text', widget = ckeditor.widget),
+#    migrate = True,
+#    fake_migrate = False,
+#    format = '%(title)s'
+#)

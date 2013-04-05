@@ -123,6 +123,7 @@
 
                 <!-- Menú lateral-->
                 <div class="span3 menu">
+                    {{block sidebar_menu}}
                     <nav>
                         <ul>
                             <!-- Item de menu:Datos básicos -->
@@ -164,12 +165,13 @@
                             <li class="collapsed"><a href="#">Casos</a></li>
                         </ul>
                     </nav>
+                    {{end}}
                 </div>
                 <!-- END Menú lateral -->
 
                 <div class="content">
                     <!-- acá va el contenido -->
-
+                    {{include}}
 
                 </div>
                 <!-- END span9 -->
