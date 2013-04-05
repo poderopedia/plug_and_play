@@ -79,6 +79,7 @@
     <body class="">
         <!-- Header superior, incluye el logo, los botones explorar, crear, la imagen y nombre de usuario -->
         <header>
+            {{block header}}
             <div class="container">
                 <div class="row">
                     <div class="span12 clearfix">
@@ -109,6 +110,7 @@
                     </div>
                 </div>
             </div>
+            {{end}}
         </header>
         <!-- End header superior -->
 
@@ -117,12 +119,17 @@
             <div class="row">
                 <!-- Título principal-->
                 <div class="span12">
-                    <h1>Título Principal H1</h1>
+                    <h1>
+                    {{block title}}
+                    Título Principal H1
+                    {{end}}
+                    </h1>
                 </div>
                 <!-- End Título principal-->
 
                 <!-- Menú lateral-->
                 <div class="span3 menu">
+                    {{block sidebar}}
                     <nav>
                         <ul>
                             <!-- Item de menu:Datos básicos -->
@@ -164,11 +171,13 @@
                             <li class="collapsed"><a href="#">Casos</a></li>
                         </ul>
                     </nav>
+                    {{end}}
                 </div>
                 <!-- END Menú lateral -->
 
                 <div class="content">
                     <!-- acá va el contenido -->
+                    {{ include }}
 
 
                 </div>
@@ -181,6 +190,7 @@
 
         <!-- Footer -->
         <footer>
+            {{block footer}}
             <div class="border">
                 <div class="container">
                     <!-- Primer Menu footer -->
@@ -277,10 +287,13 @@
                 </div>
             </div>
             <!-- END menú de copyright-->
+            {{end}}
         </footer>
         <!-- END footer-->
+        {{block script}}
         <script>
-            $('a[rel="tooltip"]').tooltip();
+             $('a[rel="tooltip"]').tooltip();
         </script>
+        {{end}}
     </body>
 </html>

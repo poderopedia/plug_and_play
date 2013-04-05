@@ -3,3 +3,7 @@ __author__ = 'Evolutiva'
 
 def index():
     return locals()
+
+
+def publicaciones_general():
+    return locals()
