@@ -1,8 +1,7 @@
 __author__ = 'Evolutiva'
 
 #document Cloud Table
-dc_username='team@poderopedia.com'
-dc_password='tirateunfile-548ireneariztia'
+
 
 entityList=['persona','empresa','organizacion']
 accessList=['public','private','organization']
