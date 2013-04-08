@@ -456,11 +456,7 @@ db.define_table('RelPersOrg',
     auth.signature
     )
 
-## configure email
-mail=auth.settings.mailer
-mail.settings.server = 'smtp.gmail.com:587'
-mail.settings.sender = 'mailman@poderopedia.com'
-mail.settings.login = 'mailman@poderopedia.com:hgst6s-98als-1'
+
 
 db.RelPersOrg.destinoO.widget = SQLFORM.widgets.autocomplete(
      request, db.Organizacion.alias, id_field=db.Organizacion.id,db=db(db.Organizacion.is_active==True))
