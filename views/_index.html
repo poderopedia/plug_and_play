@@ -119,12 +119,17 @@
             <div class="row">
                 <!-- Título principal-->
                 <div class="span12">
-                    <h1>Título Principal H1</h1>
+                    <h1>
+                    {{block title}}
+                    Título Principal H1
+                    {{end}}
+                    </h1>
                 </div>
                 <!-- End Título principal-->
 
                 <!-- Menú lateral-->
                 <div class="span3 menu">
+                    {{block sidebar}}
                     <nav>
                         {{block lateral_menu}}
                         <ul>
@@ -168,13 +173,21 @@
                         </ul>
                         {{end}}
                     </nav>
+                    {{end}}
                 </div>
                 <!-- END Menú lateral -->
 
                 <!-- acá va el contenido -->
                 <div class="content">
+<<<<<<< HEAD
                     {{block content}}
                     {{end}}
+=======
+                    <!-- acá va el contenido -->
+                    {{ include }}
+
+
+>>>>>>> develop
                 </div>
                 <!-- END span9 -->
             </div>
@@ -285,8 +298,10 @@
             {{end}}
         </footer>
         <!-- END footer-->
+        {{block script}}
         <script>
-            $('a[rel="tooltip"]').tooltip();
+             $('a[rel="tooltip"]').tooltip();
         </script>
+        {{end}}
     </body>
 </html>
