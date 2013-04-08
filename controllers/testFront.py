@@ -5,7 +5,7 @@ __author__ = 'Evolutiva'
 
 
 def index():
-<<<<<<< HEAD
+
 
     my_dict = dict()
 
@@ -50,7 +50,7 @@ def accepted():
 
 def display():
     grid = SQLFORM.grid(db.persona,editable=True,user_signature=False)
-=======
+
     #implementa plantilla main
     return locals()
 
@@ -81,5 +81,4 @@ def publicaciones_organizaciones():
     
 def usuarios_historial():
     #historial de usuarios
->>>>>>> develop
     return locals()

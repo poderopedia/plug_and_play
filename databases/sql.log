@@ -374,3 +374,427 @@ CREATE TABLE documentCloud(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
+timestamp: 2013-04-05T18:06:35.761000
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    username VARCHAR(255),
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    created_on DATETIME,
+    modified_on DATETIME,
+    registration_key VARCHAR(255),
+    reset_password_key VARCHAR(255),
+    registration_id VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.059000
+CREATE TABLE auth_group(
+    id INT AUTO_INCREMENT NOT NULL,
+    role VARCHAR(255),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.101000
+CREATE TABLE auth_membership(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.192000
+CREATE TABLE auth_permission(
+    id INT AUTO_INCREMENT NOT NULL,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group (id) ON DELETE CASCADE,
+    name VARCHAR(255),
+    table_name VARCHAR(255),
+    record_id INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.220000
+CREATE TABLE auth_event(
+    id INT AUTO_INCREMENT NOT NULL,
+    time_stamp DATETIME,
+    client_ip VARCHAR(255),
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin VARCHAR(255),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.275000
+CREATE TABLE auth_cas(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on DATETIME,
+    service VARCHAR(255),
+    ticket VARCHAR(255),
+    renew CHAR(1),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.307000
+CREATE TABLE mapas(
+    id INT AUTO_INCREMENT NOT NULL,
+    label LONGTEXT,
+    posted_on DATETIME,
+    graph LONGTEXT,
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.338000
+CREATE TABLE casos(
+    id INT AUTO_INCREMENT NOT NULL,
+    label VARCHAR(255),
+    posted_on DATETIME,
+    graph LONGTEXT,
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.458000
+CREATE TABLE country(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    iso2 VARCHAR(255),
+    iso3 VARCHAR(255),
+    iso_id INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.545000
+CREATE TABLE place(
+    id INT AUTO_INCREMENT NOT NULL,
+    lugar VARCHAR(255),
+    fecha DATE,
+    country INT, INDEX country__idx (country), FOREIGN KEY (country) REFERENCES country (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.582000
+CREATE TABLE sector(
+    id INT AUTO_INCREMENT NOT NULL,
+    parent INT,
+    name VARCHAR(255),
+    labelOtro VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.688000
+CREATE TABLE document(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    documentURL VARCHAR(255),
+    fecha VARCHAR(255),
+    tipoDoc VARCHAR(255),
+    source_from INT, INDEX source_from__idx (source_from), FOREIGN KEY (source_from) REFERENCES auth_user (id) ON DELETE CASCADE,
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.842000
+CREATE TABLE persona(
+    id INT AUTO_INCREMENT NOT NULL,
+    ICN VARCHAR(255),
+    firstName VARCHAR(255),
+    firstLastName VARCHAR(255),
+    otherLastName VARCHAR(255),
+    alias VARCHAR(255),
+    birth VARCHAR(255),
+    countryofResidence INT, INDEX countryofResidence__idx (countryofResidence), FOREIGN KEY (countryofResidence) REFERENCES country (id) ON DELETE CASCADE,
+    Mainsector LONGTEXT,
+    depiction VARCHAR(255),
+    shortBio LONGTEXT,
+    longBio LONGTEXT,
+    documentSource LONGTEXT,
+    documentCloud LONGTEXT,
+    isDead CHAR(1),
+    web VARCHAR(255),
+    twitterNick VARCHAR(255),
+    facebookNick VARCHAR(255),
+    linkedinNick VARCHAR(255),
+    state_publication VARCHAR(255),
+    date_publication DATE,
+    state_colaboration CHAR(1),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:36.940000
+CREATE TABLE perfiles(
+    id INT AUTO_INCREMENT NOT NULL,
+    label VARCHAR(255),
+    postedon DATETIME,
+    dueno INT, INDEX dueno__idx (dueno), FOREIGN KEY (dueno) REFERENCES auth_user (id) ON DELETE CASCADE,
+    graph LONGTEXT,
+    person INT, INDEX person__idx (person), FOREIGN KEY (person) REFERENCES persona (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:37.046000
+CREATE TABLE sectorMain2Pers(
+    id INT AUTO_INCREMENT NOT NULL,
+    origenP INT, INDEX origenP__idx (origenP), FOREIGN KEY (origenP) REFERENCES persona (id) ON DELETE CASCADE,
+    destinoSector INT, INDEX destinoSector__idx (destinoSector), FOREIGN KEY (destinoSector) REFERENCES sector (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:37.109000
+CREATE TABLE tipoParentesco(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    nameInverso VARCHAR(255),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:37.360000
+CREATE TABLE tipoRelacionP2P(
+    id INT AUTO_INCREMENT NOT NULL,
+    parent INT,
+    name VARCHAR(255),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:37.431000
+CREATE TABLE tipoOrganizacion(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    generalizacion INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:37.519000
+CREATE TABLE Organizacion(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    tipoOrg INT, INDEX tipoOrg__idx (tipoOrg), FOREIGN KEY (tipoOrg) REFERENCES tipoOrganizacion (id) ON DELETE CASCADE,
+    haslogo VARCHAR(255),
+    hasSocialReason VARCHAR(255),
+    Mainsector LONGTEXT,
+    hasTaxId VARCHAR(255),
+    alias VARCHAR(255),
+    countryOfResidence INT, INDEX countryOfResidence__idx (countryOfResidence), FOREIGN KEY (countryOfResidence) REFERENCES country (id) ON DELETE CASCADE,
+    depiction VARCHAR(255),
+    hasdocumentation VARCHAR(255),
+    documentSource LONGTEXT,
+    documentCloud LONGTEXT,
+    shortBio LONGTEXT,
+    longBio LONGTEXT,
+    birth VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:37.599000
+CREATE TABLE relPersona(
+    id INT AUTO_INCREMENT NOT NULL,
+    relacion INT, INDEX relacion__idx (relacion), FOREIGN KEY (relacion) REFERENCES tipoRelacionP2P (id) ON DELETE CASCADE,
+    origenP INT, INDEX origenP__idx (origenP), FOREIGN KEY (origenP) REFERENCES persona (id) ON DELETE CASCADE,
+    destinoP INT, INDEX destinoP__idx (destinoP), FOREIGN KEY (destinoP) REFERENCES persona (id) ON DELETE CASCADE,
+    extraO INT, INDEX extraO__idx (extraO), FOREIGN KEY (extraO) REFERENCES Organizacion (id) ON DELETE CASCADE,
+    extraLabel VARCHAR(255),
+    fdesde VARCHAR(255),
+    fhasta VARCHAR(255),
+    isPast CHAR(1),
+    documentSource LONGTEXT,
+    ini DATE,
+    fin DATE,
+    iniDay VARCHAR(255),
+    iniMonth VARCHAR(255),
+    iniYear VARCHAR(255),
+    finDay VARCHAR(255),
+    finMonth VARCHAR(255),
+    finYear VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:37.730000
+CREATE TABLE tipoRelacionOrg2Org(
+    id INT AUTO_INCREMENT NOT NULL,
+    parent INT,
+    name VARCHAR(255),
+    inverse VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:37.861000
+CREATE TABLE relOrg2Org(
+    id INT AUTO_INCREMENT NOT NULL,
+    origenO INT, INDEX origenO__idx (origenO), FOREIGN KEY (origenO) REFERENCES Organizacion (id) ON DELETE CASCADE,
+    relationOrg INT, INDEX relationOrg__idx (relationOrg), FOREIGN KEY (relationOrg) REFERENCES tipoRelacionOrg2Org (id) ON DELETE CASCADE,
+    destinoO INT, INDEX destinoO__idx (destinoO), FOREIGN KEY (destinoO) REFERENCES Organizacion (id) ON DELETE CASCADE,
+    extraLabel VARCHAR(255),
+    fdesde VARCHAR(255),
+    fhasta VARCHAR(255),
+    isPast CHAR(1),
+    documentSource LONGTEXT,
+    ini DATE,
+    fin DATE,
+    iniDay VARCHAR(255),
+    iniMonth VARCHAR(255),
+    iniYear VARCHAR(255),
+    finDay VARCHAR(255),
+    finMonth VARCHAR(255),
+    finYear VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:37.956000
+CREATE TABLE tipoRelacionP20(
+    id INT AUTO_INCREMENT NOT NULL,
+    parent INT,
+    relationship VARCHAR(255),
+    generalizacion VARCHAR(255),
+    inverse VARCHAR(255),
+    orden INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:38.078000
+CREATE TABLE RelPersOrg(
+    id INT AUTO_INCREMENT NOT NULL,
+    specificRelation INT, INDEX specificRelation__idx (specificRelation), FOREIGN KEY (specificRelation) REFERENCES tipoRelacionP20 (id) ON DELETE CASCADE,
+    origenP INT, INDEX origenP__idx (origenP), FOREIGN KEY (origenP) REFERENCES persona (id) ON DELETE CASCADE,
+    destinoO INT, INDEX destinoO__idx (destinoO), FOREIGN KEY (destinoO) REFERENCES Organizacion (id) ON DELETE CASCADE,
+    fdesde VARCHAR(255),
+    fhasta VARCHAR(255),
+    isPast CHAR(1),
+    extraLabel VARCHAR(255),
+    documentSource LONGTEXT,
+    transitive INT,
+    transitiveP2P INT,
+    ini DATE,
+    fin DATE,
+    iniDay VARCHAR(255),
+    iniMonth VARCHAR(255),
+    iniYear VARCHAR(255),
+    finDay VARCHAR(255),
+    finMonth VARCHAR(255),
+    finYear VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:38.146000
+CREATE TABLE relFamiliar(
+    id INT AUTO_INCREMENT NOT NULL,
+    parentesco INT, INDEX parentesco__idx (parentesco), FOREIGN KEY (parentesco) REFERENCES tipoParentesco (id) ON DELETE CASCADE,
+    origenP INT, INDEX origenP__idx (origenP), FOREIGN KEY (origenP) REFERENCES persona (id) ON DELETE CASCADE,
+    destinoP INT, INDEX destinoP__idx (destinoP), FOREIGN KEY (destinoP) REFERENCES persona (id) ON DELETE CASCADE,
+    documentSource LONGTEXT,
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:38.234000
+CREATE TABLE birthEvent(
+    id INT AUTO_INCREMENT NOT NULL,
+    hasSource INT, INDEX hasSource__idx (hasSource), FOREIGN KEY (hasSource) REFERENCES document (id) ON DELETE CASCADE,
+    place INT, INDEX place__idx (place), FOREIGN KEY (place) REFERENCES place (id) ON DELETE CASCADE,
+    fecha DATE,
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:38.316000
+CREATE TABLE companeros(
+    id INT AUTO_INCREMENT NOT NULL,
+    relacionP2O INT, INDEX relacionP2O__idx (relacionP2O), FOREIGN KEY (relacionP2O) REFERENCES RelPersOrg (id) ON DELETE CASCADE,
+    nexo VARCHAR(255),
+    relationComp INT,
+    destinoP INT, INDEX destinoP__idx (destinoP), FOREIGN KEY (destinoP) REFERENCES persona (id) ON DELETE CASCADE,
+    fechaI VARCHAR(255),
+    fechaF VARCHAR(255),
+    fuente LONGTEXT,
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:38.414000
+CREATE TABLE importer(
+    id INT AUTO_INCREMENT NOT NULL,
+    filename VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-05T18:06:40.386000
+CREATE TABLE documentCloud(
+    id INT AUTO_INCREMENT NOT NULL,
+    dc_id VARCHAR(255),
+    file VARCHAR(255),
+    title VARCHAR(255),
+    source VARCHAR(255),
+    description LONGTEXT,
+    related_article VARCHAR(255),
+    published_url VARCHAR(255),
+    access VARCHAR(255),
+    project INT,
+    data VARCHAR(255),
+    secure VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
