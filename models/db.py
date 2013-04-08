@@ -11,7 +11,7 @@
 
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
-    db = DAL('mysql://testing:powertest@localhost/plugandplay_test',check_reserved=['postgres', 'mysql'], migrate=True)
+    db = DAL('mysql://testing:powertest@localhost/plugandplay_test',check_reserved=['postgres', 'mysql'], migrate=False)
 else:
     ## connect to Google BigTable (optional 'google:datastore://namespace')
     db = DAL('google:datastore')
@@ -263,9 +263,9 @@ db.define_table('persona',
     Field('twitterNick','string', label=T('Twitter')),
     Field('facebookNick','string', label=T('Facebook')),
     Field('linkedinNick','string', label=T('Linkedin')),
-    Field('state_publication','string',label=T('Estado Publicacion'),requires=IS_IN_SET(('programmed','published','draft'))),
-    Field('date_publication','date',label=T('Fecha Publicacion'),default=request.now),
-    Field('state_colaboration','boolean',default=False),
+    Field('state_publication','string',label=T('Estado Publicacion'),readable=False, writable=False,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
+    Field('date_publication','date',label=T('Fecha Publicacion'),readable=False, writable=False,default=request.now),
+    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=False, writable=False, default=False),
     ##Field('hasdocumentation',db.document, label=T('Documento')),
     ##Field('hasdocumentation','upload', label=T('Documento')),
     ##Field('hasUrl',db.document, label=T('Redes Sociales')),

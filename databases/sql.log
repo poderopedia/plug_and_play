@@ -1,105 +1,4 @@
-timestamp: 2013-04-01T16:22:58.823000
-CREATE TABLE auth_user(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    first_name CHAR(128),
-    last_name CHAR(128),
-    email CHAR(512),
-    password CHAR(512),
-    registration_key CHAR(512),
-    reset_password_key CHAR(512),
-    registration_id CHAR(512)
-);
-success!
-timestamp: 2013-04-01T16:22:58.834000
-CREATE TABLE auth_group(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    role CHAR(512),
-    description TEXT
-);
-success!
-timestamp: 2013-04-01T16:22:58.841000
-CREATE TABLE auth_membership(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
-    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
-);
-success!
-timestamp: 2013-04-01T16:22:58.943000
-CREATE TABLE auth_permission(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
-    name CHAR(512),
-    table_name CHAR(512),
-    record_id INTEGER
-);
-success!
-timestamp: 2013-04-01T16:22:58.974000
-CREATE TABLE auth_event(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    time_stamp TIMESTAMP,
-    client_ip CHAR(512),
-    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
-    origin CHAR(512),
-    description TEXT
-);
-success!
-timestamp: 2013-04-01T16:22:59.017000
-CREATE TABLE auth_cas(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
-    created_on TIMESTAMP,
-    service CHAR(512),
-    ticket CHAR(512),
-    renew CHAR(1)
-);
-success!
-timestamp: 2013-04-04T12:29:55.004497
-CREATE TABLE auth_user(
-    id INT AUTO_INCREMENT NOT NULL,
-    username VARCHAR(255),
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
-    email VARCHAR(255),
-    password VARCHAR(255),
-    created_on DATETIME,
-    modified_on DATETIME,
-    registration_key VARCHAR(255),
-    reset_password_key VARCHAR(255),
-    registration_id VARCHAR(255),
-    PRIMARY KEY(id)
-) ENGINE=InnoDB CHARACTER SET utf8;
-timestamp: 2013-04-04T12:39:26.911963
-CREATE TABLE persona(
-    id INT AUTO_INCREMENT NOT NULL,
-    ICN VARCHAR(255),
-    firstName VARCHAR(255),
-    firstLastName VARCHAR(255),
-    otherLastName VARCHAR(255),
-    alias VARCHAR(255),
-    birth VARCHAR(255),
-    countryofResidence INT, INDEX countryofResidence__idx (countryofResidence), FOREIGN KEY (countryofResidence) REFERENCES country (id) ON DELETE CASCADE,
-    Mainsector LONGTEXT,
-    depiction VARCHAR(255),
-    shortBio LONGTEXT,
-    longBio LONGTEXT,
-    documentSource LONGTEXT,
-    documentCloud LONGTEXT,
-    isDead CHAR(1),
-    web VARCHAR(255),
-    twitterNick VARCHAR(255),
-    facebookNick VARCHAR(255),
-    linkedinNick VARCHAR(255),
-    state_publication VARCHAR(255),
-    date_publication DATE,
-    state_colaboration CHAR(1),
-    is_active CHAR(1),
-    created_on DATETIME,
-    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
-    modified_on DATETIME,
-    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
-    PRIMARY KEY(id)
-) ENGINE=InnoDB CHARACTER SET utf8;
-timestamp: 2013-04-04T12:45:59.068720
+timestamp: 2013-04-04T17:51:31.860680
 CREATE TABLE auth_user(
     id INT AUTO_INCREMENT NOT NULL,
     username VARCHAR(255),
@@ -115,7 +14,7 @@ CREATE TABLE auth_user(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:45:59.174308
+timestamp: 2013-04-04T17:51:31.961595
 CREATE TABLE mapas(
     id INT AUTO_INCREMENT NOT NULL,
     label LONGTEXT,
@@ -129,7 +28,7 @@ CREATE TABLE mapas(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:45:59.430987
+timestamp: 2013-04-04T17:51:32.318077
 CREATE TABLE casos(
     id INT AUTO_INCREMENT NOT NULL,
     label VARCHAR(255),
@@ -143,7 +42,7 @@ CREATE TABLE casos(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:45:59.556089
+timestamp: 2013-04-04T17:51:32.551167
 CREATE TABLE country(
     id INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255),
@@ -153,7 +52,7 @@ CREATE TABLE country(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:45:59.710671
+timestamp: 2013-04-04T17:51:32.696370
 CREATE TABLE place(
     id INT AUTO_INCREMENT NOT NULL,
     lugar VARCHAR(255),
@@ -162,7 +61,7 @@ CREATE TABLE place(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:45:59.834843
+timestamp: 2013-04-04T17:51:32.839939
 CREATE TABLE sector(
     id INT AUTO_INCREMENT NOT NULL,
     parent INT,
@@ -171,7 +70,7 @@ CREATE TABLE sector(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:00.013930
+timestamp: 2013-04-04T17:51:32.954829
 CREATE TABLE document(
     id INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255),
@@ -187,7 +86,7 @@ CREATE TABLE document(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:00.142410
+timestamp: 2013-04-04T17:51:33.079158
 CREATE TABLE persona(
     id INT AUTO_INCREMENT NOT NULL,
     ICN VARCHAR(255),
@@ -219,7 +118,7 @@ CREATE TABLE persona(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:00.371882
+timestamp: 2013-04-04T17:51:33.210718
 CREATE TABLE perfiles(
     id INT AUTO_INCREMENT NOT NULL,
     label VARCHAR(255),
@@ -230,7 +129,7 @@ CREATE TABLE perfiles(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:00.495581
+timestamp: 2013-04-04T17:51:33.356148
 CREATE TABLE sectorMain2Pers(
     id INT AUTO_INCREMENT NOT NULL,
     origenP INT, INDEX origenP__idx (origenP), FOREIGN KEY (origenP) REFERENCES persona (id) ON DELETE CASCADE,
@@ -238,7 +137,7 @@ CREATE TABLE sectorMain2Pers(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:00.629957
+timestamp: 2013-04-04T17:51:33.512146
 CREATE TABLE tipoParentesco(
     id INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255),
@@ -247,7 +146,7 @@ CREATE TABLE tipoParentesco(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:00.762582
+timestamp: 2013-04-04T17:51:33.680456
 CREATE TABLE tipoRelacionP2P(
     id INT AUTO_INCREMENT NOT NULL,
     parent INT,
@@ -256,7 +155,7 @@ CREATE TABLE tipoRelacionP2P(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:00.896643
+timestamp: 2013-04-04T17:51:33.802937
 CREATE TABLE tipoOrganizacion(
     id INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255),
@@ -264,7 +163,7 @@ CREATE TABLE tipoOrganizacion(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:01.021714
+timestamp: 2013-04-04T17:51:33.939937
 CREATE TABLE Organizacion(
     id INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255),
@@ -290,7 +189,7 @@ CREATE TABLE Organizacion(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:01.146847
+timestamp: 2013-04-04T17:51:34.088622
 CREATE TABLE relPersona(
     id INT AUTO_INCREMENT NOT NULL,
     relacion INT, INDEX relacion__idx (relacion), FOREIGN KEY (relacion) REFERENCES tipoRelacionP2P (id) ON DELETE CASCADE,
@@ -318,7 +217,7 @@ CREATE TABLE relPersona(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:01.319167
+timestamp: 2013-04-04T17:51:34.233425
 CREATE TABLE tipoRelacionOrg2Org(
     id INT AUTO_INCREMENT NOT NULL,
     parent INT,
@@ -327,7 +226,7 @@ CREATE TABLE tipoRelacionOrg2Org(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:01.448743
+timestamp: 2013-04-04T17:51:34.376895
 CREATE TABLE relOrg2Org(
     id INT AUTO_INCREMENT NOT NULL,
     origenO INT, INDEX origenO__idx (origenO), FOREIGN KEY (origenO) REFERENCES Organizacion (id) ON DELETE CASCADE,
@@ -354,7 +253,7 @@ CREATE TABLE relOrg2Org(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:01.562986
+timestamp: 2013-04-04T17:51:34.500246
 CREATE TABLE tipoRelacionP20(
     id INT AUTO_INCREMENT NOT NULL,
     parent INT,
@@ -365,7 +264,7 @@ CREATE TABLE tipoRelacionP20(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:01.707122
+timestamp: 2013-04-04T17:51:34.613558
 CREATE TABLE RelPersOrg(
     id INT AUTO_INCREMENT NOT NULL,
     specificRelation INT, INDEX specificRelation__idx (specificRelation), FOREIGN KEY (specificRelation) REFERENCES tipoRelacionP20 (id) ON DELETE CASCADE,
@@ -394,7 +293,7 @@ CREATE TABLE RelPersOrg(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:02.144905
+timestamp: 2013-04-04T17:51:34.736254
 CREATE TABLE relFamiliar(
     id INT AUTO_INCREMENT NOT NULL,
     parentesco INT, INDEX parentesco__idx (parentesco), FOREIGN KEY (parentesco) REFERENCES tipoParentesco (id) ON DELETE CASCADE,
@@ -409,7 +308,7 @@ CREATE TABLE relFamiliar(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:02.267195
+timestamp: 2013-04-04T17:51:34.869435
 CREATE TABLE birthEvent(
     id INT AUTO_INCREMENT NOT NULL,
     hasSource INT, INDEX hasSource__idx (hasSource), FOREIGN KEY (hasSource) REFERENCES document (id) ON DELETE CASCADE,
@@ -423,7 +322,7 @@ CREATE TABLE birthEvent(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:02.457440
+timestamp: 2013-04-04T17:51:35.017201
 CREATE TABLE companeros(
     id INT AUTO_INCREMENT NOT NULL,
     relacionP2O INT, INDEX relacionP2O__idx (relacionP2O), FOREIGN KEY (relacionP2O) REFERENCES RelPersOrg (id) ON DELETE CASCADE,
@@ -441,7 +340,7 @@ CREATE TABLE companeros(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:46:02.687314
+timestamp: 2013-04-04T17:51:35.194280
 CREATE TABLE importer(
     id INT AUTO_INCREMENT NOT NULL,
     filename VARCHAR(255),
@@ -453,7 +352,7 @@ CREATE TABLE importer(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
-timestamp: 2013-04-04T12:56:08.639917
+timestamp: 2013-04-04T17:51:35.393229
 CREATE TABLE documentCloud(
     id INT AUTO_INCREMENT NOT NULL,
     dc_id VARCHAR(255),
