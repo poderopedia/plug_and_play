@@ -11,7 +11,7 @@
 
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
-    db = DAL('mysql://testing:powertest@localhost/plugandplay_test',check_reserved=['postgres', 'mysql'], migrate=True)
+    db = DAL(settings.database_uri,check_reserved=['postgres', 'mysql'], migrate=False)
 else:
     ## connect to Google BigTable (optional 'google:datastore://namespace')
     db = DAL('google:datastore')

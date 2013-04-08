@@ -46,7 +46,12 @@ def index():
     return my_dict
 
 def accepted():
-    return dict()
+
+    return dict(form= a_form)
+
+def grid():
+    a_grid = SQLFORM.grid(db.auth_user,user_signature=False)
+    return dict(grid= a_grid)
 
 def display():
     grid = SQLFORM.grid(db.persona,editable=True,user_signature=False)

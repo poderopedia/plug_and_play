@@ -1,13 +1,16 @@
+*.pyc
+*~
+*.log
+*.sql
+
+
 cache/
 databases/
 errors/
 sessions/
-*.pyc
-*~
+
 
 models/app_config.py
-
 private/auth.key
-
 databases/sql.log
 
