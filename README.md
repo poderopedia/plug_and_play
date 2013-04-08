@@ -5,7 +5,7 @@ Admin Plug_and Play
 
 Requisitos:
 
-Para trabajar con Plug_and_Play se necesitan los siguientes componentes:
+Para trabajar con Plug_and_Play se necesitan los siguientes componentes (comment: deben incluir links a los sitios)
 
 * Framework Web2py
 * Repositorio Github
