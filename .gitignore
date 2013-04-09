@@ -3,9 +3,12 @@ databases/
 errors/
 sessions/
 *.pyc
+*.orig
 *~
 *.log
 *.sql
+*.bak
+models/0.py
 
 models/app_config.py
 
