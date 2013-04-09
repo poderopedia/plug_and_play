@@ -3,8 +3,10 @@
 *.log
 *.sql
 *.bak
-models/0.py
+*.orig
 
+
+models/0.py
 
 cache/
 databases/
