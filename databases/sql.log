@@ -853,3 +853,106 @@ CREATE TABLE documentCloud(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
+timestamp: 2013-04-09T11:45:46.873460
+CREATE TABLE sugerirConexion(
+    id INT AUTO_INCREMENT NOT NULL,
+    referenceEntity VARCHAR(255),
+    reference INT,
+    alias VARCHAR(255),
+    name VARCHAR(255),
+    texto LONGTEXT,
+    documentURL VARCHAR(255),
+    estado VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-09T11:45:47.136389
+CREATE TABLE sugerirPersona(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(255),
+    texto LONGTEXT,
+    documentURL VARCHAR(255),
+    estado VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-09T11:45:47.397312
+CREATE TABLE tipoerror(
+    id INT AUTO_INCREMENT NOT NULL,
+    referenceEntity VARCHAR(255),
+    reference INT,
+    contenido LONGTEXT,
+    URL VARCHAR(255),
+    estado VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-09T11:45:47.616219
+CREATE TABLE tipoinadecuado(
+    id INT AUTO_INCREMENT NOT NULL,
+    referenceEntity VARCHAR(255),
+    reference INT,
+    contenido LONGTEXT,
+    URL VARCHAR(255),
+    estado VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-09T11:45:47.826096
+CREATE TABLE compartir(
+    id INT AUTO_INCREMENT NOT NULL,
+    email VARCHAR(255),
+    contenido LONGTEXT,
+    fecha DATE,
+    pagina VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-09T11:45:47.981083
+CREATE TABLE notificaciones(
+    id INT AUTO_INCREMENT NOT NULL,
+    referenceEntity VARCHAR(255),
+    reference INT,
+    contenido LONGTEXT,
+    URL VARCHAR(255),
+    tipoError VARCHAR(255),
+    estado VARCHAR(255),
+    is_active CHAR(1),
+    created_on DATETIME,
+    created_by INT, INDEX created_by__idx (created_by), FOREIGN KEY (created_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on DATETIME,
+    modified_by INT, INDEX modified_by__idx (modified_by), FOREIGN KEY (modified_by) REFERENCES auth_user (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2013-04-09T11:45:48.150823
+CREATE TABLE tengoDato(
+    id INT AUTO_INCREMENT NOT NULL,
+    nombre VARCHAR(255),
+    contenido LONGTEXT,
+    URL VARCHAR(255),
+    estado VARCHAR(255),
+    created_on DATETIME,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
