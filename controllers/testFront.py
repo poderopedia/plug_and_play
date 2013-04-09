@@ -39,20 +39,45 @@ def index():
         # response.flash = 'form accepted'
         redirect(URL('accepted'))
     elif a_form.errors:
-        my_dict['a_error'] = "Ocurrio un error"
+        my_dict['a_error'] = T('Ocurrio un error en el formulario')
         response.flash = 'form has errors'
 
-    my_dict['form']=a_form
+    my_dict['form'] = a_form
     return my_dict
 
 def accepted():
-    a_form = ''
+
     return dict(form= a_form)
 
+def grid():
+    a_grid = SQLFORM.grid(db.auth_user,user_signature=False)
+    return dict(grid= a_grid)
+
 def display():
-    grid = SQLFORM.grid(db.persona,editable=True,user_signature=False)
-    #implementa plantilla main
-    return locals()
+
+    label_dict = {'persona.ICN': T('Rut'),
+                  'persona.firstLastName': T('Apellido Paterno'),
+                  'persona.otherLastName': T('Apellido Materno')}
+
+    show_fields = [db.persona.id, db.persona.ICN, db.persona.firstName,
+                   db.persona.firstLastName, db.persona.otherLastName]
+
+    grid = SQLFORM.grid(
+        db.persona.state_publication=='draft',
+        editable=True,
+        details=False,
+        user_signature=False,
+        fields=show_fields,
+        create=False,
+        headers=label_dict,
+        csv=False,
+        paginate=25,
+        searchable=False
+        )
+
+    # implementa plantilla main
+
+    return dict(grid=grid)
 
 
 def publicaciones_general():

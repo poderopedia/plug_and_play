@@ -1,4 +1,10 @@
+cache/
+databases/
+errors/
+sessions/
+modules/__init__.pyc
 *.pyc
+*.orig
 *~
 *.log
 *.sql
