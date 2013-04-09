@@ -263,6 +263,8 @@ db.define_table('persona',
     Field('twitterNick','string', label=T('Twitter')),
     Field('facebookNick','string', label=T('Facebook')),
     Field('linkedinNick','string', label=T('Linkedin')),
+    ## state_publication indica el estado de la publicacion. Esta puede estar programada para una fecha, publicada o ser un borrador.
+    ## date_publication indica la fecha de publicacion
     Field('state_publication','string',label=T('Estado Publicacion'),readable=False, writable=False,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
     Field('date_publication','date',label=T('Fecha Publicacion'),readable=False, writable=False,default=request.now),
     Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=False, writable=False, default=False),

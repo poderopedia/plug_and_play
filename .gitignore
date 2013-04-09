@@ -6,6 +6,8 @@ sessions/
 *~
 *.log
 *.sql
+*.bak
+models/0.py
 
 models/app_config.py
 
