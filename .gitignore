@@ -1,7 +1,3 @@
-cache/
-databases/
-errors/
-sessions/
 *.pyc
 *~
 *.log
@@ -9,9 +5,14 @@ sessions/
 *.bak
 models/0.py
 
+
+cache/
+databases/
+errors/
+sessions/
+
+
 models/app_config.py
-
 private/auth.key
-
 databases/sql.log
 
