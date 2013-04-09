@@ -81,9 +81,6 @@
 'compile': 'compilar',
 'compiled application removed': 'aplicación compilada removida',
 'Components and Plugins': 'Components and Plugins',
-
-'contains': 'contains',
-
 'Conexión con': 'Conexión con',
 'contains': 'contains',
 'Contenido': 'Contenido',
@@ -332,6 +329,7 @@
 'Role': 'Rol',
 'Rows in Table': 'Filas en la tabla',
 'Rows selected': 'Filas seleccionadas',
+'Rut': 'Rut',
 'RUT': 'RUT',
 'rut': 'rut',
 'save': 'guardar',
