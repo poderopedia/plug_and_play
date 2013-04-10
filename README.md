@@ -27,15 +27,16 @@ Para trabajar con Plug_and_Play se necesitan los siguientes componentes
 1.3. Openssl<br />
 1.4. Expat<br />
 1.5. Libiconv<br />
-   Estas se pueden instalar con el comando <code>$ apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev</code>
+   Estas se pueden instalar con el comando <code>$ apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev</code>.
 
-2. Usar el instalador linux <code>$ apt-get install git</code>
+2. Usar el instalador linux <code>$ apt-get install git</code>.
 
 ####Instalación de MySQL
 
-1. Ingresar a http://dev.mysql.com/downloads/mysql/ y descargar la última versión
+1. Ingresar a http://dev.mysql.com/downloads/mysql/ y descargar la última versión.
 
 ###Instalación de Plug_and_Play
 
-1. Hacer un clon del repositorio actual de Plug_and_play dentro de la carpeta /opt/webapps/web2py/applications/. Usar comando <code>$ git clone https://github.com/poderopedia/plug_and_play.git</code>
-2. En la carpeta /opt/webapps/web2py/applications/plug_and_play/models hay un archivo llamado <code>0.py</code> .Este archivo debe modificarse para ajustarse a la configuración local. Nota: Es importante modificar principalmente el parámetro <code>settings.database_uri</code>
+1. Hacer un clon del repositorio actual de Plug_and_play dentro de la carpeta /opt/webapps/web2py/applications/. Usar comando <code>$ git clone https://github.com/poderopedia/plug_and_play.git</code>.
+2. En la carpeta /opt/webapps/web2py/applications/plug_and_play/models hay un archivo llamado <code>0.py</code> .Este archivo debe modificarse para ajustarse a la configuración local. Nota: Es importante modificar principalmente el parámetro <code>settings.database_uri</code>.
+3. En la carpeta /opt/webapps/web2py/applications/plug_and_play/models hay un archivo llamado <code>db.py</code>. En este archivo deben cambiarse las ocurrencias de <code>migrate=False</code> a <code>migrate=True</code>.
