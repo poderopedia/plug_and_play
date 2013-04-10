@@ -3,5 +3,9 @@
 Listado de Colaboraciones
 {{end}}
 {{block content}}
-{{ =grid }}
+
+<h3> {{ =T("Personas") }}</h3>
+{{ =LOAD(c='testFront',f='display_persona.load', ajax=True) }}
+<h3> {{ =T("Organizaciones") }}</h3>
+{{ =LOAD(c='testFront',f='display_organizacion.load') }}
 {{end}}

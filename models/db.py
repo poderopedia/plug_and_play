@@ -12,7 +12,7 @@ T.force('es')
 
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
-    db = DAL(settings.database_uri,check_reserved=['postgres', 'mysql'], migrate=False)
+    db = DAL(settings.database_uri,check_reserved=['postgres', 'mysql'], migrate=True)
 else:
     ## connect to Google BigTable (optional 'google:datastore://namespace')
     db = DAL('google:datastore')
@@ -335,7 +335,7 @@ db.define_table('tipoRelacionP2P',
 
 #table for tipoOrganizacion
 db.define_table('tipoOrganizacion',
-        Field('name','string', required=True),
+        Field('name','string', required=True,label=T('Nombre')),
         Field('generalizacion','integer')
     )
 
@@ -347,8 +347,8 @@ db.define_table('Organizacion',
     Field('hasSocialReason','string', label=T('Razón Social')),
     Field('Mainsector','list:reference sector', label=T('Main Sector'), requires = IS_IN_DB(db,'sector.id','db.sector.name',multiple=True)),
     Field('hasTaxId','string',label=T('RUT')),
-    Field('alias','string', label=T('Nombre Fantasía'), required=True),
-    Field('countryOfResidence',db.country,requires=IS_IN_DB(db, 'country.id', 'country.name'),label='País de Residencia'),
+    Field('alias','string', label=T('Nombre Fantasía'), required=True, requires=IS_NOT_EMPTY(T('Ingresar nombre'))),
+    Field('countryOfResidence',db.country,requires=IS_IN_DB(db, 'country.id', 'country.name', T('Seleccionar Pais')),label='País de Residencia'),
     Field('depiction','upload', label='Foto'),
     Field('hasdocumentation','upload', label='Documento'),
     Field('documentSource','list:reference document',required=False,
@@ -360,6 +360,9 @@ db.define_table('Organizacion',
     Field('shortBio','text', label='Reseña'),
     Field('longBio','text', requires=IS_LENGTH(65536),label='Perfil largo'),
     Field('birth', 'string', label='Fecha de Fundación'),
+    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=True,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
+    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=True,default=request.now),
+    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=True, default=False),
     auth.signature
     )
 
