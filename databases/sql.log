@@ -1004,3 +1004,12 @@ CREATE TABLE auth_cas(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB CHARACTER SET utf8;
 success!
+timestamp: 2013-04-10T10:53:49.415074
+ALTER TABLE Organizacion ADD state_colaboration CHAR(1);
+success!
+timestamp: 2013-04-10T10:53:49.657683
+ALTER TABLE Organizacion ADD date_publication DATE;
+success!
+timestamp: 2013-04-10T10:53:50.294155
+ALTER TABLE Organizacion ADD state_publication VARCHAR(255);
+success!
