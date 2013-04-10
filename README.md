@@ -34,3 +34,8 @@ Para trabajar con Plug_and_Play se necesitan los siguientes componentes
 ####Instalación de MySQL
 
 1. Ingresar a http://dev.mysql.com/downloads/mysql/ y descargar la última versión
+
+###Instalación de Plug_and_Play
+
+1. Hacer un clon del repositorio actual de Plug_and_play dentro de la carpeta /opt/webapps/web2py/applications/. Usar comando <code>$ git clone https://github.com/poderopedia/plug_and_play.git</code>
+2. En la carpeta /opt/webapps/web2py/applications/plug_and_play/models hay un archivo llamado <code>0.py</code> .Este archivo debe modificarse para ajustarse a la configuración local. Nota: Es importante modificar principalmente el parámetro <code>settings.database_uri</code>
