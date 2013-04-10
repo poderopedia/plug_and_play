@@ -3,13 +3,13 @@ plug_and_play
 
 Admin Plug_and Play
 
-Requisitos:
+###Requisitos:
 
-Para trabajar con Plug_and_Play se necesitan los siguientes componentes (comment: deben incluir links a los sitios)
+Para trabajar con Plug_and_Play se necesitan los siguientes componentes
 
-* Framework Web2py
-* Repositorio Github
-* Motor de bases de datos (MySQL o PostgreSQL)
+* Framework Web2py http://web2py.com/
+* Repositorio Github https://github.com/
+* Motor de bases de datos (MySQL o PostgreSQL) http://www.mysql.com/
  
 
 ####Instalación de Web2py:
@@ -28,4 +28,9 @@ Para trabajar con Plug_and_Play se necesitan los siguientes componentes (comment
 1.4. Expat<br />
 1.5. Libiconv<br />
    Estas se pueden instalar con el comando <code>$ apt-get install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev</code>
-2. 
+
+2. Usar el instalador linux <code>$ apt-get install git</code>
+
+####Instalación de MySQL
+
+1. Ingresar a http://dev.mysql.com/downloads/mysql/ y descargar la última versión
