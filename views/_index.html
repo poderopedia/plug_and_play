@@ -69,6 +69,14 @@
     response.files.append(URL('static','css/style.css'))
     }}
 
+    <!-- inlcude javascript -->
+<!--     {{
+    response.files.append(URL('static','js/jquery.js'))
+    response.files.append(URL('static','js/bootstrap.min.js'))
+    }}
+ -->
+
+
     {{include 'web2py_ajax.html'}}
     <noscript><link href="{{=URL('static', 'css/web2py_bootstrap_nojs.css')}}" rel="stylesheet" type="text/css" /></noscript>
     {{block head}}{{end}}
