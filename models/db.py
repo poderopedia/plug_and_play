@@ -240,8 +240,8 @@ requiere=db((db.document.is_active==True))
 db.define_table('persona',
     Field('ICN','string',label=T('rut'), required=False),
     Field('firstName', 'string', readable=True, writable=True, label=T('Nombres')),
-    Field('firstLastName', 'string', requires=IS_NOT_EMPTY(), label=T('Apellido 1')),
-    Field('otherLastName', 'string', readable=True, writable=True, label=T('Apellido 2')), 
+    Field('firstLastName', 'string', requires=IS_NOT_EMPTY(), label=T('Apellido Paterno')),
+    Field('otherLastName', 'string', readable=True, writable=True, label=T('Apellido Materno')), 
     Field('alias', 'string', requires=IS_NOT_EMPTY(), readable=True, writable=True, label=T('Nombre Corto')),
     ##Field('birth', db.birthEvent, label='Fecha de Nacimiento', required=False),
     Field('birth', 'string', label='Fecha de Nacimiento', required=False),
@@ -268,14 +268,15 @@ db.define_table('persona',
     Field('linkedinNick','string', label=T('Linkedin')),
     ## state_publication indica el estado de la publicacion. Esta puede estar programada para una fecha, publicada o ser un borrador.
     ## date_publication indica la fecha de publicacion
-    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=True,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
-    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=True,default=request.now),
-    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=True, default=False),
+    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=False,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
+    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=False,default=request.now),
+    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=False, default=False),
     ##Field('hasdocumentation',db.document, label=T('Documento')),
     ##Field('hasdocumentation','upload', label=T('Documento')),
     ##Field('hasUrl',db.document, label=T('Redes Sociales')),
     auth.signature
     # migrate='persona.table'
+
     )
 
 
@@ -360,9 +361,9 @@ db.define_table('Organizacion',
     Field('shortBio','text', label='Reseña'),
     Field('longBio','text', requires=IS_LENGTH(65536),label='Perfil largo'),
     Field('birth', 'string', label='Fecha de Fundación'),
-    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=True,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
-    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=True,default=request.now),
-    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=True, default=False),
+    Field('state_publication','string',label=T('Estado Publicacion'),readable=False, writable=True,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
+    Field('date_publication','date',label=T('Fecha Publicacion'),readable=False, writable=True,default=request.now),
+    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=False, writable=True, default=False),
     auth.signature
     )
 

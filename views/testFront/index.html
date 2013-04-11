@@ -5,3 +5,7 @@ Sugerir Perfil
 
 <a href="{{ =URL('persona') }}">Sugerir Persona</a><br>
 <a href="{{ =URL('organizacion') }}">Sugerir Organización</a>
+
+{{if request.is_local:}}
+{{=response.toolbar()}}
+{{pass}}

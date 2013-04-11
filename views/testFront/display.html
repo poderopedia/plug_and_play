@@ -5,7 +5,11 @@ Listado de Colaboraciones
 {{block content}}
 
 <h3> {{ =T("Personas") }}</h3>
-{{ =LOAD(c='testFront',f='display_persona.load', ajax=True) }}
+{{ =LOAD(c='testFront',f='display_persona.load', ajax=True, user_signature=True) }}
 <h3> {{ =T("Organizaciones") }}</h3>
-{{ =LOAD(c='testFront',f='display_organizacion.load') }}
+{{ =LOAD(c='testFront',f='display_organizacion.load', ajax=True, user_signature=True) }}
+
+{{if request.is_local:}}
+{{=response.toolbar()}}
+{{pass}}
 {{end}}
