@@ -268,9 +268,9 @@ db.define_table('persona',
     Field('linkedinNick','string', label=T('Linkedin')),
     ## state_publication indica el estado de la publicacion. Esta puede estar programada para una fecha, publicada o ser un borrador.
     ## date_publication indica la fecha de publicacion
-    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=True,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
-    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=True,default=request.now),
-    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=True, default=False),
+    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=False,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
+    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=False,default=request.now),
+    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=False, default=False),
     ##Field('hasdocumentation',db.document, label=T('Documento')),
     ##Field('hasdocumentation','upload', label=T('Documento')),
     ##Field('hasUrl',db.document, label=T('Redes Sociales')),
@@ -360,9 +360,9 @@ db.define_table('Organizacion',
     Field('shortBio','text', label='Reseña'),
     Field('longBio','text', requires=IS_LENGTH(65536),label='Perfil largo'),
     Field('birth', 'string', label='Fecha de Fundación'),
-    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=True,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
-    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=True,default=request.now),
-    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=True, default=False),
+    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=False,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
+    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=False,default=request.now),
+    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=False, default=False),
     auth.signature
     )
 
