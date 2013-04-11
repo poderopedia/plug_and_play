@@ -28,6 +28,7 @@ def persona():
         'depiction',
         ]
 
+
     # hidden_dict = dict(state_publication='draft',date_publication=request.now,
         # state_colaboration=False)
 
@@ -90,6 +91,7 @@ def display():
     return locals()
 
 def display_persona():
+
     label_dict_persona = {'persona.ICN': T('Rut'),
                           'persona.firstLastName': T('Apellido Paterno'
                           ),
@@ -112,8 +114,7 @@ def display_persona():
         csv=False,
         paginate=10,
         searchable=False,
-        selectable=lambda ids: redirect(URL('testFront',
-                'accept_persona', vars=dict(id=ids))),
+        selectable=lambda ids: redirect(URL('testFront','accept_persona',vars=dict(id=ids))),
         formname='persona_grid_form',
         )
 
@@ -125,19 +126,25 @@ def display_persona():
         persona_grid.element('.web2py_grid input[type=submit]')['_value'
                 ] = T('Aceptar')
 
+
     return dict(persona_grid=persona_grid)
 
 
-def accept_persona():
+def accept_persona( ):
 
     ids_to_accept = request.vars['id']
 
-    names= []
+    # names= []
     for a_id in ids_to_accept:
-        query = (( db.persona.id == a_id ))
-        names.append(query)
+        a_persona = db.persona(a_id)
 
-    return dict(a='test', nombres = names, b = ids_to_accept)
+        db(db['persona']._id==a_id).update(**{ 'state_publication': 'published'})
+        # names.append(a_persona['alias'])
+
+    session.flash ='Sugerencias Aceptadas'
+    redirect(URL('display_persona', vars=dict(result=1)))
+
+    return dict(fash = 'Sugerencias Aceptadas', result = 1)
 
 
 def display_organizacion():
