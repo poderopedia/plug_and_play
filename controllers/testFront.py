@@ -31,16 +31,14 @@ def persona():
     # hidden_dict = dict(state_publication='draft',date_publication=request.now,
         # state_colaboration=False)
 
-    a_form = SQLFORM(db.persona, labels=label_dict, fields=fields_dict, submit_button = T('Sugerir'))
+    a_form = SQLFORM(db.persona, labels=label_dict, fields=fields_dict,
+                     submit_button=T('Sugerir'))
 
     if a_form.process().accepted:
-
-        # response.flash = 'form accepted'
-
-        redirect(URL('accepted'))
+        response.flash = 'Sugerencia Aceptada'
     elif a_form.errors:
         my_dict['a_error'] = T('Ocurrio un error en el formulario')
-        response.flash = 'form has errors'
+        response.flash = 'Formulario con errores'
 
     my_dict['form'] = a_form
     return my_dict
@@ -67,92 +65,29 @@ def organizacion():
     # hidden_dict = dict(state_publication='draft',date_publication=request.now,
         # state_colaboration=False)
 
-    a_form = SQLFORM(db.Organizacion, fields=fields_dict, submit_button = T('Sugerir'))
-
-    # a_form.vars['state_publication']='draft'
-    # a_form.vars['date_publication']=request.now
-    # a_form.vars['state_colaboration']=False
+    a_form = SQLFORM(db.Organizacion, fields=fields_dict,
+                     submit_button=T('Sugerir'))
 
     if a_form.process().accepted:
-
-        # response.flash = 'form accepted'
-
-        redirect(URL('accepted'))
+        response.flash = 'Sugerencia Aceptada'
+        # redirect(URL('accepted'))
     elif a_form.errors:
         my_dict['a_error'] = T('Ocurrio un error en el formulario')
-        response.flash = 'form has errors'
+        response.flash = 'Formulario con errores'
 
     my_dict['form'] = a_form
     return my_dict
-
-
-def accepted():
-
-    return dict()
 
 
 def grid():
     a_grid = SQLFORM.grid(db.auth_user, user_signature=False)
     return dict(grid=a_grid)
 
+
 @auth.requires_login()
 def display():
 
     return locals()
-    # label_dict_persona = {'persona.ICN': T('Rut'),
-    #                       'persona.firstLastName': T('Apellido Paterno'
-    #                       ),
-    #                       'persona.otherLastName': T('Apellido Materno'
-    #                       )}
-
-    # show_fields_persona = [db.persona.id, db.persona.ICN,
-    #                        db.persona.firstName,
-    #                        db.persona.firstLastName,
-    #                        db.persona.otherLastName]
-
-    # persona_grid = SQLFORM.grid(
-    #     db.persona.state_publication == 'draft',
-    #     editable=True,
-    #     details=False,
-    #     user_signature=False,
-    #     fields=show_fields_persona,
-    #     create=False,
-    #     headers=label_dict_persona,
-    #     csv=False,
-    #     paginate=10,
-    #     searchable=False,
-    #     selectable = lambda ids : redirect(URL('testFront', 'accept_persona', vars=dict(id=ids))),
-    #     )
-
-    # label_dict_organizacion = {'tipoOrganizacion.name': T('Tipo Organización')}
-
-    # show_fields_organizacion = [db.Organizacion.id,
-    #                             db.tipoOrganizacion.name,
-    #                             db.Organizacion.hasSocialReason,
-    #                             db.Organizacion.alias]
-
-    # query = ((db.Organizacion.tipoOrg == db.tipoOrganizacion.id) & (db.Organizacion.state_publication == 'draft'))
-    # organizacion_grid = SQLFORM.grid(
-    #     query,
-    #     editable=True,
-    #     details=False,
-    #     user_signature=False,
-    #     fields=show_fields_organizacion,
-    #     headers=label_dict_organizacion,
-    #     create=False,
-    #     csv=False,
-    #     paginate=10,
-    #     searchable=False,
-    #     selectable = lambda ids : redirect(URL('testFront', 'accept_organizacion', vars=dict(id=ids))),
-
-    #     )
-
-    # organizacion_grid.element('.web2py_table input[type=submit]')['_value'] = T('Aceptar Organizaciones Seleccionadas')
-
-    # # implementa plantilla main
-
-    # return dict(persona_grid=persona_grid,
-    #             organizacion_grid=organizacion_grid)
 
 def display_persona():
     label_dict_persona = {'persona.ICN': T('Rut'),
@@ -176,22 +111,46 @@ def display_persona():
         headers=label_dict_persona,
         csv=False,
         paginate=10,
-        searchable=False
+        searchable=False,
+        selectable=lambda ids: redirect(URL('testFront',
+                'accept_persona', vars=dict(id=ids))),
+        formname='persona_grid_form',
         )
 
-    # persona_grid.element('.web2py_table input[type=submit]')['_value'] = T('Aceptar Personas Seleccionadas')
+    if persona_grid.element('.web2py_table input[type=submit]'):
+        persona_grid.element('.web2py_table input[type=submit]'
+                             )['_value'] = \
+            T('Aceptar Personas Seleccionadas')
+    elif persona_grid.element('.web2py_grid input[type=submit]'):
+        persona_grid.element('.web2py_grid input[type=submit]')['_value'
+                ] = T('Aceptar')
 
     return dict(persona_grid=persona_grid)
 
+
+def accept_persona():
+
+    ids_to_accept = request.vars['id']
+
+    names= []
+    for a_id in ids_to_accept:
+        query = (( db.persona.id == a_id ))
+        names.append(query)
+
+    return dict(a='test', nombres = names, b = ids_to_accept)
+
+
 def display_organizacion():
-    label_dict_organizacion = {'tipoOrganizacion.name': T('Tipo Organización')}
+    label_dict_organizacion = \
+        {'tipoOrganizacion.name': T('Tipo Organización')}
 
     show_fields_organizacion = [db.Organizacion.id,
                                 db.tipoOrganizacion.name,
                                 db.Organizacion.hasSocialReason,
                                 db.Organizacion.alias]
 
-    query = ((db.Organizacion.tipoOrg == db.tipoOrganizacion.id) & (db.Organizacion.state_publication == 'draft'))
+    query = (db.Organizacion.tipoOrg == db.tipoOrganizacion.id) \
+        & (db.Organizacion.state_publication == 'draft')
     organizacion_grid = SQLFORM.grid(
         query,
         editable=True,
@@ -203,15 +162,23 @@ def display_organizacion():
         csv=False,
         paginate=10,
         searchable=False,
-        selectable = lambda ids : redirect(URL('testFront', 'accept_organizacion', vars=dict(id=ids))),
-
+        selectable=lambda ids: redirect(URL('testFront',
+                'accept_organizacion', vars=dict(id=ids))),
+        formname='organizacion_grid_form',
         )
 
-    organizacion_grid.element('.web2py_table input[type=submit]')['_value'] = T('Aceptar Organizaciones Seleccionadas')
+    if organizacion_grid.element('.web2py_table input[type=submit]'):
+        organizacion_grid.element('.web2py_table input[type=submit]'
+                                  )['_value'] = \
+            T('Aceptar Organizaciones Seleccionadas')
+    elif organizacion_grid.element('.web2py_grid input[type=submit]'):
+        organizacion_grid.element('.web2py_grid input[type=submit]'
+                                  )['_value'] = T('Aceptar')
 
     # implementa plantilla main
 
     return dict(organizacion_grid=organizacion_grid)
+
 
 def publicaciones_general():
 
