@@ -21,7 +21,6 @@ def quick_profile_persona():
         'firstLastName',
         'otherLastName',
         'alias',
-        'birth',
         'shortBio',
         'countryofResidence',
         'depiction'
@@ -50,7 +49,35 @@ def quick_profile_persona():
 
 @auth.requires_login()
 def long_profile_persona():
-    pass
+    # STEPS: A dict with fields for each step
+    mysteps = [dict(title='Datos Básicos',fields=['firstName','firstLastName', 'otherLastName','alias','shortBio','countryofResidence', 'depiction']),
+               dict(title='Más Información',fields=['Mainsector','birth','isDead','countryofBirth','city','shortBio']),
+               dict(title='Redes Sociales',fields=['web','twitterNick','facebookNick','linkedinNick']),
+               dict(title='Perfil Largo',fields=['longBio'])]
+    # IMPORT: Import the module
+    from plugin_PowerFormWizard import PowerFormWizard
+    # CREATE: Create the form object just like the SQLFORM
+    form = PowerFormWizard(db.persona, steps=mysteps, options=dict(validate=True))
+    if(request.args(0)):
+        record=db.persona(request.args(0))
+        mysteps = [dict(title='Datos Básicos',fields=['firstName','firstLastName', 'otherLastName','alias','shortBio','countryofResidence', 'depiction']),
+                   dict(title='Más Información',fields=['Mainsector','birth','isDead','countryofBirth','city','shortBio']),
+                   dict(title='Redes Sociales',fields=['web','twitterNick','facebookNick','linkedinNick']),
+                   dict(title='Perfil Largo',fields=['longBio'])
+              ]
+   
+        form = PowerFormWizard(db.persona, steps=mysteps, options=dict(validate=True), record=record)
+
+
+    # VALIDATE: web2py form validation
+    if form.accepts(request.vars, session):
+        response.flash = "Persona sugerida con éxito"
+    elif form.errors:
+        form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
+        response.flash = "Hay errores en el formulario"
+
+    # Enjoy!
+    return dict(form=form)
 
 
 
@@ -62,19 +89,14 @@ def quick_profile_organizacion():
 
     my_dict['a_error']=''
 
-    label_dict = dict(tipoOrg= 'Tipo de Organización', haslogo= 'Logotipo',hasSocialReason= 'Razón Social',mainSector= 'Sector Principal',hasTaxId= 'RUT',alias= 'Nombre Corto',countryOfResidence= 'País de Residencia',depiction= 'Foto',hasDocumentation= 'Documento',documentSource= 'Fuentes',documentCloud= 'Fuentes Document Cloud',shortBio= 'Reseña')
+    label_dict = dict(tipoOrg='Tipo de Organización', hasSocialReason= 'Nombre Legal(Razón Social)',alias= 'Nombre Corto',countryOfResidence= 'País',haslogo= 'Logotipo',shortBio= 'Reseña')
     fields_dict = [
         'tipoOrg',
         'haslogo',
         'hasSocialReason',
-        'Mainsector',
         'hasTaxId',
         'alias',
         'countryOfResidence',
-        'depiction',
-        'hasdocumentation',
-        'documentSource',
-        'documentCloud',
         'shortBio'
    ]
 
@@ -99,7 +121,32 @@ def quick_profile_organizacion():
     my_dict['form']=a_form
     return my_dict
 
-
-@auth.requires_membership('colaboradores')
+@auth.requires_login()
 def long_profile_organizacion():
-    pass
+    # STEPS: A dict with fields for each step
+    mysteps = [dict(title='Datos Básicos',fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
+               dict(title='Fuentes',fields=['hasdocumentation','documentSource','documentCloud']),
+               dict(title='Reseña',fields=['longBio','birth','is_active'])
+              ]
+    # IMPORT: Import the module
+    from plugin_PowerFormWizard import PowerFormWizard
+    # CREATE: Create the form object just like the SQLFORM
+    form = PowerFormWizard(db.Organizacion, steps=mysteps, options=dict(validate=True))
+    if(request.args(0)):
+        record=db.Organizacion(request.args(0))
+        mysteps = [dict(title='Datos Básicos',fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
+                   dict(title='Fuentes',fields=['hasdocumentation','documentSource','documentCloud']),
+                   dict(title='Reseña',fields=['longBio','birth','is_active'])
+                  ]
+        form = PowerFormWizard(db.Organizacion, steps=mysteps, options=dict(validate=True), record=record)
+
+
+    # VALIDATE: web2py form validation
+    if form.accepts(request.vars, session):
+        response.flash = "Organización sugerida con éxito"
+    elif form.errors:
+        form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
+        response.flash = "Hay errores en el formulario"
+
+    # Enjoy!
+    return dict(form=form)

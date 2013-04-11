@@ -12,7 +12,7 @@ T.force('es')
 
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
-    db = DAL(settings.database_uri,check_reserved=['postgres', 'mysql'], migrate=False)
+    db = DAL(settings.database_uri,check_reserved=['postgres', 'mysql'], migrate=True)
 else:
     ## connect to Google BigTable (optional 'google:datastore://namespace')
     db = DAL('google:datastore')
@@ -238,15 +238,17 @@ requiere=db((db.document.is_active==True))
 
 # a table to store personas
 db.define_table('persona',
-    Field('ICN','string',label=T('Rut'), required=False),
+    Field('ICN','string',label=T('rut'), required=False),
     Field('firstName', 'string', readable=True, writable=True, label=T('Nombres')),
-    Field('firstLastName', 'string', requires=IS_NOT_EMPTY(T('Ingresar Apellido Paterno')), label=T('Apellido Paterno')),
-    Field('otherLastName', 'string', readable=True, writable=True, label=T('Apellido Materno')), 
-    Field('alias', 'string', requires=IS_NOT_EMPTY('Ingresar Nombre Corto'), readable=True, writable=True, label=T('Nombre Corto')),
+    Field('firstLastName', 'string', requires=IS_NOT_EMPTY(), label=T('Apellido 1')),
+    Field('otherLastName', 'string', readable=True, writable=True, label=T('Apellido 2')), 
+    Field('alias', 'string', requires=IS_NOT_EMPTY(), readable=True, writable=True, label=T('Nombre Corto')),
     ##Field('birth', db.birthEvent, label='Fecha de Nacimiento', required=False),
     Field('birth', 'string', label='Fecha de Nacimiento', required=False),
-    Field('countryofResidence',db.country, label='País de Residencia',requires=IS_IN_DB(db, 'country.id', 'country.name','Ingresar Pais')),
-    Field('Mainsector','list:reference sector', label=T('Sector Principal'), requires = IS_IN_DB(db,'sector.id','db.sector.name',multiple=True)),
+    Field('countryofResidence',db.country, label='País de Residencia',requires=IS_IN_DB(db, 'country.id', 'country.name')),
+    Field('countryofBirth',db.country, label='País de Nacimiento',requires=IS_EMPTY_OR(IS_IN_DB(db, 'country.id', 'country.name')),required=False),
+    Field('city', 'string', readable=True, writable=True, label=T('Ciudad')),
+    Field('Mainsector','list:reference sector', label=T('Main Sector'), requires = IS_IN_DB(db,'sector.id','db.sector.name',multiple=True)),
     ##Field('depiction',db.document, label=T('Foto')),
     Field('depiction','upload', label=T('Foto'), required=False),
     Field('shortBio','text', label=T('Reseña')),
@@ -266,9 +268,9 @@ db.define_table('persona',
     Field('linkedinNick','string', label=T('Linkedin')),
     ## state_publication indica el estado de la publicacion. Esta puede estar programada para una fecha, publicada o ser un borrador.
     ## date_publication indica la fecha de publicacion
-    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=False,requires=IS_IN_SET(('programmed','published',T('draft'))), default='draft'),
-    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=False,default=request.now),
-    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=False, default=False),
+    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=True,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
+    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=True,default=request.now),
+    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=True, default=False),
     ##Field('hasdocumentation',db.document, label=T('Documento')),
     ##Field('hasdocumentation','upload', label=T('Documento')),
     ##Field('hasUrl',db.document, label=T('Redes Sociales')),
@@ -358,9 +360,9 @@ db.define_table('Organizacion',
     Field('shortBio','text', label='Reseña'),
     Field('longBio','text', requires=IS_LENGTH(65536),label='Perfil largo'),
     Field('birth', 'string', label='Fecha de Fundación'),
-    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=False,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
-    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=False,default=request.now),
-    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=False, default=False),
+    Field('state_publication','string',label=T('Estado Publicacion'),readable=True, writable=True,requires=IS_IN_SET(('programmed','published','draft')), default='draft'),
+    Field('date_publication','date',label=T('Fecha Publicacion'),readable=True, writable=True,default=request.now),
+    Field('state_colaboration','boolean',label=T('Estado Colaboracion'), readable=True, writable=True, default=False),
     auth.signature
     )
 
