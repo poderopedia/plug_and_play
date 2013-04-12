@@ -21,7 +21,7 @@ Para trabajar con Plug_and_Play se necesitan los siguientes componentes
 3. Después de la descarga, descomprimir el fichero. Se sugiere descomprimir en <code>/opt/webapps/web2py/</code> el cual será utilizado en la guía como el directorio de instalación de web2py.
 4. Para ejecutar web2py, desde el directorio de instalación ingresar el comando <code>python2.5 web2py.py</code>
 5. Cada vez que se ejecute, Web2py abrirá la aplicación de administración y solicitará escoger una contraseña. Esta contraseña protegerá el acceso a la página de administración, por lo que es importante no omitir este paso.
-6. Se puede acceder a la página de administración de web2py desde algun explorador web, escribiendo en la barra de direcciones : <code>http://127.0.0.1:8000</code> e ingresando el password de administración.
+6. Se puede acceder a la página de administración de web2py desde algun explorador web, escribiendo en la barra de direcciones : <code>http://127.0.0.1:8000</code> o <code>http://localhost:8000</code> e ingresando el password de administración.
 
 ####Instalación de Github
 
