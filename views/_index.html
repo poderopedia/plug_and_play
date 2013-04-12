@@ -68,6 +68,7 @@
     {{response.files.append(URL('static','css/web2py_bootstrap.css'))
     response.files.append(URL('static','css/bootstrap_designer.css'))
     response.files.append(URL('static','css/bootstrap_responsive.css'))
+    response.files.append(URL('static','js/bootstrap.min.js'))
     
     response.files.append(URL('static','css/style.css'))
     }}
@@ -143,20 +144,16 @@
                         
                             <!-- Item de menu:Datos básicos -->
                         <div id="accordion2" class="accordion">
-    						<!--
-       							<div class="accordion-group">
+       						<div class="accordion-group">
        							<div class="accordion-heading">
             						<a class="accordion-toggle" href="#collapseOne" data-toggle="collapse" data-parent="#accordion2">{{=T('Escritorio')}}</a>
- 	                            </div>
+ 	                           	</div>
                             </div>
 	                        <div class="accordion-group">
     	   						<div class="accordion-heading">
         	    					<a class="accordion-toggle" href="#collapseTwo" data-toggle="collapse" data-parent="#accordion2">{{=T('Publicaciones')}}</a>
-        						</div>
-                	        	<div id="collapseTwo" class="accordion-body collapse">
-                                </div>
-                	        </div>
-                	        -->
+                	        	</div>
+                            </div>
                     	    <div class="accordion-group">
        							<div class="accordion-heading">
             						<a class="accordion-toggle" href="#collapseThree" data-toggle="collapse" data-parent="#accordion2">{{=T('Colaboraciones')}}</a>
@@ -208,7 +205,6 @@
                             		</div>
                     	   		</div>
                     		</div>
-                        	<!--
                         	<div class="accordion-group">
     	   						<div class="accordion-heading">
         	    					<a class="accordion-toggle" href="#collapseSix" data-toggle="collapse" data-parent="#accordion2">{{=T('Configuración')}}</a>
@@ -223,7 +219,6 @@
                 	        	<div id="collapseThree" class="accordion-body collapse">
                                 </div>
                 	        </div>
-                	        -->
                         </div>
                         
                         
