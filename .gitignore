@@ -3,6 +3,10 @@ databases/
 errors/
 sessions/
 modules/__init__.pyc
+models/0.py
+models/app_config.py
+private/auth.key
+databases/sql.log
 *.pyc
 *.orig
 *~
@@ -11,14 +15,9 @@ modules/__init__.pyc
 *.bak
 *.orig
 
-models/0.py
 
-cache/
-databases/
-errors/
-sessions/
 
-models/app_config.py
-private/auth.key
-databases/sql.log
+
+
+
 
