@@ -17,7 +17,7 @@ if not request.env.web2py_runtime_gae:
     # # if NOT running on Google App Engine use SQLite or other DB
 
     db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'
-             ], migrate_enabled=False, migrate=False)
+             ], migrate_enabled=True, migrate=True)
 else:
 
     # # connect to Google BigTable (optional 'google:datastore://namespace')
@@ -243,8 +243,8 @@ db.define_table('sector', Field('parent', 'integer', required=True,
                 Field('labelOtro', 'string', readable=False,
                 writable=False))
 
-from plugin_anytime_widget import anytime_widget, anydate_widget, \
-    anydatetime_widget
+#from plugin_anytime_widget import anytime_widget, anydate_widget, \
+ #   anydatetime_widget
 
 # a table document
 

@@ -5,8 +5,8 @@ def download(): return response.download(request,db)
 def call(): return service()
 ### end requires
 def index():
+    redirect(URL('user'))
     return dict()
 
 def error():
     return dict()
-

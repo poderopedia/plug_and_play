@@ -104,8 +104,9 @@
 
                         <!-- Foto y nombre del usuario --> 
                         <div class="user">
-                            <img class="pic" src="../private/todo/assets/tmp/pic-user.jpg" alt=""/>
-                            <strong>Mónica Ventura</strong>
+                              <ul id="navbar" class="nav pull-right">{{='auth' in globals() and auth.navbar(mode="dropdown") or ''}}</ul>
+                            <!-- <img class="pic" src="../private/todo/assets/tmp/pic-user.jpg" alt=""/>
+                            <strong>Mónica Ventura</strong> --> 
                         </div>
 
                         <!-- Barra de búsqueda --> 
