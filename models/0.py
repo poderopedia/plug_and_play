@@ -9,7 +9,7 @@ settings.author_email = 'dev@poderopedia.com'
 settings.keywords = ''
 settings.description = ''
 settings.layout_theme = 'default'
-settings.database_uri = ''
+settings.database_uri = 'mysql://ienergici:usuario@localhost/plug_and_play_test'
 settings.security_key = ''
 settings.login_config = ''
 settings.plugins = []
@@ -31,4 +31,3 @@ month_list.append('')
 year_list=[x for x in range(1900,endYear+10)]
 year_list.append('Sin Fecha')
 year_list.append('')
-
