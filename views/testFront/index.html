@@ -1,13 +1,11 @@
 {{extend '_index.html'}}
-{{block content}}
-<h3>Contenido</h3>
-<a href="{{ =URL('display') }}">lista</a>
-{{ = a_error }}
-{{ =form }}
-<h2>Submitted Fields:</h2>
-{{ =BEAUTIFY(request.vars)}}
-<h2>Accepted Fields:</h2>
-{{ =BEAUTIFY(form.vars)}}
-<h2>Errors:</h2>
-{{ =BEAUTIFY(form.errors)}}  
+{{block title}}
+Sugerir Perfil
 {{end}}
+
+<a href="{{ =URL('persona') }}">Sugerir Persona</a><br>
+<a href="{{ =URL('organizacion') }}">Sugerir Organización</a>
+
+{{if request.is_local:}}
+{{=response.toolbar()}}
+{{pass}}

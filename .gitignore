@@ -1,14 +1,22 @@
+cache/
+databases/
+errors/
+sessions/
+modules/__init__.pyc
 *.pyc
+*.orig
 *~
 *.log
 *.sql
+*.bak
+*.orig
 
+models/0.py
 
 cache/
 databases/
 errors/
 sessions/
-
 
 models/app_config.py
 private/auth.key
