@@ -81,9 +81,13 @@ def organizacion():
     return my_dict
 
 @auth.requires_login()
-def display():
+def admin_suggestion():
 
     # Vista para mostrar el listado de personas y organizaciones sugeridas
+
+    if len(request.args) == 0:
+        redirect(URL('testFront','admin_suggestion', args='persona',vars=dict(name='test')))
+
 
     return locals()
 
@@ -184,7 +188,6 @@ def reject_persona():
     redirect(URL('display_persona'))
 
     return dict()
-
 
 
 def display_organizacion():
