@@ -86,7 +86,7 @@ def admin_suggestion():
     # Vista para mostrar el listado de personas y organizaciones sugeridas
 
     if len(request.args) == 0:
-        redirect(URL('testFront','admin_suggestion', args='persona',vars=dict(name='test')))
+        redirect(URL('testFront','admin_suggestion', args='persona'))
 
 
     return locals()
@@ -198,7 +198,8 @@ def display_organizacion():
         {'tipoOrganizacion.name': T('Tipo Organización')}
 
     show_fields_organizacion = [db.Organizacion.id,
-                                db.tipoOrganizacion.name,
+                                db.Organizacion.tipoOrg,
+                                # db.tipoOrganizacion.name,
                                 db.Organizacion.hasSocialReason,
                                 db.Organizacion.alias]
 
@@ -218,9 +219,10 @@ def display_organizacion():
         searchable=False,
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
                , _href=URL('testFront', 'accept_organizacion',
-               vars=dict(id=row.Organizacion.id))), lambda row: A(T('Rechazar'),
+               vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
                _class='w2p_trap button btn', _href=URL('testFront',
-               'reject_organizacion', vars=dict(id=row.Organizacion.id)))],
+               'reject_organizacion', vars=dict(id=row.id)))],
+        links_in_grid=True,
         formname='organizacion_grid_form',
         )
 
