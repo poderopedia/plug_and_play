@@ -18,20 +18,20 @@
 #
 # YOU CAN COPY THIS FILE TO ANY APLLICATION'S ROOT DIRECTORY WITHOUT CHANGES!
 
-from fileutils import abspath
-from languages import read_possible_languages
+# from fileutils import abspath
+# from languages import read_possible_languages
 
-possible_languages = read_possible_languages(abspath('applications', app))
-#NOTE! app - is an application based router's parameter with name of an
-#            application. E.g.'welcome'
+# possible_languages = read_possible_languages(abspath('applications', app))
+# #NOTE! app - is an application based router's parameter with name of an
+# #            application. E.g.'welcome'
 
-routers = {
-    app: dict(
-        default_language = possible_languages['es'][0],
-        languages = [lang for lang in possible_languages
-                           if lang != 'default']
-    )
-}
+# routers = {
+#     app: dict(
+#         default_language = possible_languages['es'][0],
+#         languages = [lang for lang in possible_languages
+#                            if lang != 'default']
+#     )
+# }
 
 #NOTE! To change language in your application using these rules add this line
 #in one of your models files:
