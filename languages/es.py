@@ -68,6 +68,7 @@
 'Ayuda': 'Ayuda',
 'Back': 'Back',
 'Blog': 'Blog',
+'Buscar en todo Poderopedia...': 'Buscar en todo Poderopedia...',
 'Buy this book': 'Buy this book',
 'Cache': 'Cache',
 'cache': 'cache',

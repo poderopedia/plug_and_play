@@ -203,8 +203,11 @@ def display_organizacion():
                                 db.Organizacion.hasSocialReason,
                                 db.Organizacion.alias]
 
+    db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
+
     query = (db.Organizacion.tipoOrg == db.tipoOrganizacion.id) \
         & (db.Organizacion.state_collaboration == 'for_revision')
+
     organizacion_grid = SQLFORM.grid(
         query,
         editable=True,
@@ -235,7 +238,6 @@ def display_organizacion():
                                   )['_value'] = \
             T('Aceptar Organizaciones Seleccionadas')
     elif organizacion_grid.element('.web2py_grid input[type=submit]'):
-
         organizacion_grid.element('.web2py_grid input[type=submit]'
                                   )['_value'] = T('Aceptar')
 

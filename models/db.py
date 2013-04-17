@@ -407,7 +407,8 @@ db.define_table('tipoRelacionP2P', Field('parent', 'integer',
 
 db.define_table('tipoOrganizacion', Field('name', 'string',
                 required=True, label=T('Nombre')),
-                Field('generalizacion', 'integer'))
+                Field('generalizacion', 'integer'),
+                format='%(name)s')
 
 # table for Organización
 
