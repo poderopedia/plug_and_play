@@ -68,6 +68,10 @@
 'Ayuda': 'Ayuda',
 'Back': 'Back',
 'Blog': 'Blog',
+
+
+'Buscar en todo Poderopedia...': 'Buscar en todo Poderopedia...',
+
 'Buy this book': 'Buy this book',
 'Cache': 'Cache',
 'cache': 'cache',
@@ -366,6 +370,7 @@
 'RAM Cache Keys': 'RAM Cache Keys',
 'Ram Cleared': 'Ram Cleared',
 'Razón Social': 'Razón Social',
+'Rechazar': 'Rechazar',
 'Recipes': 'Recipes',
 'Record': 'registro',
 'record does not exist': 'el registro no existe',
@@ -423,7 +428,14 @@
 'Submit': 'Submit',
 'submit': 'submit',
 'Success!': 'Success!',
+'Sugerencia Aceptada': 'Sugerencia Aceptada',
+'Sugerencia Aceptada 0': 'Sugerencia Aceptada 0',
+'Sugerencia Aceptada 12': 'Sugerencia Aceptada 12',
+'Sugerencia Aceptada0': 'Sugerencia Aceptada0',
+'Sugerencia Aceptada12': 'Sugerencia Aceptada12',
+'Sugerencias': 'Sugerencias',
 'Sugerencias Aceptadas': 'Sugerencias Aceptadas',
+'Sugerencias Rechazadas': 'Sugerencias Rechazadas',
 'Sugerir': 'Sugerir',
 'Sugiere un perfil': 'Sugiere un perfil',
 'Sugiere una conexión': 'Sugiere una conexión',
@@ -462,6 +474,10 @@
 'to  previous version.': 'a la versión previa.',
 'Todas las publicaciones': 'Todas las publicaciones',
 'Todas las páginas': 'Todas las páginas',
+
+
+'Todas las sugerencias': 'Todas las sugerencias',
+
 'Todos los usuarios': 'Todos los usuarios',
 'translation strings for the application': 'cadenas de caracteres de traducción para la aplicación',
 'try': 'intente',
