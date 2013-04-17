@@ -13,20 +13,10 @@
 T.force('es')
 
 if not request.env.web2py_runtime_gae:
-<<<<<<< HEAD
-    ## if NOT running on Google App Engine use SQLite or other DB
-    db = DAL(settings.database_uri,check_reserved=['postgres', 'mysql'], migrate=True)
-=======
 
     # # if NOT running on Google App Engine use SQLite or other DB
 
-    db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'
-<<<<<<< HEAD
-             ], migrate_enabled=True, migrate=True)
-=======
-             ], migrate_enabled=False, migrate=False)
->>>>>>> a9dd89aabb0b1b666d7a31d49b8a6edbfb54b3ef
->>>>>>> 6d9b125c36192f51ca01cbb6832c83a28ea9e004
+    db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'], migrate_enabled=True, migrate=True)
 else:
 
     # # connect to Google BigTable (optional 'google:datastore://namespace')
