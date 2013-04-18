@@ -449,6 +449,7 @@
 'Sugerencias Aceptadas': 'Sugerencias Aceptadas',
 'Sugerencias Rechazadas': 'Sugerencias Rechazadas',
 'Sugerir': 'Sugerir',
+'Sugerir Persona': 'Sugerir Persona',
 'Sugiere un perfil': 'Sugiere un perfil',
 'Sugiere una conexión': 'Sugiere una conexión',
 'Support': 'Support',

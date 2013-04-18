@@ -175,12 +175,187 @@ header nav ul li {
   background-repeat: no-repeat;
   background-position: 90% 50%;
 }
+header nav ul li ul li{
+  cursor: auto;
+  display: block;
+  float: none;
+  font-family: arial;
+  font-size: 12px;
+  font-weight: normal;
+  height: 20px;
+  left: auto;
+  text-transform: none;
+  font-weight: bold;
+  padding-bottom: 3px;
+  padding-left: 0px;
+  padding-right: 20px;
+  padding-top: 3px;
+  border-left: 0px dotted #666666;
+  border-right: 0px dotted #666666;
+  position: static;
+  text-align: -webkit-auto;
+  text-decoration: none;
+  top: auto;
+  white-space: nowrap;
+  width: 120px;
+  z-index: auto;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: 90% 50%;
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: 
+  rgba(0, 0, 0, 0);
+  background-image: none;
+  background-origin: padding-b
+}
+
+header nav ul li ul li:last-child {
+  border-left: none;
+  border-right: 0px dotted #666666;
+}
 header nav ul li a {
   color: white;
 }
 header nav ul li a:hover {
   color: #FD7931;
 }
+
+header nav ul li ul li a:hover {
+-webkit-background-clip: border-box;
+-webkit-box-shadow: none;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: 
+rgb(0, 129, 194);
+background-image: -webkit-linear-gradient(top, 
+rgb(0, 136, 204), 
+rgb(0, 119, 179));
+background-origin: padding-box;
+background-repeat: repeat-x;
+border-bottom-color: 
+rgb(255, 255, 255);
+border-bottom-left-radius: 0px;
+border-bottom-right-radius: 0px;
+border-bottom-style: none;
+border-bottom-width: 0px;
+border-left-color: 
+rgb(255, 255, 255);
+border-left-style: none;
+border-left-width: 0px;
+border-right-color: 
+rgb(255, 255, 255);
+border-right-style: none;
+border-right-width: 0px;
+border-top-color: 
+rgb(255, 255, 255);
+border-top-left-radius: 0px;
+border-top-right-radius: 0px;
+border-top-style: none;
+border-top-width: 0px;
+box-shadow: none;
+clear: both;
+color: 
+rgb(255, 255, 255);
+cursor: auto;
+display: block;
+float: none;
+font-family: arial;
+font-size: 12px;
+font-weight: normal;
+height: 20px;
+left: auto;
+line-height: 20px;
+list-style-image: none;
+list-style-position: outside;
+list-style-type: none;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+min-width: 0px;
+outline-color: 
+rgb(255, 255, 255);
+outline-style: none;
+outline-width: 0px;
+padding-bottom: 3px;
+padding-left: 20px;
+padding-right: 20px;
+padding-top: 3px;
+position: static;
+text-align: -webkit-auto;
+text-decoration: none;
+top: auto;
+white-space: nowrap;
+width: 120px;
+z-index: auto;
+}
+
+header nav ul li ul li a {
+-webkit-background-clip: border-box;
+-webkit-box-shadow: none;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: 
+rgba(0, 0, 0, 0);
+background-image: none;
+background-origin: padding-box;
+border-bottom-color: 
+rgb(51, 51, 51);
+border-bottom-left-radius: 0px;
+border-bottom-right-radius: 0px;
+border-bottom-style: none;
+border-bottom-width: 0px;
+border-left-color: 
+rgb(51, 51, 51);
+border-left-style: none;
+border-left-width: 0px;
+border-right-color: 
+rgb(51, 51, 51);
+border-right-style: none;
+border-right-width: 0px;
+border-top-color: 
+rgb(51, 51, 51);
+border-top-left-radius: 0px;
+border-top-right-radius: 0px;
+border-top-style: none;
+border-top-width: 0px;
+box-shadow: none;
+clear: both;
+color: 
+rgb(51, 51, 51);
+cursor: auto;
+display: block;
+float: none;
+font-family: arial;
+font-size: 12px;
+font-weight: normal;
+height: auto;
+left: auto;
+line-height: 20px;
+list-style-image: none;
+list-style-position: outside;
+list-style-type: none;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+min-width: 0px;
+padding-bottom: 3px;
+padding-left: 20px;
+padding-right: 20px;
+padding-top: 3px;
+position: static;
+text-align: -webkit-auto;
+text-decoration: none;
+top: auto;
+white-space: nowrap;
+width: auto;
+z-index: auto;
+}
+
+
+
 header nav ul li:last-child {
   border-left: none;
   border-right: 1px dotted #666666;

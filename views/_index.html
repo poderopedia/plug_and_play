@@ -68,17 +68,12 @@
     {{response.files.append(URL('static','css/web2py_bootstrap.css'))
     response.files.append(URL('static','css/bootstrap_designer.css'))
     response.files.append(URL('static','css/bootstrap_responsive.css'))
-    response.files.append(URL('static','js/bootstrap.min.js'))
     
     response.files.append(URL('static','css/style.css'))
     }}
 
     <!-- inlcude javascript -->
-<!--     {{
-    response.files.append(URL('static','js/jquery.js'))
-    response.files.append(URL('static','js/bootstrap.min.js'))
-    }}
- -->
+
 
 
     {{include 'web2py_ajax.html'}}
@@ -99,12 +94,30 @@
                         <!-- Logo poderopedia admin-->
                         <h1 class="logo-admin"><a href="#"><span>Poderopedia admin</span></a></h1>
 
-                        <nav>
+                        <nav >
+                        <!-- <div class="navbar"> -->
+
                             <ul class="clearfix">
                                 <!-- Botones explorar y crear-->
                                 <li><a class="" href="#">{{=T('Explorar')}}</a></li>
-                                <li><a class="" href="#">{{=T('Crear')}}</a></li>
+                                <li>
+                                    <div class="dropdown" >
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{=T('Crear')}}<b class="caret"></b></a>
+                                        {{if auth.has_membership("collaborator"):}}
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{=URL('colaborador','quick_profile_persona')}}"> Crear Persona</a></li>
+                                            <li><a href="{{=URL('colaborador','quick_profile_organizacion')}}"> Crear Organizacion</a></li>
+                                        </ul>
+                                        {{elif auth.user is None:}}
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{=URL('sugerencia','persona')}}"> Sugerir Persona</a></li>
+                                            <li><a href="{{=URL('sugerencia','organizacion')}}"> Sugerir Organizacion</a></li>
+                                        </ul>
+                                        {{pass}}
+                                    </div>
+                                </li>
                             </ul>
+                        <!-- </div> -->
                         </nav>
 
                         <!-- Foto y nombre del usuario --> 
@@ -154,7 +167,7 @@
                             <!-- Item de menu:Datos básicos -->
                         <ul id="accordion2" class="accordion">
                             <li class="collapsed">
-                                <a class="accordion-toggle accordion-heading" href="#collapseOne" data-toggle="collapse" data-parent="#accordion2">{{=T('Escritorio')}}</a>
+                                <a class="accordion-heading" href="{{=URL('default','index')}}">{{=T('Escritorio')}}</a>
                             </li>
                             {{if (auth.has_membership("collaborator")): }}
                             <li class="collapsed">
@@ -343,11 +356,23 @@
         </footer>
         <!-- END footer-->
         {{block script}}
-        <script>
-             $('a[rel="tooltip"]').tooltip();
-        </script>
+        <script src="{{=URL('static','js/jquery.js')}}"></script>
+
         <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+        <!--  -->
         <script src="{{=URL('static','js/web2py_bootstrap.js')}}"></script>
+
+        <script>
+            $('a[rel="tooltip"]').tooltip();
+            $(document).ready(function () {
+                $('.dropdown-toggle').dropdown();
+            });
+        </script>
+<!--         {{
+        response.files.append(URL('static','js/jquery.js'))
+        response.files.append(URL('static','js/bootstrap.min.js'))
+        }} -->
+
         {{end}}
     </body>
 </html>
