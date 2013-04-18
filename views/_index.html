@@ -129,7 +129,7 @@
 
                         <!-- Barra de búsqueda --> 
                         <form cldefault/user/loginass="search">
-                            <div class="input-append">
+                            <div class="input-append search">
                                 <input type="text" name="q" id="q" placeholder='{{=T('Buscar en todo Poderopedia...')}}'/>
                                 <button class="btn" type="button"><i class="icon-search"></i></button>
                             </div>
@@ -170,7 +170,7 @@
                                 <a class="accordion-heading" href="{{=URL('default','index')}}">{{=T('Escritorio')}}</a>
                             </li>
                             {{if (auth.has_membership("collaborator")): }}
-                            <li class="collapsed">
+<!--                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseTwo" data-toggle="collapse" data-parent="#accordion2">{{=T('Publicaciones')}}</a>
                                 <ul id="collapseTwo" class="accordion-body collapse">
                                     <li><a href="#" >{{=T('Todas las publicaciones')}}</a></li>
@@ -179,10 +179,11 @@
                                     <li><a href="#" >{{=T('Organizaciones')}}</a></li>
                                     <li><a href="#" >{{=T('Casos')}}</a></li>
                                </ul>
-                            </li>
+                            </li> -->
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseThree" data-toggle="collapse" data-parent="#accordion2">{{=T('Colaboraciones')}}</a>
                                 <ul id="collapseThree" class="accordion-body collapse">
+                                    <li><a href="{{=URL('colaborador','long_profile_persona')}}">{{=T('Nueva Persona')}}</a></li>
                                     <li><a href="#">{{=T('Todas las publicaciones')}}</a></li>
                                     <li><a href="#">{{=T('Personas')}}</a></li>
                                     <li><a href="#">{{=T('Empresas')}}</a></li>
@@ -214,15 +215,15 @@
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseFive" data-toggle="collapse" data-parent="#accordion2">{{=T('Usuarios')}}</a>
                                 <ul id="collapseFive" class="accordion-body collapse">
-                                    <li><a href="#" class="accordion-toggle">{{=T('Todos los usuarios')}}</a></li>
-                                    <li><a href="#" class="accordion-toggle">{{=T('Agregar nuevo usuario')}}</a></li>
-                                    <li><a href="#" class="accordion-toggle">{{=T('Mi perfil')}}</a></li>
+                                    <li><a href="{{=URL('user_admin','list_users')}}" class="accordion-toggle">{{=T('Administrar Usuarios')}}</a></li>
                                 </ul>
                             </li>
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseSix" data-toggle="collapse" data-parent="#accordion2">{{=T('Configuración')}}</a>
-                                <!-- <ul id="collapseSix" class="accordion-body collapse">
-                                    </ul> -->
+                                <ul id="collapseSix" class="accordion-body collapse">
+                                    <li><a href="{{=URL('default','user',args=['profile'])}}" class="accordion-toggle">{{=T('Perfil')}}</a></li>
+                                    <li><a href="{{=URL('default','user',args=['change_password'])}}" class="accordion-toggle">{{=T('Cambiar Password')}}</a></li>
+                                </ul>
                             </li>
                             <li class="collapsed">
                                <a class="accordion-toggle accordion-heading" href="#collapseSeven" data-toggle="collapse" data-parent="#accordion2">{{=T('Plugins')}}</a>
