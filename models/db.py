@@ -18,6 +18,7 @@ if not request.env.web2py_runtime_gae:
 
     db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'
              ], migrate_enabled=True, migrate=True)
+
 else:
 
     # # connect to Google BigTable (optional 'google:datastore://namespace')
