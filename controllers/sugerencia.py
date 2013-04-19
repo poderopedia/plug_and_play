@@ -6,7 +6,7 @@ __author__ = 'Evolutiva'
 
 def index():
 
-    # Vista principal de testFront, contiene actualmente link a sugerencias
+    # Vista principal de sugerencia, contiene actualmente link a sugerencias
 
     return locals()
 
@@ -86,7 +86,7 @@ def admin_suggestion():
     # Vista para mostrar el listado de personas y organizaciones sugeridas
 
     if len(request.args) == 0:
-        redirect(URL('testFront','admin_suggestion', args='persona'))
+        redirect(URL('sugerencia','admin_suggestion', args='persona'))
 
 
     return locals()
@@ -107,7 +107,7 @@ def display_persona():
                            db.persona.firstLastName,
                            db.persona.otherLastName]
 
-    persona_grid = SQLFORM.grid(  # selectable=lambda ids: redirect(URL('testFront',
+    persona_grid = SQLFORM.grid(  # selectable=lambda ids: redirect(URL('sugerencia',
                                   #         'accept_persona', vars=dict(id=ids))),
         db.persona.state_collaboration == 'for_revision',
         editable=True,
@@ -122,9 +122,9 @@ def display_persona():
         searchable=False,
         formname='persona_grid_form',
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('testFront', 'accept_persona',
+               , _href=URL('sugerencia', 'accept_persona',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('testFront',
+               _class='w2p_trap button btn', _href=URL('sugerencia',
                'reject_persona', vars=dict(id=row.id)))],
         )
 
@@ -221,9 +221,9 @@ def display_organizacion():
         paginate=10,
         searchable=False,
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('testFront', 'accept_organizacion',
+               , _href=URL('sugerencia', 'accept_organizacion',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('testFront',
+               _class='w2p_trap button btn', _href=URL('sugerencia',
                'reject_organizacion', vars=dict(id=row.id)))],
         links_in_grid=True,
         formname='organizacion_grid_form',
