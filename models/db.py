@@ -14,10 +14,9 @@ T.force('es')
 
 if not request.env.web2py_runtime_gae:
 
-    # # if NOT running on Google App Engine use SQLite or other DB
+    # # if NOT running on Google App Engine use SQLite or other D
 
-    db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'
-             ], migrate_enabled=False, migrate=False)
+    db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'], migrate_enabled=False, migrate=False)
 
 else:
 
@@ -244,7 +243,7 @@ db.define_table('sector', Field('parent', 'integer', required=True,
                 Field('labelOtro', 'string', readable=False,
                 writable=False))
 
-#from plugin_anytime_widget import anytime_widget, anydate_widget, \
+# from plugin_anytime_widget import anytime_widget, anydate_widget, \
  #   anydatetime_widget
 
 # a table document
@@ -408,7 +407,8 @@ db.define_table('tipoRelacionP2P', Field('parent', 'integer',
 
 db.define_table('tipoOrganizacion', Field('name', 'string',
                 required=True, label=T('Nombre')),
-                Field('generalizacion', 'integer'))
+                Field('generalizacion', 'integer'),
+                format='%(name)s')
 
 # table for Organización
 
@@ -453,8 +453,8 @@ db.define_table(
         'state_publication',
         'string',
         label=T('Estado Publicacion'),
-        readable=False,
-        writable=True,
+        readable=True,
+        writable=False,
         requires=IS_IN_SET(('programmed', 'published', 'draft')),
         default='draft',
         ),
@@ -462,8 +462,8 @@ db.define_table(
         'date_publication',
         'date',
         label=T('Fecha Publicacion'),
-        readable=False,
-        writable=True,
+        readable=True,
+        writable=False,
         default=request.now,
         ),
     Field(

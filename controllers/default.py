@@ -5,8 +5,14 @@ def download(): return response.download(request,db)
 def call(): return service()
 ### end requires
 def index():
-    redirect(URL('user'))
+    if( auth.user is not None ):
+        redirect(URL('inicio'))
+    else:
+        redirect(URL('user'))
     return dict()
 
 def error():
+    return dict()
+
+def inicio():
     return dict()
