@@ -3,13 +3,14 @@
 
 @auth.requires_login()
 def index():
-    pass
+    return locals()
 
 @auth.requires_login()
 def quick_profile_persona():
 
     my_dict = dict()
 
+    db.persona.state_collaboration.default = 'accepted';
 
     my_dict['a_error']=''
 
@@ -46,9 +47,11 @@ def quick_profile_persona():
     return my_dict
 
 
-
+    
 @auth.requires_login()
 def long_profile_persona():
+    db.persona.state_collaboration.default = 'accepted';
+
     # STEPS: A dict with fields for each step
     mysteps = [dict(title='Datos Básicos',fields=['firstName','firstLastName', 'otherLastName','alias','shortBio','countryofResidence', 'depiction']),
                dict(title='Más Información',fields=['Mainsector','birth','isDead','countryofBirth','city','shortBio']),
@@ -68,7 +71,7 @@ def long_profile_persona():
    
         form = PowerFormWizard(db.persona, steps=mysteps, options=dict(validate=True), record=record)
 
-
+    
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
         response.flash = "Persona sugerida con éxito"
@@ -84,6 +87,7 @@ def long_profile_persona():
 @auth.requires_login()
 def quick_profile_organizacion():
     
+    db.persona.state_collaboration.default = 'accepted';
     my_dict = dict()
 
 
@@ -123,6 +127,8 @@ def quick_profile_organizacion():
 
 @auth.requires_login()
 def long_profile_organizacion():
+    db.persona.state_collaboration.default = 'accepted';
+
     # STEPS: A dict with fields for each step
     mysteps = [dict(title='Datos Básicos',fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
                dict(title='Fuentes',fields=['hasdocumentation','documentSource','documentCloud']),
@@ -150,3 +156,6 @@ def long_profile_organizacion():
 
     # Enjoy!
     return dict(form=form)
+
+
+
