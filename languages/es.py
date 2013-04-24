@@ -109,10 +109,7 @@
 'Con el apoyo de: ': 'Con el apoyo de: ',
 'Conexión con': 'Conexión con',
 'Configuración': 'Configuración',
-<<<<<<< HEAD
-=======
 'Configurar': 'Configurar',
->>>>>>> 430de09464d537990054d64e72f0c78bc3738a0c
 'Contacto': 'Contacto',
 'contains': 'contains',
 'Contenido': 'Contenido',

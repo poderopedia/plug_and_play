@@ -1,3 +1,8 @@
+def index():
+    redirect(URL('user_admin','list_users'))
+    return locals()
+
+
 #@auth.requires_membership("admin") # uncomment to enable security 
 def list_users():
     btn = lambda row: A("Edit", _href=URL('manage_user', args=row.auth_user.id))

@@ -24,10 +24,12 @@ def display_persona():
                            db.persona.firstName,
                            db.persona.firstLastName,
                            db.persona.otherLastName]
+    
+    query = ((db.persona.state_collaboration == 'accepted') & (db.persona.state_publication == 'draft'))
 
     persona_grid = SQLFORM.grid(  # selectable=lambda ids: redirect(URL('sugerencia',
                                   #         'accept_persona', vars=dict(id=ids))),
-        db.persona.state_collaboration != 'for_revision' and db.persona.state_publication == 'draft',
+        query,
         editable=True,
         details=False,
         deletable=False,
@@ -124,8 +126,8 @@ def display_organizacion():
 
     db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
 
-    query = (db.Organizacion.tipoOrg == db.tipoOrganizacion.id) \
-        & (db.Organizacion.state_collaboration != 'for_revision' and db.Organizacion.state_publication == 'draft')
+    query = ((db.Organizacion.tipoOrg == db.tipoOrganizacion.id) \
+        & (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication == 'draft'))
 
     organizacion_grid = SQLFORM.grid(
         query,

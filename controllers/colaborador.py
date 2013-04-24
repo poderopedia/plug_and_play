@@ -87,7 +87,7 @@ def long_profile_persona():
 @auth.requires_login()
 def quick_profile_organizacion():
     
-    db.persona.state_collaboration.default = 'accepted';
+    db.Organizacion.state_collaboration.default = 'accepted';
     my_dict = dict()
 
 
@@ -127,7 +127,7 @@ def quick_profile_organizacion():
 
 @auth.requires_login()
 def long_profile_organizacion():
-    db.persona.state_collaboration.default = 'accepted';
+    db.Organizacion.state_collaboration.default = 'accepted';
 
     # STEPS: A dict with fields for each step
     mysteps = [dict(title='Datos Básicos',fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
