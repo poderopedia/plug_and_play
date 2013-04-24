@@ -87,8 +87,9 @@
 
     <body class="">
         <!-- Header superior, incluye el logo, los botones explorar, crear, la imagen y nombre de usuario -->
+        {{block header}}
         <header>
-            {{block header}}
+            
             <div class="container">
                 <div class="row">
                     <div class="span12 clearfix">
@@ -100,7 +101,6 @@
 
                             <ul class="clearfix">
                                 <!-- Botones explorar y crear-->
-
                                 <li><a class="" href="#">{{=T('Explorar')}}</a></li>
                                 <li>
                                     <div class="dropdown" >
@@ -118,15 +118,12 @@
                                         {{pass}}
                                     </div>
                                 </li>
-
                             </ul>
                         <!-- </div> -->
                         </nav>
 
-                        <!-- Foto y nombre del usuario -->
-
+                        <!-- Foto y nombre del usuario --> 
                         <div class="user">
-
                             <ul id="navbar" class="nav pull-right">{{='auth' in globals() and auth.navbar(mode="dropdown") or ''}}</ul>
                             <div class="nav-collapse">
                             </div><!--/.nav-collapse -->
@@ -136,15 +133,15 @@
                         <form cldefault/user/loginass="search">
                             <div class="input-append search">
                                 <input type="text" name="q" id="q" placeholder='{{=T('Buscar en todo Poderopedia...')}}'/>
-
                                 <button class="btn" type="button"><i class="icon-search"></i></button>
                             </div>
-                        </form>
+                        </form>     
                     </div>
                 </div>
             </div>
-            {{end}}
+            
         </header>
+        {{end}}
         <!-- End header superior -->
 
         <div class="container">
@@ -161,6 +158,8 @@
                 <!-- End Título principal-->
 
                 <!-- Menú lateral-->
+                {{block sidebar}}
+                
                 <div class="span3 menu">
 
 
@@ -178,7 +177,7 @@
                                 <a class="accordion-toggle accordion-heading" href="#collapseTwo" data-toggle="collapse" data-parent="#accordion2">{{=T('Publicaciones')}}</a>
                                 <ul id="collapseTwo" class="accordion-body collapse">
                                     <li><a href="#" >{{=T('Todas las publicaciones')}}</a></li>
-                                    <li><a href="#">{{=T('Personas')}}</a></li>
+                                    <li><a href="#" >{{=T('Personas')}}</a></li>
                                     <li><a href="#" >{{=T('Empresas')}}</a></li>
                                     <li><a href="#" >{{=T('Organizaciones')}}</a></li>
                                     <li><a href="#" >{{=T('Casos')}}</a></li>
@@ -188,12 +187,16 @@
                                 <a class="accordion-toggle accordion-heading" href="#collapseThree" data-toggle="collapse" data-parent="#accordion2">{{=T('Colaboraciones')}}</a>
                                 <ul id="collapseThree" class="accordion-body collapse">
                                     <li><a href="{{=URL('colaborador','long_profile_persona')}}">{{=T('Nueva Persona')}}</a></li>
-                                    <li><a href="#">{{=T('Todas las publicaciones')}}</a></li>
-                                    <li><a href="#">{{=T('Personas')}}</a></li>
-                                    <li><a href="#">{{=T('Empresas')}}</a></li>
-                                    <li><a href="#">{{=T('Organizaciones')}}</a></li>
-                                    <li><a href="#">{{=T('Casos')}}</a></li>
-                                </ul>
+                                    <li><a href="{{=URL('colaborador','long_profile_organizacion')}}">{{=T('Nueva Organizacion')}}</a></li>
+                                    {{ if auth.has_membership("admin"): }}
+                                    <li><a href="{{=URL('editor','admin_collaboration')}}">{{=T('Todas las publicaciones')}}</a></li>
+                                    <li><a href="{{=URL('editor','admin_collaboration',args='persona')}}">{{=T('Personas')}}</a></li>
+<!--                                     <li><a href="#">{{=T('Empresas')}}</a></li>
+ -->
+                                    <li><a href="{{=URL('editor','admin_collaboration',args='organizacion')}}">{{=T('Organizaciones')}}</a></li>
+                                    {{pass}}
+<!--                                     <li><a href="#">{{=T('Casos')}}</a></li>
+ -->                                </ul>
                             </li>
                             {{pass}}
                             {{ if auth.has_membership("admin"): }}
@@ -202,26 +205,28 @@
                                 <ul id="collapseSuggestion" class="accordion-body collapse">
                                     <li><a href={{=URL('sugerencia','admin_suggestion')}} class="accordion-toggle">{{=T('Todas las sugerencias')}}</a></li>
                                     <li><a href={{=URL('sugerencia','admin_suggestion',args='persona')}} class="accordion-toggle">{{=T('Personas')}}</a></li>
-                                    <li><a href="#" class="accordion-toggle">{{=T('Empresas')}}</a></li>
-                                    <li><a href={{=URL('sugerencia','admin_suggestion',args='organizacion')}} class="accordion-toggle">{{=T('Organizaciones')}}</a></li>
-                                    <li><a href="#" class="accordion-toggle">{{=T('Casos')}}</a></li>
-                                </ul>
+<!--                                     <li><a href="#" class="accordion-toggle">{{=T('Empresas')}}</a></li>
+ -->                                    <li><a href={{=URL('sugerencia','admin_suggestion',args='organizacion')}} class="accordion-toggle">{{=T('Organizaciones')}}</a></li>
+<!--                                     <li><a href="#" class="accordion-toggle">{{=T('Casos')}}</a></li>
+ -->                                </ul>
                             </li>
                             {{pass}}
-                            {{if (auth.has_membership("collaborator")): }}
-                            <li class="collapsed">
+                            {{ if auth.has_membership("admin"): }}
+                            <!-- <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseFour" data-toggle="collapse" data-parent="#accordion2">{{=T('Páginas')}}</a>
                                 <ul id="collapseFour" class="accordion-body collapse">     
                                     <li><a href="#" class="accordion-toggle">{{=T('Todas las páginas')}}</a></li>
                                     <li><a href="#" class="accordion-toggle">{{=T('Agregar página nueva')}}</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseFive" data-toggle="collapse" data-parent="#accordion2">{{=T('Usuarios')}}</a>
                                 <ul id="collapseFive" class="accordion-body collapse">
                                     <li><a href="{{=URL('user_admin','list_users')}}" class="accordion-toggle">{{=T('Administrar Usuarios')}}</a></li>
                                 </ul>
                             </li>
+                            {{pass}}
+                            {{if (auth.has_membership("collaborator")): }}
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseSix" data-toggle="collapse" data-parent="#accordion2">{{=T('Configuración')}}</a>
                                 <ul id="collapseSix" class="accordion-body collapse">
@@ -229,24 +234,23 @@
                                     <li><a href="{{=URL('default','user',args=['change_password'])}}" class="accordion-toggle">{{=T('Cambiar Password')}}</a></li>
                                 </ul>
                             </li>
-                            <li class="collapsed">
+                            <!-- <li class="collapsed">
                                <a class="accordion-toggle accordion-heading" href="#collapseSeven" data-toggle="collapse" data-parent="#accordion2">{{=T('Plugins')}}</a>
-                                <!-- <ul id="collapseSeven" class="accordion-body collapse">
-                                    </ul> -->
-                            </li>
+                                <ul id="collapseSeven" class="accordion-body collapse">
+                                    </ul>
+                            </li> -->
                             {{pass}}
                         </ul>                     
                     </nav>
 
                 </div>
+                
+                {{end}}
                 <!-- END Menú lateral -->
 
                 <!-- acá va el contenido -->
                 <div class="content">
-
-                    {{block content}}
-                    {{end}}
-
+                    <div class="flash">{{=response.flash or ''}}</div>
                     <!-- acá va el contenido -->
                     {{ include }}
 
@@ -267,11 +271,11 @@
                 <div class="container">
                     <!-- Primer Menu footer -->
                     <div class="row titles">
-                        <div class="span2">Acerca de</div>
-                        <div class="span3">Comunidad</div>
-                        <div class="span3 developers">Desarrolladores</div>
-                        <div class="span3">Ayuda</div>
-                        <div class="span1 follow">Seguir</div>
+                        <div class="span2">{{=T('Acerca de')}}</div>
+                        <div class="span3">{{=T('Comunidad')}}</div>
+                        <div class="span3 developers">{{=T('Desarrolladores')}}</div>
+                        <div class="span3">{{=T('Ayuda')}}</div>
+                        <div class="span1 follow">{{=T('Seguir')}}</div>
                     </div>
                     <!-- END primer menu footer-->
                 </div>
@@ -282,51 +286,51 @@
                     <div class="footer-nav row">
                         <div class="span2">
                             <ul>
-                                <li><a href="#">Qué es Poderopedia</a></li>
-                                <li><a href="#">Equipo</a></li>
-                                <li><a href="#">Prensa</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Contacto</a></li>
+                                <li><a href="#">{{=T('Qué es Poderopedia')}}</a></li>
+                                <li><a href="#">{{=T('Equipo')}}</a></li>
+                                <li><a href="#">{{=T('Prensa')}}</a></li>
+                                <li><a href="#">{{=T('Blog')}}</a></li>
+                                <li><a href="#">{{=T('Contacto')}}</a></li>
                             </ul>
                         </div>
-
+    
                         <div class="span3">
                             <ul>
-                                <li><a href="#">Crea Poderopedia en tu país</a></li>
-                                <li><a href="#">Súmate a nosotros</a></li>
-                                <li><a href="#">Sugiere un perfil</a></li>
-                                <li><a href="#">Sugiere una conexión</a></li>
-                                <li><a href="#">Apóyanos</a></li>
+                                <li><a href="#">{{=T('Crea Poderopedia en tu país')}}</a></li>
+                                <li><a href="#">{{=T('Súmate a nosotros')}}</a></li>
+                                <li><a href="#">{{=T('Sugiere un perfil')}}</a></li>
+                                <li><a href="#">{{=T('Sugiere una conexión')}}</a></li>
+                                <li><a href="#">{{=T('Apóyanos')}}</a></li>
                             </ul>
                         </div>
-
+    
                         <div class="span3 developers">
                             <ul>
-                                <li><a href="#">API</a></li>
-                                <li><a href="#">Ontología</a></li>
-                                <li><a href="#">Usa nuestro código</a></li>
-                                <li><a href="#">Documentación</a></li>
-                                <li><a href="#">Foro Dev</a></li>
+                                <li><a href="#">{{=T('API')}}</a></li>
+                                <li><a href="#">{{=T('Ontología')}}</a></li>
+                                <li><a href="#">{{=T('Usa nuestro código')}}</a></li>
+                                <li><a href="#">{{=T('Documentación')}}</a></li>
+                                <li><a href="#">{{=T('Foro Dev')}}</a></li>
                             </ul>
                         </div>
-
+    
                         <div class="span3">
                             <ul>
-                                <li><a href="#">Guía paso a paso</a></li>
-                                <li><a href="#">Preguntas frecuentes</a></li>
-                                <li><a href="#">Lineamientos editoriales</a></li>
-                                <li><a href="#">Reportar errores</a></li>
-                                <li><a href="#">Reportar contenido inadecuado</a></li>
+                                <li><a href="#">{{=T('Guía paso a paso')}}</a></li>
+                                <li><a href="#">{{=T('Preguntas frecuentes')}}</a></li>
+                                <li><a href="#">{{=T('Lineamientos editoriales')}}</a></li>
+                                <li><a href="#">{{=T('Reportar errores')}}</a></li>
+                                <li><a href="#">{{=T('Reportar contenido inadecuado')}}</a></li>
                             </ul>
                         </div>
-
+                    
                         <div class="span1 follow">
                             <ul>
-                                <li><a href="#"><span class="ico-twitter"></span>Twitter</a></li>
-                                <li><a href="#"><span class="ico-facebook"></span>Facebook</a></li>
-                                <li><a href="#"><span class="ico-google"></span>Google +</a></li>
-                                <li><a href="#"><span class="ico-github"></span>Github</a></li>
-                                <li><a href="#"><span class="ico-rss"></span>RSS</a></li>
+                                <li><a href="#"><span class="ico-twitter"></span>{{=T('Twitter')}}</a></li>
+                                <li><a href="#"><span class="ico-facebook"></span>{{=T('Facebook')}}</a></li>
+                                <li><a href="#"><span class="ico-google"></span>{{=T('Google +')}}</a></li>
+                                <li><a href="#"><span class="ico-github"></span>{{=T('Github')}}</a></li>
+                                <li><a href="#"><span class="ico-rss"></span>{{=T('RSS')}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -338,15 +342,15 @@
             <div class="border">
                 <div class="container">
                     <div class="clearfix">
-                        <h1 class="logo-poderopedia"><a href="#"><span>Poderopedia</span></a></h1>
+                        <h1 class="logo-poderopedia"><a href="#"><span>{{=T('Poderopedia')}}</span></a></h1>
 
                         <ul class="legal clearfix">
-                            <li><a href="#">Términos de uso</a></li>
+                            <li><a href="#">{{=T('Términos de uso')}}</a></li>
                             <li>|</li>
-                            <li><a href="#">Política de Privacidad</a></li>
+                            <li><a href="#">{{=T('Política de Privacidad')}}</a></li>
                         </ul>
 
-                        <span class="support">Con el apoyo de: <a class="logo-knight" href="#"><span>Knight Foundation</span></a> <a class="logo-startup" href="#"><span>Start-up Chile</span></a></span>
+                        <span class="support">{{=T('Con el apoyo de: ')}}<a class="logo-knight" href="#"><span>{{=T('Knight Foundation')}}</span></a> <a class="logo-startup" href="#"><span>{{=T('Start-up Chile')}}</span></a></span>
                     </div>
                 </div>
             </div>
@@ -355,7 +359,7 @@
             <!-- Menú de copyright-->
             <div>
                 <div class="container">
-                    <small>Un proyecto de <a href="#">Fundación Poderomedia 2012</a>. Todo el contenido, a menos que se indique lo contrario, bajo licencia Creative Commons 3.0. Hecho en Chile</small>
+                    <small>{{=T('Un proyecto de ')}}<a href="#">{{=T('Fundación Poderomedia 2012')}}</a>{{=T('. Todo el contenido, a menos que se indique lo contrario, bajo licencia Creative Commons 3.0. Hecho en Chile')}}</small>
                 </div>
             </div>
             <!-- END menú de copyright-->
