@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-db1 = DAL(settings.database_uri_pixel, check_reserved=['postgres', 'mysql'], migrate_enabled=True, migrate=True)
+db1 = DAL(settings.database_uri_pixel, check_reserved=['postgres', 'mysql'], migrate_enabled=False, migrate=False)
 
 ##compartir a un amigo
 db1.define_table('pixel_stats',
