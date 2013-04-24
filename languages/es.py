@@ -69,7 +69,7 @@
 'Authentication': 'Autenticación',
 'Available Databases and Tables': 'Bases de datos y tablas disponibles',
 'Ayuda': 'Ayuda',
-'Back': 'Back',
+'Back': 'Atrás',
 'Blog': 'Blog',
 'Bienvenido a Plug & Play': 'Bienvenido a Plug & Play',
 'Bienvenido a Plug &amp; Play': 'Bienvenido a Plug &amp; Play',
