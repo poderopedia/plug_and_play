@@ -62,15 +62,7 @@
 
     <!-- include stylesheets -->
     {{
-<<<<<<< HEAD
-    response.files.append(URL('static','css/web2py.css'))
-    response.files.append(URL('static','css/bootstrap.min.css'))
-    response.files.append(URL('static','css/bootstrap-responsive.min.css'))
-    response.files.append(URL('static','css/web2py_bootstrap.css'))
-    response.files.append(URL('static','css/style.css'))
-    response.files.append(URL('static','js/bootstrap.min.js'))
-    }}
-=======
+
     response.files.append(URL('static','css/web2py.css'))}}
     <!-- response.files.append(URL('static','css/bootstrap.min.css'))-->
     <!-- response.files.append(URL('static','css/bootstrap-responsive.min.css'))-->
@@ -84,7 +76,7 @@
     <!-- inlcude javascript -->
 
 
->>>>>>> 430de09464d537990054d64e72f0c78bc3738a0c
+
 
     {{include 'web2py_ajax.html'}}
     <noscript><link href="{{=URL('static', 'css/web2py_bootstrap_nojs.css')}}" rel="stylesheet" type="text/css" /></noscript>
@@ -170,121 +162,7 @@
 
                 <!-- Menú lateral-->
                 <div class="span3 menu">
-<<<<<<< HEAD
-                    {{block sidebar}}
-                    <nav>
-                        {{block lateral_menu}}
 
-                        <!-- Item de menu:Datos básicos -->
-                        <div id="accordion2" class="accordion">
-
-       						<div class="accordion-group">
-       							<div class="accordion-heading">
-            						<a class="accordion-toggle" href="#collapseOne" data-toggle="collapse" data-parent="#accordion2">{{=T('Escritorio')}}</a>
- 	                           	</div>
-                            </div>
-                    	    <div class="accordion-group">
-       							<div class="accordion-heading">
-            						<a class="accordion-toggle" href="#collapseTwo" data-toggle="collapse" data-parent="#accordion2">{{=T('Publicaciones')}}</a>
-	        					</div>
-    	                        <div id="collapseTwo" class="accordion-body collapse">
-        	                   		<div class="accordion-inner">
-            	                		<a href="#" class="accordion-toggle">{{=T('Todas las publicaciones')}}</a>
-                	           		</div>
-                    	       		<div class="accordion-inner">
-                        	       		<a href="#" class="accordion-toggle">{{=T('Personas')}}</a>
-                            		</div>
-                            		<div class="accordion-inner">
-	                               		<a href="#" class="accordion-toggle">{{=T('Empresas')}}</a>
-    	                        	</div>
-        	                    	<div class="accordion-inner">
-	        	                    	<a href="#" class="accordion-toggle">{{=T('Organizaciones')}}</a>
-    	        	            	</div>
-        	        	        	<div class="accordion-inner">
-            	        	        	<a href="#" class="accordion-toggle">{{=T('Casos')}}</a>
-                	        		</div>
-                    	   		</div>
-                    		</div>
-                    	    <div class="accordion-group">
-       							<div class="accordion-heading">
-            						<a class="accordion-toggle" href="#collapseThree" data-toggle="collapse" data-parent="#accordion2">{{=T('Colaboraciones')}}</a>
-	        					</div>
-    	                        <div id="collapseThree" class="accordion-body collapse">
-        	                   		<div class="accordion-inner">
-            	                		<a href="#" class="accordion-toggle">{{=T('Todas las publicaciones')}}</a>
-                	           		</div>
-                    	       		<div class="accordion-inner">
-                        	       		<a href="#" class="accordion-toggle">{{=T('Personas')}}</a>
-                            		</div>
-                            		<div class="accordion-inner">
-	                               		<a href="#" class="accordion-toggle">{{=T('Empresas')}}</a>
-    	                        	</div>
-        	                    	<div class="accordion-inner">
-	        	                    	<a href="#" class="accordion-toggle">{{=T('Organizaciones')}}</a>
-    	        	            	</div>
-        	        	        	<div class="accordion-inner">
-            	        	        	<a href="#" class="accordion-toggle">{{=T('Casos')}}</a>
-                	        		</div>
-                    	   		</div>
-                    		</div>
-                        	<div class="accordion-group">
-       							<div class="accordion-heading">
-            						<a class="accordion-toggle" href="#collapseFour" data-toggle="collapse" data-parent="#accordion2">{{=T('Páginas')}}</a>
-	        					</div>
-    	                        <div id="collapseFour" class="accordion-body collapse">
-        	                   		<div class="accordion-inner">
-            	                		<a href="#" class="accordion-toggle">{{=T('Todas las páginas')}}</a>
-                	           		</div>
-                    	       		<div class="accordion-inner">
-                        	       		<a href="#" class="accordion-toggle">{{=T('Agregar página nueva')}}</a>
-                            		</div>
-                    	   		</div>
-                    		</div>
-                        	<div class="accordion-group">
-       							<div class="accordion-heading">
-            						<a class="accordion-toggle" href="#collapseFive" data-toggle="collapse" data-parent="#accordion2">{{=T('Usuarios')}}</a>
-	        					</div>
-    	                        <div id="collapseFive" class="accordion-body collapse">
-        	                   		<div class="accordion-inner">
-            	                		<a href="#" class="accordion-toggle">{{=T('Todos los usuarios')}}</a>
-                	           		</div>
-                    	       		<div class="accordion-inner">
-                        	       		<a href="#" class="accordion-toggle">{{=T('Agregar nuevo usuario')}}</a>
-                            		</div>
-                            		<div class="accordion-inner">
-                        	       		<a href="#" class="accordion-toggle">{{=T('Mi perfil')}}</a>
-                            		</div>
-                    	   		</div>
-                    		</div>
-                        	<div class="accordion-group">
-    	   						<div class="accordion-heading">
-        	    					<a class="accordion-toggle" href="#collapseSix" data-toggle="collapse" data-parent="#accordion2">{{=T('Configuración')}}</a>
-        						</div>
-                	        	<div id="collapseSix" class="accordion-body collapse">
-
-                                </div>
-                                <div id="collapseThree" class="accordion-body collapse">
-                                    <div class="accordion-inner">
-                                        <a href="#" class="accordion-toggle">{{=T('Todas las publicaciones')}}</a>
-                                        <a href="#" class="accordion-toggle">{{=T('Personas')}}</a>
-                                        <a href="#" class="accordion-toggle">{{=T('Empresas')}}</a>
-                                        <a href="#" class="accordion-toggle">{{=T('Organizaciones')}}</a>
-                                        <a href="#" class="accordion-toggle">{{=T('Casos')}}</a>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-                        {{end}}
-                <!-- END Menú lateral -->
-                    </nav>
-                    {{end}}
-=======
 
                     <nav>
 
@@ -359,7 +237,7 @@
                             {{pass}}
                         </ul>                     
                     </nav>
->>>>>>> 430de09464d537990054d64e72f0c78bc3738a0c
+
                 </div>
                 <!-- END Menú lateral -->
 
