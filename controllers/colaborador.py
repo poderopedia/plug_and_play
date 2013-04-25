@@ -37,7 +37,7 @@ def quick_profile_persona():
     # a_form.vars['state_colaboration']=False
 
     if a_form.process().accepted:
-        response.flash = 'Perfil sugerido con éxito'
+        response.flash = 'Perfil creado con éxito'
         #redirect(URL('accepted'))
     elif a_form.errors:
         my_dict['a_error'] = 'Ooops! Ocurrió un error'
@@ -74,7 +74,7 @@ def long_profile_persona():
     
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
-        response.flash = "Persona sugerida con éxito"
+        response.flash = "Persona creada con éxito"
     elif form.errors:
         form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
         response.flash = "Hay errores en el formulario"
@@ -116,7 +116,7 @@ def quick_profile_organizacion():
     # a_form.vars['state_colaboration']=False
 
     if a_form.process().accepted:
-         response.flash = 'Organización Sugerida con éxito'
+         response.flash = 'Organización creada con éxito'
         #redirect(URL('accepted'))
     elif a_form.errors:
         my_dict['a_error'] = 'Ooops! Ocurrió un error'
@@ -149,7 +149,7 @@ def long_profile_organizacion():
 
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
-        response.flash = "Organización sugerida con éxito"
+        response.flash = "Organización creada con éxito"
     elif form.errors:
         form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
         response.flash = "Hay errores en el formulario"

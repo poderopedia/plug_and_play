@@ -146,6 +146,9 @@ db.rdf_namespaces = \
      '_xmlns:relational': 'http://www.dbs.cs.uni-duesseldorf.de/RDF/relational.owl#',
      '_xmlns:rdfs': 'http://www.w3.org/2000/01/rdf-schema#'}
 
+def advanced_editor(field, value):
+    return TEXTAREA(_id = str(field).replace('.','_'), _name=field.name, _class='text ckeditor', value=value, _cols=80, _rows=10)
+
 
 def select_datewidget(field, value):
     MINYEAR = 1900
@@ -793,3 +796,9 @@ db.define_table('importer', Field('filename', 'upload',
                 autodelete=True), auth.signature)
 
 me = auth.user_id
+
+#listar los campos que usan ckeditor
+db.persona.shortBio.widget = advanced_editor
+db.persona.longBio.widget  = advanced_editor
+db.Organizacion.shortBio.widget = advanced_editor
+db.Organizacion.longBio.widget  = advanced_editor

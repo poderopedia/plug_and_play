@@ -45,8 +45,8 @@ def display_persona():
                , _href=URL('editor', 'accept_persona',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
                _class='w2p_trap button btn', _href=URL('editor',
-               'reject_persona', vars=dict(id=row.id))),
-               lambda row: A(T('Programar'), **{'_href':'#Lightbox_schedulepersona','_class':'w2p_trap button btn programar_persona','_data-toggle':'modal','_id':str(row.id)})],
+               'reject_persona', vars=dict(id=row.id)))]
+               #lambda row: A(T('Programar'), **{'_href':'#Lightbox_schedulepersona','_class':'w2p_trap button btn programar_persona','_data-toggle':'modal','_id':str(row.id)})],
         )
 
     if persona_grid.element('.web2py_counter'):
@@ -146,8 +146,8 @@ def display_organizacion():
                , _href=URL('editor', 'accept_organizacion',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
                _class='w2p_trap button btn', _href=URL('editor',
-               'reject_organizacion', vars=dict(id=row.id))),
-               lambda row: A(T('Programar'), **{'_href':'#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
+               'reject_organizacion', vars=dict(id=row.id)))],
+               #lambda row: A(T('Programar'), **{'_href':'#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
         formname='organizacion_grid_form',
         )
