@@ -16,8 +16,7 @@ if not request.env.web2py_runtime_gae:
 
     # # if NOT running on Google App Engine use SQLite or other D
 
-    db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'
-             ], migrate_enabled=True, migrate=True)
+    db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'], migrate_enabled=False, migrate=False)
 
 else:
 
@@ -104,7 +103,7 @@ db.auth_user.username.requires = IS_NOT_IN_DB(db, db.auth_user.username)
 db.auth_user.email.requires = \
     (IS_EMAIL(error_message=auth.messages.invalid_email),
      IS_NOT_IN_DB(db, db.auth_user.email))
-auth.define_tables(migrate=True)
+auth.define_tables(migrate=False)
 
 ## configure email
 
@@ -146,6 +145,9 @@ db.rdf_namespaces = \
     {'_xmlns:rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
      '_xmlns:relational': 'http://www.dbs.cs.uni-duesseldorf.de/RDF/relational.owl#',
      '_xmlns:rdfs': 'http://www.w3.org/2000/01/rdf-schema#'}
+
+def advanced_editor(field, value):
+    return TEXTAREA(_id = str(field).replace('.','_'), _name=field.name, _class='text ckeditor', value=value, _cols=80, _rows=10)
 
 
 def select_datewidget(field, value):
@@ -794,3 +796,9 @@ db.define_table('importer', Field('filename', 'upload',
                 autodelete=True), auth.signature)
 
 me = auth.user_id
+
+#listar los campos que usan ckeditor
+db.persona.shortBio.widget = advanced_editor
+db.persona.longBio.widget  = advanced_editor
+db.Organizacion.shortBio.widget = advanced_editor
+db.Organizacion.longBio.widget  = advanced_editor

@@ -3,13 +3,14 @@
 
 @auth.requires_login()
 def index():
-    pass
+    return locals()
 
 @auth.requires_login()
 def quick_profile_persona():
 
     my_dict = dict()
 
+    db.persona.state_collaboration.default = 'accepted';
 
     my_dict['a_error']=''
 
@@ -36,7 +37,7 @@ def quick_profile_persona():
     # a_form.vars['state_colaboration']=False
 
     if a_form.process().accepted:
-        response.flash = 'Perfil sugerido con éxito'
+        response.flash = 'Perfil creado con éxito'
         #redirect(URL('accepted'))
     elif a_form.errors:
         my_dict['a_error'] = 'Ooops! Ocurrió un error'
@@ -46,9 +47,11 @@ def quick_profile_persona():
     return my_dict
 
 
-
+    
 @auth.requires_login()
 def long_profile_persona():
+    db.persona.state_collaboration.default = 'accepted';
+
     # STEPS: A dict with fields for each step
     mysteps = [dict(title='Datos Básicos',fields=['firstName','firstLastName', 'otherLastName','alias','shortBio','countryofResidence', 'depiction']),
                dict(title='Más Información',fields=['Mainsector','birth','isDead','countryofBirth','city','shortBio']),
@@ -68,10 +71,10 @@ def long_profile_persona():
    
         form = PowerFormWizard(db.persona, steps=mysteps, options=dict(validate=True), record=record)
 
-
+    
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
-        response.flash = "Persona sugerida con éxito"
+        response.flash = "Persona creada con éxito"
     elif form.errors:
         form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
         response.flash = "Hay errores en el formulario"
@@ -84,6 +87,7 @@ def long_profile_persona():
 @auth.requires_login()
 def quick_profile_organizacion():
     
+    db.Organizacion.state_collaboration.default = 'accepted';
     my_dict = dict()
 
 
@@ -112,7 +116,7 @@ def quick_profile_organizacion():
     # a_form.vars['state_colaboration']=False
 
     if a_form.process().accepted:
-         response.flash = 'Organización Sugerida con éxito'
+         response.flash = 'Organización creada con éxito'
         #redirect(URL('accepted'))
     elif a_form.errors:
         my_dict['a_error'] = 'Ooops! Ocurrió un error'
@@ -123,6 +127,8 @@ def quick_profile_organizacion():
 
 @auth.requires_login()
 def long_profile_organizacion():
+    db.Organizacion.state_collaboration.default = 'accepted';
+
     # STEPS: A dict with fields for each step
     mysteps = [dict(title='Datos Básicos',fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
                dict(title='Fuentes',fields=['hasdocumentation','documentSource','documentCloud']),
@@ -143,10 +149,13 @@ def long_profile_organizacion():
 
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
-        response.flash = "Organización sugerida con éxito"
+        response.flash = "Organización creada con éxito"
     elif form.errors:
         form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
         response.flash = "Hay errores en el formulario"
 
     # Enjoy!
     return dict(form=form)
+
+
+

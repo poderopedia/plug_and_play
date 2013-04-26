@@ -1,14 +1,20 @@
+def index():
+    redirect(URL('user_admin','list_users'))
+    return locals()
+
+
 #@auth.requires_membership("admin") # uncomment to enable security 
 def list_users():
     btn = lambda row: A("Edit", _href=URL('manage_user', args=row.auth_user.id))
     db.auth_user.edit = Field.Virtual(btn)
     rows = db(db.auth_user).select()
     headers = ["ID", "Name", "Last Name", "Email", "Edit"]
-    fields = ['id', 'first_name', 'last_name', "email", "edit"]
+    fields = ['id', 'first_name', 'last_name', "email","edit"]
     table = TABLE(THEAD(TR(*[B(header) for header in headers])),
         TBODY(*[TR(*[TD(row[field]) for field in fields]) \
-            for row in rows]))
+                    for row in rows]))
     table["_class"] = "table table-striped table-bordered table-condensed"
+
     return dict(table=table)
 
 #@auth.requires_membership("admin") # uncomment to enable security 
