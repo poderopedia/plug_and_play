@@ -13,9 +13,7 @@
 T.force('es')
 
 if not request.env.web2py_runtime_gae:
-
     # # if NOT running on Google App Engine use SQLite or other D
-
     db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'], migrate_enabled=False, migrate=False)
 
 else:
@@ -317,7 +315,7 @@ db.define_table(  # #Field('birth', db.birthEvent, label='Fecha de Nacimiento', 
           label=T('Perfil largo')),
     Field('documentSource', 'list:reference document', required=False,
           requires=IS_IN_DB(requiere, 'document.id', '%(name)s',
-          multiple=True), label=T('Fuentes')),
+          multiple=True), label=T('Fuentes'), widget=SELECT_OR_ADD_OPTION("documentSource").widget),
     Field('documentCloud', 'list:reference documentCloud',
           required=False, requires=IS_IN_DB(db, 'documentCloud.id',
           '%(title)s', multiple=True), label=T('Fuentes Document Cloud'

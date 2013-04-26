@@ -234,10 +234,7 @@
 'Group ID': 'ID de Grupo',
 'Group uniquely assigned to user %(id)s': 'Group uniquely assigned to user %(id)s',
 'Groups': 'Groups',
-<<<<<<< HEAD
-=======
 'Grupos de Usuario': 'Grupos de Usuario',
->>>>>>> 430de09464d537990054d64e72f0c78bc3738a0c
 'Guía paso a paso': 'Guía paso a paso',
 'Ha Fallecido': 'Ha Fallecido',
 'Hasta': 'Hasta',
@@ -460,10 +457,7 @@
 'Sugerencias Aceptadas': 'Sugerencias Aceptadas',
 'Sugerencias Rechazadas': 'Sugerencias Rechazadas',
 'Sugerir': 'Sugerir',
-<<<<<<< HEAD
-=======
 'Sugerir Persona': 'Sugerir Persona',
->>>>>>> 430de09464d537990054d64e72f0c78bc3738a0c
 'Sugiere un perfil': 'Sugiere un perfil',
 'Sugiere una conexión': 'Sugiere una conexión',
 'Support': 'Support',
