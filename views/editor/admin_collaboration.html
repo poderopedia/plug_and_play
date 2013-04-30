@@ -76,7 +76,6 @@ Listado de Colaboraciones
     });
 
 $('.programar_persona').click(function(e) {
-        alert('hola');
         e.preventDefault();
         _id = this.id
         web2py_component("{{=URL('editor','schedule_persona.load',args="+_id+")}}","schedule_persona")
@@ -89,10 +88,9 @@ $('.programar_persona').click(function(e) {
     });
    
 $('.programar_empresa').click(function(e) {
-        alert('hola');
         e.preventDefault();
         _id = this.id
-        web2py_component("{{=URL('editor','schedule_empresa.load',args="+_id+")}}","schedule_empresa")
+        web2py_component("{{=URL('editor','schedule_organizacion.load',args="+_id+")}}","schedule_empresa")
     });
 
 </script>

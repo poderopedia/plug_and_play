@@ -1,4 +1,4 @@
-@auth.requires_login()
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def admin_collaboration():
 
     # Vista para mostrar el listado de personas y organizaciones sugeridas
@@ -9,7 +9,7 @@ def admin_collaboration():
 
     return locals()
 
-
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_persona():
 
     # Componente el cual muestra la grilla de personas sugeridas
@@ -46,7 +46,7 @@ def display_persona():
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
                _class='w2p_trap button btn', _href=URL('editor',
                'reject_persona', vars=dict(id=row.id))),
-               lambda row: A(T('Programar'), **{'_href':'#Lightbox_schedulepersona','_class':'w2p_trap button btn programar_persona','_data-toggle':'modal','_id':str(row.id)})]
+               lambda row: A(T('Programar'), **{'_href':'../load_display_persona#Lightbox_schedulepersona','_class':'w2p_trap button btn programar_persona','_data-toggle':'modal','_id':str(row.id)})]
         )
 
     if persona_grid.element('.web2py_counter'):
@@ -67,7 +67,7 @@ def display_persona():
 
     return dict(persona_grid=persona_grid)
 
-
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def accept_persona():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -89,6 +89,7 @@ def accept_persona():
 
     return dict()
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def reject_persona():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -111,7 +112,31 @@ def reject_persona():
 
     return dict()
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def schedule_persona():
 
+    my_dict['a_error'] = ''
+
+    if 'id' in request.vars:
+        a_id = request.vars['id']
+        db.persona.state_collaboration.default = 'acccepted'
+        db.persona.state_publication.default = 'programmed'
+        fields_dict = ['date_publication']
+
+
+        a_form = SQLFORM(db.persona,a_id,fields_dict);
+        
+        if a_form.process().accepted:
+            response.flash = 'Su publicación se hará pública en la fecha elegida'
+        elif a_form.errors:
+            my_dict['a_error'] = 'Oops! ocurrió un error'
+            response.flash = 'Hay errores en el formulario'
+
+        my_dict['form'] = a_form
+
+    return my_dict
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_organizacion():
 
     # Componente el cual muestra la grilla de organizaciones sugeridas
@@ -147,7 +172,7 @@ def display_organizacion():
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
                _class='w2p_trap button btn', _href=URL('editor',
                'reject_organizacion', vars=dict(id=row.id))),
-               lambda row: A(T('Programar'), **{'_href':'#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
+               lambda row: A(T('Programar'), **{'_href':'../load_display_organizacion#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
         formname='organizacion_grid_form',
         )
@@ -166,7 +191,7 @@ def display_organizacion():
 
     return dict(organizacion_grid=organizacion_grid)
 
-
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def accept_organizacion():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -189,6 +214,7 @@ def accept_organizacion():
 
     return dict()
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def reject_organizacion():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -212,6 +238,31 @@ def reject_organizacion():
 
     return dict()
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def schedule_organizacion():
+
+    my_dict['a_error'] = ''
+
+    if 'id' in request.vars:
+        a_id = request.vars['id']
+        db.Organizacion.state_collaboration.default = 'acccepted'
+        db.Organizacion.state_publication.default = 'programmed'
+        fields_dict = ['date_publication']
+
+
+        a_form = SQLFORM(db.Organizacion,a_id,fields_dict);
+        
+        if a_form.process().accepted:
+            response.flash = 'Su publicación se hará pública en la fecha elegida'
+        elif a_form.errors:
+            my_dict['a_error'] = 'Oops! ocurrió un error'
+            response.flash = 'Hay errores en el formulario'
+
+        my_dict['form'] = a_form
+
+    return my_dict
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_empresa():
 
     label_dict_empresa = \
@@ -249,7 +300,7 @@ def display_empresa():
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
                _class='w2p_trap button btn', _href=URL('editor',
                'reject_organizacion', vars=dict(id=row.id))),
-               lambda row: A(T('Programar'), **{'_href':'#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
+               lambda row: A(T('Programar'), **{'_href':'../load_display_empresa#Lightbox_scheduleempresa#Lightbox_scheduleempresa','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
         formname='empresa_grid_form',
         )
@@ -269,4 +320,18 @@ def display_empresa():
     return dict(empresa_grid=empresa_grid)
 
 
+#funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def load_display_persona():
+    return locals()
+
+#funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def load_display_organizacion():
+    return locals()
+
+#funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def load_display_empresa():
+    return locals()
 

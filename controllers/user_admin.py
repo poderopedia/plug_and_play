@@ -1,9 +1,9 @@
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def index():
     redirect(URL('user_admin','list_users'))
     return locals()
 
-
-#@auth.requires_membership("admin") # uncomment to enable security 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def list_users():
     btn = lambda row: A("Edit", _href=URL('manage_user', args=row.auth_user.id))
     db.auth_user.edit = Field.Virtual(btn)
@@ -17,7 +17,7 @@ def list_users():
 
     return dict(table=table)
 
-#@auth.requires_membership("admin") # uncomment to enable security 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def manage_user():
     user_id = request.args(0) or redirect(URL('list_users'))
     form = SQLFORM(db.auth_user, user_id)
@@ -27,7 +27,7 @@ def manage_user():
                             ajax=True)
     return dict(form=form,membership_panel=membership_panel)
 
-#auth.requires_membership("admin") # uncomment to enable security 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def manage_membership():
     user_id = request.args(0) or redirect(URL('list_users'))
     db.auth_membership.user_id.default = int(user_id)
@@ -35,11 +35,11 @@ def manage_membership():
     
     #admin no puede agregar superadmins
     if auth.has_membership("admin"):
-        db.auth_membership.group_id.requires = IS_IN_DB(db, db.auth_group.id > 2 ,'%(role)s')
+        db.auth_membership.group_id.requires = IS_IN_DB(db, db.auth_group.id > 2 ,'%(group_id)s')
         
     #editor no puede agregar ni admin ni superadmin
     if auth.has_membership("editor"):
-        db.auth_membership.group_id.requires = IS_IN_DB(db, db.auth_group.id > 3,'%(role)s')
+        db.auth_membership.group_id.requires = IS_IN_DB(db, db.auth_group.id > 3,'%(group_id)s')
     
 
     form = SQLFORM.grid(db.auth_membership.user_id == user_id,
