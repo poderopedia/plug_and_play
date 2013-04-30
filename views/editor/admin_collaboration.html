@@ -7,6 +7,8 @@ Listado de Colaboraciones
 <ul class="nav nav-tabs" id="colaboration_tab">
   <li id="nav_persona" {{if request.args(0) == 'persona':}} class = "active" {{pass}}><a href="#persona">Personas</a></li>
   <li id="nav_organizacion" {{if request.args(0) == 'organizacion':}} class = "active" {{pass}}><a href="#organizacion">Organizaciones</a></li>
+  <li id="nav_empresa" {{if request.args(0) == 'empresa':}} class = "active" {{pass}}><a href="#empresa">Empresas</a></li>
+
 </ul>
  
 <div class="tab-content">
@@ -44,7 +46,27 @@ Listado de Colaboraciones
     </div>
     <!--Fin Schedule Organizacion--> 
 
+    </div>
+
+
+<div class="tab-pane {{if request.args(0) == 'organizacion':}} active {{pass}}" id="empresa">
+    <!-- <h3> {{ =T("Organizaciones") }}</h3> -->
+
+    {{ =LOAD(c='editor',f='display_empresa.load', ajax=True, user_signature=True) }}
+    <!--Lightbox_scheduleempresa-->
+    <div class="modal hide fade" id="Lightbox_scheduleempresa">
+        <div class="modal-header clearfix">
+            <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+        </div>
+        <div class="modal-body">
+        <div id="schedule_empresa"></div>
+        </div>
+    </div>
+    <!--Fin Schedule Empresa--> 
+
   </div>
+
+
 </div>
 
 <script type="text/javascript">
@@ -66,6 +88,12 @@ $('.programar_persona').click(function(e) {
         web2py_component("{{=URL('editor','schedule_organizacion.load',args="+_id+")}}","schedule_organizacion")
     });
    
+$('.programar_empresa').click(function(e) {
+        alert('hola');
+        e.preventDefault();
+        _id = this.id
+        web2py_component("{{=URL('editor','schedule_empresa.load',args="+_id+")}}","schedule_empresa")
+    });
 
 </script>
 

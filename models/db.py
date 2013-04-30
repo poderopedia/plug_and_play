@@ -110,7 +110,8 @@ auth.define_tables(migrate=False)
 mail = auth.settings.mailer
 
 ## configure auth policy
-
+auth.settings.create_user_groups = False;
+auth.settings.everybody_group_id = 5; #todo usuario nuevo tiene grupo colaborador
 auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True

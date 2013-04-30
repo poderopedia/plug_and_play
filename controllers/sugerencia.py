@@ -80,6 +80,40 @@ def organizacion():
     my_dict['form'] = a_form
     return my_dict
 
+def empresa():
+
+    # Formulario de ingreso de sugerencia para empresas
+    db.Organizacion.tipoOrg.default = 2;
+    my_dict = dict()
+
+    my_dict['a_error'] = ''
+
+    label_dict = dict(ICN=T('Rut'), firstLastName=T('Apellido Paterno'
+                      ), otherLastName=T('Apellido Materno'))
+    fields_dict = [
+        'hasSocialReason',
+        'alias',
+        'birth',
+        'shortBio',
+        'countryOfResidence',
+        'depiction',
+        ]
+
+    a_form = SQLFORM(db.Organizacion, fields=fields_dict,
+                     submit_button=T('Sugerir'))
+
+    if a_form.process().accepted:
+        response.flash = 'Sugerencia Aceptada'
+    elif a_form.errors:
+
+        # redirect(URL('accepted'))
+
+        response.flash = 'Formulario con errores'
+
+    my_dict['form'] = a_form
+    return my_dict
+
+
 @auth.requires_login()
 def admin_suggestion():
 
@@ -285,6 +319,60 @@ def reject_organizacion():
     redirect(URL('display_organizacion'))
 
     return dict()
+
+def display_empresa():
+
+    # Componente el cual muestra la grilla de empresas sugeridas
+
+    label_dict_empresa = \
+        {'tipoOrganizacion.name': T('Tipo Organización')}
+
+    show_fields_empresa = [db.Organizacion.id,
+                                db.Organizacion.tipoOrg,
+                                # db.tipoOrganizacion.name,
+                                db.Organizacion.hasSocialReason,
+                                db.Organizacion.alias]
+
+    db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
+
+    query = (db.Organizacion.tipoOrg == 2) \
+        & (db.Organizacion.state_collaboration == 'for_revision')
+
+    empresa_grid = SQLFORM.grid(
+        query,
+        editable=True,
+        details=False,
+        user_signature=True,
+        deletable=False,
+        fields=show_fields_empresa,
+        headers=label_dict_empresa,
+        create=False,
+        csv=False,
+        paginate=10,
+        searchable=False,
+        links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
+               , _href=URL('sugerencia', 'accept_organizacion',
+               vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
+               _class='w2p_trap button btn', _href=URL('sugerencia',
+               'reject_organizacion', vars=dict(id=row.id)))],
+        links_in_grid=True,
+        formname='empresa_grid_form',
+        )
+
+    if empresa_grid.element('.web2py_counter'):
+        empresa_grid.element('.web2py_counter')[0] = ''
+
+    if empresa_grid.element('.web2py_table input[type=submit]'):
+
+        empresa_grid.element('.web2py_table input[type=submit]'
+                                  )['_value'] = \
+            T('Aceptar Empresas Seleccionadas')
+    elif empresa_grid.element('.web2py_grid input[type=submit]'):
+        empresa_grid.element('.web2py_grid input[type=submit]'
+                                  )['_value'] = T('Aceptar')
+
+    return dict(empresa_grid=empresa_grid)
+
 
 
 def publicaciones_general():

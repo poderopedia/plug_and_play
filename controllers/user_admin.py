@@ -32,6 +32,16 @@ def manage_membership():
     user_id = request.args(0) or redirect(URL('list_users'))
     db.auth_membership.user_id.default = int(user_id)
     db.auth_membership.user_id.writable = False
+    
+    #admin no puede agregar superadmins
+    if auth.has_membership("admin"):
+        db.auth_membership.group_id.requires = IS_IN_DB(db, db.auth_group.id > 2 ,'%(role)s')
+        
+    #editor no puede agregar ni admin ni superadmin
+    if auth.has_membership("editor"):
+        db.auth_membership.group_id.requires = IS_IN_DB(db, db.auth_group.id > 3,'%(role)s')
+    
+
     form = SQLFORM.grid(db.auth_membership.user_id == user_id,
                         user_signature = False,
                         args=[user_id],
