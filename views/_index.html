@@ -188,6 +188,7 @@
                                 <ul id="collapseThree" class="accordion-body collapse">
                                     <li><a href="{{=URL('colaborador','long_profile_persona')}}">{{=T('Nueva Persona')}}</a></li>
                                     <li><a href="{{=URL('colaborador','long_profile_organizacion')}}">{{=T('Nueva Organizacion')}}</a></li>
+                                    <li><a href="{{=URL('colaborador','create_case')}}">{{=T('Nuevo Caso')}}</a></li>
                                     {{ if auth.has_membership("admin"): }}
                                     <li><a href="{{=URL('editor','admin_collaboration')}}">{{=T('Todas las publicaciones')}}</a></li>
                                     <li><a href="{{=URL('editor','admin_collaboration',args='persona')}}">{{=T('Personas')}}</a></li>

@@ -16,7 +16,7 @@ if not request.env.web2py_runtime_gae:
 
     # # if NOT running on Google App Engine use SQLite or other D
 
-    db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'], migrate_enabled=False, migrate=False)
+    db = DAL(settings.database_uri, check_reserved=['postgres', 'mysql'], migrate_enabled=True, migrate=True)
 
 else:
 
@@ -218,6 +218,7 @@ db.define_table('casos', Field('label', 'string',
                 writable=False), Field('graph', 'text', readable=False,
                 writable=False), auth.signature)
 
+
 # a table for Country
 
 db.define_table('country', Field('name', 'string', required=True),
@@ -272,6 +273,21 @@ db.define_table(
     )
 requiere = db(db.document.is_active == True)
 
+
+db.define_table('caso',
+                Field('depiction', 'upload', label=T('Foto')),
+                Field('name', 'string', label=T('Nombre'), requires=IS_NOT_EMPTY(T('Ingresar Nombre'))),
+                Field('description', 'text', label=T('Descripción')),
+                Field('country', db.country, label=T('País de Residencia'),
+                requires=IS_IN_DB(db, 'country.id', 'country.name', T('Seleccionar pais'))),
+                Field('city', 'string', readable=True, writable=True,
+                label=T('Ciudad')),
+                Field('documentSource', 'list:reference document', required=False,
+                requires=IS_IN_DB(requiere, 'document.id', '%(name)s',
+                multiple=True), label=T('Fuentes')),
+                auth.signature,
+)
+
 # a table to store personas
 
 db.define_table(  # #Field('birth', db.birthEvent, label='Fecha de Nacimiento', required=False),
@@ -294,7 +310,7 @@ db.define_table(  # #Field('birth', db.birthEvent, label='Fecha de Nacimiento', 
     Field(
         'alias',
         'string',
-        requires=IS_NOT_EMPTY(),
+        requires=IS_NOT_EMPTY(T('Ingresar Nombre')),
         readable=True,
         writable=True,
         label=T('Nombre Corto'),
@@ -304,8 +320,8 @@ db.define_table(  # #Field('birth', db.birthEvent, label='Fecha de Nacimiento', 
     Field('countryofResidence', db.country, label='País de Residencia',
           requires=IS_IN_DB(db, 'country.id', 'country.name')),
     Field('countryofBirth', db.country, label='País de Nacimiento',
-          requires=IS_EMPTY_OR(IS_IN_DB(db, 'country.id', 'country.name'
-          )), required=False),
+          requires=IS_EMPTY_OR(IS_IN_DB(db, 'country.id', 'country.name',
+          T('Seleccionar Pais'))), required=False),
     Field('city', 'string', readable=True, writable=True,
           label=T('Ciudad')),
     Field('Mainsector', 'list:reference sector', label=T('Main Sector'

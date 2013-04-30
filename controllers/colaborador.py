@@ -157,5 +157,44 @@ def long_profile_organizacion():
     # Enjoy!
     return dict(form=form)
 
+@auth.requires_login()
+def create_case():
+
+    my_dict = dict()
+
+    # db.persona.state_collaboration.default = 'accepted';
+
+    my_dict['a_error']=''
+
+    label_dict = dict(graph='')
+    # fields_dict = [
+    #     'ICN',
+    #     'firstName',
+    #     'firstLastName',
+    #     'otherLastName',
+    #     'alias',
+    #     'shortBio',
+    #     'countryofResidence',
+    #     'depiction'
+    # ]
+
+    # hidden_dict = dict(state_publication='draft',date_publication=request.now,
+        # state_colaboration=False)
+
+    a_form = SQLFORM(db.caso)
+
+    # a_form.vars['state_publication']='draft'
+    # a_form.vars['date_publication']=request.now
+    # a_form.vars['state_colaboration']=False
+
+    if a_form.process().accepted:
+        response.flash = 'Caso creado con éxito'
+        #redirect(URL('accepted'))
+    elif a_form.errors:
+        my_dict['a_error'] = 'Ooops! Ocurrió un error'
+        response.flash = 'Hay errores en el formulario'
+
+    my_dict['form']=a_form
+    return my_dict
 
 
