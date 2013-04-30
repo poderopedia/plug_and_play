@@ -1,0 +1,14 @@
+<div class="tab-pane {{if request.args(0) == 'organizacion':}} active {{pass}}" id="organizacion">
+        <!-- <h3> {{ =T("Organizaciones") }}</h3> -->
+        {{ =LOAD(c='editor',f='display_organizacion.load', ajax=True, user_signature=True) }}
+        <!--Lightbox_schedulepersona-->
+        <div class="modal hide fade" id="Lightbox_scheduleorganizacion">
+            <div class="modal-header clearfix">
+                <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+            </div>
+            <div class="modal-body">
+                <div id="schedule_organizacion"></div>
+            </div>
+        </div>
+        <!--Fin Schedule Organizacion-->
+</div>
