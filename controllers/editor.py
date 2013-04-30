@@ -45,8 +45,8 @@ def display_persona():
                , _href=URL('editor', 'accept_persona',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
                _class='w2p_trap button btn', _href=URL('editor',
-               'reject_persona', vars=dict(id=row.id)))]
-               #lambda row: A(T('Programar'), **{'_href':'#Lightbox_schedulepersona','_class':'w2p_trap button btn programar_persona','_data-toggle':'modal','_id':str(row.id)})],
+               'reject_persona', vars=dict(id=row.id))),
+               lambda row: A(T('Programar'), **{'_href':'#Lightbox_schedulepersona','_class':'w2p_trap button btn programar_persona','_data-toggle':'modal','_id':str(row.id)})]
         )
 
     if persona_grid.element('.web2py_counter'):
@@ -146,8 +146,8 @@ def display_organizacion():
                , _href=URL('editor', 'accept_organizacion',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
                _class='w2p_trap button btn', _href=URL('editor',
-               'reject_organizacion', vars=dict(id=row.id)))],
-               #lambda row: A(T('Programar'), **{'_href':'#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
+               'reject_organizacion', vars=dict(id=row.id))),
+               lambda row: A(T('Programar'), **{'_href':'#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
         formname='organizacion_grid_form',
         )
@@ -211,3 +211,62 @@ def reject_organizacion():
     redirect(URL('display_organizacion'))
 
     return dict()
+
+def display_empresa():
+
+    label_dict_empresa = \
+        {'tipoOrganizacion.name': T('Tipo Organización')}
+
+
+
+    # Componente el cual muestra la grilla de empresas sugeridas
+
+    show_fields_empresa = [db.Organizacion.id,
+                                db.Organizacion.tipoOrg,
+                                # db.tipoOrganizacion.name,
+                                db.Organizacion.hasSocialReason,
+                                db.Organizacion.alias]
+
+    db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
+
+    query = ((db.Organizacion.tipoOrg == 2) \
+        & (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication == 'draft'))
+
+    empresa_grid = SQLFORM.grid(
+        query,
+        editable=True,
+        details=False,
+        user_signature=True,
+        deletable=False,
+        fields=show_fields_empresa,
+        headers=label_dict_empresa,
+        create=False,
+        csv=False,
+        paginate=10,
+        searchable=False,
+        links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
+               , _href=URL('editor', 'accept_organizacion',
+               vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
+               _class='w2p_trap button btn', _href=URL('editor',
+               'reject_organizacion', vars=dict(id=row.id))),
+               lambda row: A(T('Programar'), **{'_href':'#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
+        links_in_grid=True,
+        formname='empresa_grid_form',
+        )
+
+    if empresa_grid.element('.web2py_counter'):
+        empresa_grid.element('.web2py_counter')[0] = ''
+
+    if empresa_grid.element('.web2py_table input[type=submit]'):
+
+        empresa_grid.element('.web2py_table input[type=submit]'
+                                  )['_value'] = \
+            T('Aceptar Empresas Seleccionadas')
+    elif empresa_grid.element('.web2py_grid input[type=submit]'):
+        empresa_grid.element('.web2py_grid input[type=submit]'
+                                  )['_value'] = T('Aceptar')
+
+    return dict(empresa_grid=empresa_grid)
+
+
+

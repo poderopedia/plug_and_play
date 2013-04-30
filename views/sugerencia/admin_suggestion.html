@@ -7,6 +7,7 @@ Listado de Colaboraciones
 <ul class="nav nav-tabs" id="colaboration_tab">
   <li id="nav_persona" {{if request.args(0) == 'persona':}} class = "active" {{pass}}><a href="#persona">Personas</a></li>
   <li id="nav_organizacion" {{if request.args(0) == 'organizacion':}} class = "active" {{pass}}><a href="#organizacion">Organizaciones</a></li>
+  <li id="nav_empresa" {{if request.args(0) == 'empresa':}} class = "active" {{pass}}><a href="#empresa">Empresas</a></li>
 </ul>
  
 <div class="tab-content">
@@ -19,6 +20,13 @@ Listado de Colaboraciones
 
     {{ =LOAD(c='sugerencia',f='display_organizacion.load', ajax=True, user_signature=True) }}
   </div>
+  <div class="tab-pane {{if request.args(0) == 'empresa':}} active {{pass}}" id="empresa">
+    <!-- <h3> {{ =T("Empresas") }}</h3> -->
+
+    {{ =LOAD(c='sugerencia',f='display_empresa.load', ajax=True, user_signature=True) }}
+  </div>
+
+
 </div>
 
 <script type="text/javascript">
