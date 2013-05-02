@@ -3,7 +3,12 @@
 Listado de Colaboraciones
 {{end}}
 {{block content}}
-
+<!-- Este CSS es importante. Sin el, los datepicker salen detras de la ventana modal-->
+<style type="text/css"> 
+    .calendar{
+        z-index: 2000 !important;
+    }
+</style> 
 <ul class="nav nav-tabs" id="colaboration_tab">
   <li id="nav_persona" {{if request.args(0) == 'persona':}} class = "active" {{pass}}><a href="#persona">Personas</a></li>
   <li id="nav_organizacion" {{if request.args(0) == 'organizacion':}} class = "active" {{pass}}><a href="#organizacion">Organizaciones</a></li>
@@ -73,24 +78,6 @@ Listado de Colaboraciones
     $('#colaboration_tab a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
-    });
-
-$('.programar_persona').click(function(e) {
-        e.preventDefault();
-        _id = this.id
-        web2py_component("{{=URL('editor','schedule_persona.load',args="+_id+")}}","schedule_persona")
-    });
-
-    $('.programar_organizacion').click(function(e) {
-        e.preventDefault();
-        _id = this.id
-        web2py_component("{{=URL('editor','schedule_organizacion.load',args="+_id+")}}","schedule_organizacion")
-    });
-   
-$('.programar_empresa').click(function(e) {
-        e.preventDefault();
-        _id = this.id
-        web2py_component("{{=URL('editor','schedule_organizacion.load',args="+_id+")}}","schedule_empresa")
     });
 
 </script>
