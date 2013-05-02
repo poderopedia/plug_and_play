@@ -1,10 +1,14 @@
+def index():
+    redirect(URL('publication','admin_publication', args='persona'))
+    return locals()
+
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
-def admin_collaboration():
+def admin_publication():
 
     # Vista para mostrar el listado de personas y organizaciones sugeridas
 
     if len(request.args) == 0:
-        redirect(URL('editor','admin_collaboration', args='persona'))
+        redirect(URL('publication','admin_publication', args='persona'))
 
 
     return locals()
@@ -21,13 +25,15 @@ def display_persona():
                           )}
 
     db.persona.created_by.readable = True
-    show_fields_persona = [ db.persona.ICN,
+    show_fields_persona = [db.persona.id, db.persona.ICN,
                            db.persona.firstName,
                            db.persona.firstLastName,
+                           db.persona.otherLastName,
                            db.persona.created_by]
 
-    db.persona.created_by.represent=lambda id,row: db.auth_user(id).username
-    query = ((db.persona.state_collaboration == 'accepted') & (db.persona.state_publication == 'draft'))
+    # db.persona.created_by.represent=lambda id,row: db.auth_user(id).username
+    
+    query = ((db.persona.state_collaboration == 'accepted') & (db.persona.state_publication != 'draft'))
 
     persona_grid = SQLFORM.grid(  # selectable=lambda ids: redirect(URL('sugerencia',
                                   #         'accept_persona', vars=dict(id=ids))),
@@ -43,12 +49,12 @@ def display_persona():
         paginate=10,
         searchable=False,
         formname='persona_grid_form',
-        links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('editor', 'accept_persona',
-               vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('editor',
-               'reject_persona', vars=dict(id=row.id))),
-               lambda row: A(T('Programar'), **{'_href':'../load_display_persona#Lightbox_schedulepersona','_class':'w2p_trap button btn programar_persona','_data-toggle':'modal','_id':str(row.id)})]
+        # links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
+        #        , _href=URL('editor', 'accept_persona',
+        #        vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
+        #        _class='w2p_trap button btn', _href=URL('editor',
+        #        'reject_persona', vars=dict(id=row.id))),
+        #        lambda row: A(T('Programar'), **{'_href':'../load_display_persona#Lightbox_schedulepersona','_class':'w2p_trap button btn programar_persona','_data-toggle':'modal','_id':str(row.id)})]
         )
 
     if persona_grid.element('.web2py_counter'):
@@ -70,75 +76,6 @@ def display_persona():
     return dict(persona_grid=persona_grid)
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
-def accept_persona():
-
-    # Funcion que pasa el estado de colaboracion de revision a aceptado
-    # para las personas seleccionadas en la grilla
-
-    if 'id' in request.vars:
-        ids_to_accept = request.vars['id']
-    else:
-        session.flash = T('Ni una Persona seleccionada')
-
-    # if len(ids_to_accept) == 1:
-    a_id = int(ids_to_accept)
-    a_persona = db(db.persona.id == a_id).select().first()
-    a_persona.state_publication ='published'
-    a_persona.update_record()
-
-    session.flash = T('Colaboración Publicada')
-    redirect(URL('display_persona'))
-
-    return dict()
-
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
-def reject_persona():
-
-    # Funcion que pasa el estado de colaboracion de revision a aceptado
-    # para las personas seleccionadas en la grilla
-
-    if 'id' in request.vars:
-        ids_to_accept = request.vars['id']
-    else:
-        session.flash = T('Ni una Persona seleccionada')
-
-    # if len(ids_to_accept) == 1:
-    a_id = int(ids_to_accept)
-    a_persona = db(db.persona.id == a_id).select().first()
-    a_persona.state_collaboration ='rejected'
-    a_persona.state_publication ='draft'
-    a_persona.update_record()
-
-    session.flash = T('Colaboración Rechazada')
-    redirect(URL('display_persona'))
-
-    return dict()
-
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
-def schedule_persona():
-
-    my_dict['a_error'] = ''
-
-    if 'id' in request.vars:
-        a_id = request.vars['id']
-        db.persona.state_collaboration.default = 'acccepted'
-        db.persona.state_publication.default = 'programmed'
-        fields_dict = ['date_publication']
-
-
-        a_form = SQLFORM(db.persona,a_id,fields_dict);
-        
-        if a_form.process().accepted:
-            response.flash = 'Su publicación se hará pública en la fecha elegida'
-        elif a_form.errors:
-            my_dict['a_error'] = 'Oops! ocurrió un error'
-            response.flash = 'Hay errores en el formulario'
-
-        my_dict['form'] = a_form
-
-    return my_dict
-
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_organizacion():
 
     # Componente el cual muestra la grilla de organizaciones sugeridas
@@ -146,18 +83,18 @@ def display_organizacion():
     label_dict_organizacion = \
         {'tipoOrganizacion.name': T('Tipo Organización')}
 
-    show_fields_organizacion = [db.Organizacion.tipoOrg,
+    show_fields_organizacion = [db.Organizacion.id,
+                                db.Organizacion.tipoOrg,
                                 # db.tipoOrganizacion.name,
                                 db.Organizacion.hasSocialReason,
                                 db.Organizacion.alias,
                                 db.Organizacion.created_by]
 
-    db.Organizacion.created_by.readable=True
     db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
-    db.Organizacion.created_by.represent=lambda id,row: db.auth_user(id).username
+    db.Organizacion.created_by.readable=True
 
-    query = ((db.Organizacion.tipoOrg == db.tipoOrganizacion.id) \
-        & (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication == 'draft'))
+    query = ((db.Organizacion.tipoOrg != 2) & \
+            (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication != 'draft'))
 
     organizacion_grid = SQLFORM.grid(
         query,
@@ -171,12 +108,12 @@ def display_organizacion():
         csv=False,
         paginate=10,
         searchable=False,
-        links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('editor', 'accept_organizacion',
-               vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('editor',
-               'reject_organizacion', vars=dict(id=row.id))),
-               lambda row: A(T('Programar'), **{'_href':'../load_display_organizacion#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
+        # links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
+        #        , _href=URL('editor', 'accept_organizacion',
+        #        vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
+        #        _class='w2p_trap button btn', _href=URL('editor',
+        #        'reject_organizacion', vars=dict(id=row.id))),
+        #        lambda row: A(T('Programar'), **{'_href':'../load_display_organizacion#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
         formname='organizacion_grid_form',
         )
@@ -196,77 +133,6 @@ def display_organizacion():
     return dict(organizacion_grid=organizacion_grid)
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
-def accept_organizacion():
-
-    # Funcion que pasa el estado de colaboracion de revision a aceptado
-    # para las organizaciones seleccionadas en la grilla
-
-    if 'id' in request.vars:
-        ids_to_accept = request.vars['id']
-    else:
-        session.flash = T('Ninguna Organizacion seleccionada')
-
-    # if len(ids_to_accept) == 1:
-    a_id = int(ids_to_accept)
-    a_org = db(db.Organizacion.id == a_id).select().first()
-    a_org.state_publication ='published'
-    a_org.state_collaboration ='accepted'
-    a_org.update_record()
-
-    session.flash = T('Colaboración Aceptada')
-    redirect(URL('display_organizacion'))
-
-    return dict()
-
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
-def reject_organizacion():
-
-    # Funcion que pasa el estado de colaboracion de revision a aceptado
-    # para las organizaciones seleccionadas en la grilla
-
-    if 'id' in request.vars:
-        ids_to_accept = request.vars['id']
-    else:
-        session.flash = T('Ni una Organizacion seleccionada')
-
-    # if len(ids_to_accept) == 1:
-    a_id = int(ids_to_accept)
-    a_org = db(db.Organizacion.id == a_id).select().first()
-    a_org.state_collaboration ='rejected'
-    a_org.state_publication ='draft'
-
-    a_org.update_record()
-
-    session.flash = T('Colaboración Rechazada')
-    redirect(URL('display_organizacion'))
-
-    return dict()
-
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
-def schedule_organizacion():
-
-    my_dict['a_error'] = ''
-
-    if 'id' in request.vars:
-        a_id = request.vars['id']
-        db.Organizacion.state_collaboration.default = 'acccepted'
-        db.Organizacion.state_publication.default = 'programmed'
-        fields_dict = ['date_publication']
-
-
-        a_form = SQLFORM(db.Organizacion,a_id,fields_dict);
-        
-        if a_form.process().accepted:
-            response.flash = 'Su publicación se hará pública en la fecha elegida'
-        elif a_form.errors:
-            my_dict['a_error'] = 'Oops! ocurrió un error'
-            response.flash = 'Hay errores en el formulario'
-
-        my_dict['form'] = a_form
-
-    return my_dict
-
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_empresa():
 
     label_dict_empresa = \
@@ -276,18 +142,19 @@ def display_empresa():
 
     # Componente el cual muestra la grilla de empresas sugeridas
 
-    show_fields_empresa = [db.Organizacion.tipoOrg,
+    show_fields_empresa = [db.Organizacion.id,
+                                db.Organizacion.tipoOrg,
                                 # db.tipoOrganizacion.name,
                                 db.Organizacion.hasSocialReason,
                                 db.Organizacion.alias,
                                 db.Organizacion.created_by]
-
     db.Organizacion.created_by.readable=True
-    db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
-    db.Organizacion.created_by.represent=lambda id,row: db.auth_user(id).username
 
-    query = ((db.Organizacion.tipoOrg == 2) \
-        & (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication == 'draft'))
+
+    db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
+
+    query = ((db.Organizacion.tipoOrg == 2) & \
+            (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication != 'draft'))
 
     empresa_grid = SQLFORM.grid(
         query,
@@ -301,12 +168,12 @@ def display_empresa():
         csv=False,
         paginate=10,
         searchable=False,
-        links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('editor', 'accept_organizacion',
-               vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('editor',
-               'reject_organizacion', vars=dict(id=row.id))),
-               lambda row: A(T('Programar'), **{'_href':'../load_display_empresa#Lightbox_scheduleempresa#Lightbox_scheduleempresa','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
+        # links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
+        #        , _href=URL('editor', 'accept_organizacion',
+        #        vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
+        #        _class='w2p_trap button btn', _href=URL('editor',
+        #        'reject_organizacion', vars=dict(id=row.id))),
+        #        lambda row: A(T('Programar'), **{'_href':'../load_display_empresa#Lightbox_scheduleempresa#Lightbox_scheduleempresa','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
         formname='empresa_grid_form',
         )
@@ -338,11 +205,13 @@ def display_caso():
     show_fields_caso = [db.caso.id,
                                 db.caso.name,
                                 db.caso.country,
-                                db.caso.city]
+                                db.caso.city,
+                                db.caso.created_by]
+    db.caso.created_by.readable=True
 
     # db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
 
-    query = ((db.caso.state_collaboration == 'accepted') & (db.caso.state_publication == 'draft'))
+    query = ((db.caso.state_collaboration == 'accepted') & (db.caso.state_publication != 'draft'))
 
     caso_grid = SQLFORM.grid(
         query,
@@ -356,12 +225,12 @@ def display_caso():
         csv=False,
         paginate=10,
         searchable=False,
-        links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('editor', 'accept_caso',
-               vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('editor',
-               'reject_caso', vars=dict(id=row.id))),
-               lambda row: A(T('Programar'), **{'_href':'../load_display_caso#Lightbox_schedulecaso#Lightbox_schedulecaso','_class':'w2p_trap button btn programar_caso','_data-toggle':'modal','_id':str(row.id)})],
+        # links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
+        #        , _href=URL('editor', 'accept_caso',
+        #        vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
+        #        _class='w2p_trap button btn', _href=URL('editor',
+        #        'reject_caso', vars=dict(id=row.id))),
+        #        lambda row: A(T('Programar'), **{'_href':'../load_display_caso#Lightbox_schedulecaso#Lightbox_schedulecaso','_class':'w2p_trap button btn programar_caso','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
         formname='caso_grid_form',
         )

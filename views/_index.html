@@ -94,7 +94,7 @@
                 <div class="row">
                     <div class="span12 clearfix">
                         <!-- Logo poderopedia admin-->
-                        <h1 class="logo-admin"><a href="#"><span>Poderopedia admin</span></a></h1>
+                        <a href="{{ =URL('default','inicio') }}"><h1 class="logo-admin"><span>Poderopedia admin</span></h1></a>
 
                         <nav >
                         <!-- <div class="navbar"> -->
@@ -170,39 +170,50 @@
                             <!-- Item de menu:Datos básicos -->
                         <ul id="accordion2" class="accordion">
                             <li class="collapsed">
-                                <a class="accordion-heading" href="{{=URL('default','index')}}">{{=T('Escritorio')}}</a>
-                            </li>
-                            {{if (auth.has_membership("collaborator")): }}
-<!--                             <li class="collapsed">
-                                <a class="accordion-toggle accordion-heading" href="#collapseTwo" data-toggle="collapse" data-parent="#accordion2">{{=T('Publicaciones')}}</a>
-                                <ul id="collapseTwo" class="accordion-body collapse">
-                                    <li><a href="#" >{{=T('Todas las publicaciones')}}</a></li>
-                                    <li><a href="#" >{{=T('Personas')}}</a></li>
-                                    <li><a href="#" >{{=T('Empresas')}}</a></li>
-                                    <li><a href="#" >{{=T('Organizaciones')}}</a></li>
-                                    <li><a href="#" >{{=T('Casos')}}</a></li>
-                               </ul>
-                            </li> -->
-                            <li class="collapsed">
-                                <a class="accordion-toggle accordion-heading" href="#collapseThree" data-toggle="collapse" data-parent="#accordion2">{{=T('Colaboraciones')}}</a>
-                                <ul id="collapseThree" class="accordion-body collapse">
+                                <a class="accordion-toggle accordion-heading" href="#collapse_desktop" data-toggle="collapse" >{{=T('Escritorio')}}</a>
+                                {{if (auth.has_membership("collaborator")): }}
+                                <ul id="collapse_desktop" class="accordion-body collapse">
+                                    <li><a href="{{=URL('desktop','admin_desktop')}}">{{=T('Mis Publicaciones')}}</a></li>
                                     <li><a href="{{=URL('colaborador','long_profile_persona')}}">{{=T('Nueva Persona')}}</a></li>
                                     <li><a href="{{=URL('colaborador','long_profile_organizacion')}}">{{=T('Nueva Organizacion')}}</a></li>
                                     <li><a href="{{=URL('colaborador','create_case')}}">{{=T('Nuevo Caso')}}</a></li>
-                                    {{ if auth.has_membership("admin"): }}
-                                    <li><a href="{{=URL('editor','admin_collaboration')}}">{{=T('Todas las publicaciones')}}</a></li>
+                               </ul>
+                               {{pass}}
+                            </li>
+                            {{if (auth.has_membership("admin")): }}
+                            <li class="collapsed">
+                                <a class="accordion-toggle accordion-heading" href="#collapse_publications" data-toggle="collapse" data-parent="#accordion2">{{=T('Publicaciones')}}</a>
+                                <ul id="collapse_publications" class="accordion-body collapse">
+                                    <li><a href="{{=URL('publication','admin_publication')}}" >{{=T('Todas las publicaciones')}}</a></li>
+                                    <li><a href="{{=URL('publication','admin_publication',args='persona')}}" >{{=T('Personas')}}</a></li>
+                                    <li><a href="{{=URL('publication','admin_publication',args='organizacion')}}" >{{=T('Organizaciones')}}</a></li>
+                                    <li><a href="{{=URL('publication','admin_publication',args='empresa')}}" >{{=T('Empresas')}}</a></li>
+                                    
+                                    <li><a href="{{=URL('publication','admin_publication',args='caso')}}" >{{=T('Casos')}}</a></li>
+                               </ul>
+                            </li>
+                            {{pass}}
+                            {{if (auth.has_membership("admin")): }}
+                            <li class="collapsed">
+                                <a class="accordion-toggle accordion-heading" href="#collapseThree" data-toggle="collapse" data-parent="#accordion2">{{=T('Colaboraciones')}}</a>
+                                <ul id="collapseThree" class="accordion-body collapse">
+                                    
+                                    
+                                    <li><a href="{{=URL('editor','admin_collaboration')}}">{{=T('Todas las Colaboraciones')}}</a></li>
                                     <li><a href="{{=URL('editor','admin_collaboration',args='persona')}}">{{=T('Personas')}}</a></li>
 <!--                                     <li><a href="#">{{=T('Empresas')}}</a></li>
  -->
                                     <li><a href="{{=URL('editor','admin_collaboration',args='organizacion')}}">{{=T('Organizaciones')}}</a></li>
-                                    {{pass}}
+                                    <li><a href="{{=URL('editor','admin_collaboration',args='empresa')}}">{{=T('Empresas')}}</a></li>
+                                    <li><a href="{{=URL('editor','admin_collaboration',args='caso')}}">{{=T('Casos')}}</a></li>
+                                    
 <!--                                     <li><a href="#">{{=T('Casos')}}</a></li>
  -->                                </ul>
                             </li>
                             {{pass}}
                             {{ if auth.has_membership("admin"): }}
                             <li class="collapsed">
-                                <a class="accordion-toggle accordion-heading" href="#collapseSuggestion" data-toggle="collapse" data-parent="#accordion2">{{=T('Sugerencias')}}</a>
+                                <a class="accordion-toggle accordion-heading" href="#collapseSuggestion" data-toggle="collapse" data-parent="#accordion2">{{=T('Sugerencias Anónimas')}}</a>
                                 <ul id="collapseSuggestion" class="accordion-body collapse">
                                     <li><a href={{=URL('sugerencia','admin_suggestion')}} class="accordion-toggle">{{=T('Todas las sugerencias')}}</a></li>
                                     <li><a href={{=URL('sugerencia','admin_suggestion',args='persona')}} class="accordion-toggle">{{=T('Personas')}}</a></li>
