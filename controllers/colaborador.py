@@ -158,7 +158,7 @@ def long_profile_organizacion():
     return dict(form=form)
 
 @auth.requires_login()
-def create_case():
+def long_profile_case():
 
     my_dict = dict()
 
