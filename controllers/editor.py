@@ -1,3 +1,6 @@
+def index():
+    return locals()
+
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def admin_collaboration():
 
@@ -116,30 +119,25 @@ def reject_persona():
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def schedule_persona():
- # Formulario de ingreso de sugerencia para personas
+    # Formulario de ingreso de sugerencia para personas
     my_dict = dict()
     my_dict['a_error'] = ''
     a_form = ''
     db.persona.date_publication.writable=True; 
     if 'id' in request.vars:
         a_id = request.vars['id']
+        persona = db.persona(a_id)
+        db.persona.id.default = persona.id
         db.persona.state_collaboration.default = 'acccepted'
         db.persona.state_publication.default = 'programmed'
         label_dict = dict(date_publication=T('Fecha de Publicación'))
         fields_dict = ['date_publication']
-
-        a_form = SQLFORM(db.persona,a_id, labels=label_dict, fields=fields_dict,submit_button=T('Programar Publicación'))
-
-        if a_form.process().accepted:
+    
+        a_form = SQLFORM(db.persona,persona,submit_button=T('Programar Publicación'))
+        if a_form.accepts(request.vars,session):
             response.flash = T('Su publicación se hará pública en la fecha elegida')
-        elif a_form.errors:
-            my_dict['a_error'] = T('Hay un error en el formulario')
-            response.flash = 'Formulario con errores'
-
     my_dict['form'] = a_form
     return my_dict
-
-
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_organizacion():
@@ -247,7 +245,7 @@ def reject_organizacion():
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def schedule_organizacion():
-    my_dict = dict()
+
     my_dict['a_error'] = ''
 
     if 'id' in request.vars:
