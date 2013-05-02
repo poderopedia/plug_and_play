@@ -1,14 +1,9 @@
 {{extend '_index.html'}}
 {{block title}}
-Listado de Colaboraciones
+Mis Publicaciones
 {{end}}
 {{block content}}
-<!-- Este CSS es importante. Sin el, los datepicker salen detras de la ventana modal-->
-<style type="text/css"> 
-    .calendar{
-        z-index: 2000 !important;
-    }
-</style> 
+
 <ul class="nav nav-tabs" id="colaboration_tab">
   <li id="nav_persona" {{if request.args(0) == 'persona':}} class = "active" {{pass}}><a href="#persona">Personas</a></li>
   <li id="nav_organizacion" {{if request.args(0) == 'organizacion':}} class = "active" {{pass}}><a href="#organizacion">Organizaciones</a></li>
@@ -19,7 +14,7 @@ Listado de Colaboraciones
 <div class="tab-content">
   <div class="tab-pane {{if request.args(0) == 'persona':}} active {{pass}}" id="persona">
     <!-- <h3> {{ =T("Personas") }}</h3> -->
-    {{ =LOAD(c='editor',f='display_persona.load', ajax=True, user_signature=True) }}
+    {{ =LOAD(c='desktop',f='display_persona.load', ajax=True, user_signature=True) }}
 
 
     <!--Lightbox_schedulepersona-->
@@ -39,7 +34,7 @@ Listado de Colaboraciones
   <div class="tab-pane {{if request.args(0) == 'organizacion':}} active {{pass}}" id="organizacion">
     <!-- <h3> {{ =T("Organizaciones") }}</h3> -->
 
-    {{ =LOAD(c='editor',f='display_organizacion.load', ajax=True, user_signature=True) }}
+    {{ =LOAD(c='desktop',f='display_organizacion.load', ajax=True, user_signature=True) }}
     <!--Lightbox_scheduleorganizacion-->
     <div class="modal hide fade" id="Lightbox_scheduleorganizacion">
         <div class="modal-header clearfix">
@@ -57,7 +52,7 @@ Listado de Colaboraciones
     <div class="tab-pane {{if request.args(0) == 'empresa':}} active {{pass}}" id="empresa">
     <!-- <h3> {{ =T("Organizaciones") }}</h3> -->
 
-    {{ =LOAD(c='editor',f='display_empresa.load', ajax=True, user_signature=True) }}
+    {{ =LOAD(c='desktop',f='display_empresa.load', ajax=True, user_signature=True) }}
     <!--Lightbox_scheduleempresa-->
     <div class="modal hide fade" id="Lightbox_scheduleempresa">
         <div class="modal-header clearfix">
@@ -74,7 +69,7 @@ Listado de Colaboraciones
     <div class="tab-pane {{if request.args(0) == 'caso':}} active {{pass}}" id="caso">
     <!-- <h3> {{ =T("Organizaciones") }}</h3> -->
 
-    {{ =LOAD(c='editor',f='display_caso.load', ajax=True, user_signature=True) }}
+    {{ =LOAD(c='desktop',f='display_caso.load', ajax=True, user_signature=True) }}
     <!--Lightbox_scheduleempresa-->
     <div class="modal hide fade" id="Lightbox_scheduleempresa">
         <div class="modal-header clearfix">
@@ -95,6 +90,24 @@ Listado de Colaboraciones
     $('#colaboration_tab a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
+    });
+
+$('.programar_persona').click(function(e) {
+        e.preventDefault();
+        _id = this.id
+        web2py_component("{{=URL('editor','schedule_persona.load',args="+_id+")}}","schedule_persona")
+    });
+
+    $('.programar_organizacion').click(function(e) {
+        e.preventDefault();
+        _id = this.id
+        web2py_component("{{=URL('editor','schedule_organizacion.load',args="+_id+")}}","schedule_organizacion")
+    });
+   
+$('.programar_empresa').click(function(e) {
+        e.preventDefault();
+        _id = this.id
+        web2py_component("{{=URL('editor','schedule_organizacion.load',args="+_id+")}}","schedule_empresa")
     });
 
 </script>

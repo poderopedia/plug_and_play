@@ -20,11 +20,13 @@ def display_persona():
                           'persona.otherLastName': T('Apellido Materno'
                           )}
 
-    show_fields_persona = [db.persona.id, db.persona.ICN,
+    db.persona.created_by.readable = True
+    show_fields_persona = [ db.persona.ICN,
                            db.persona.firstName,
                            db.persona.firstLastName,
-                           db.persona.otherLastName]
-    
+                           db.persona.created_by]
+
+    db.persona.created_by.represent=lambda id,row: db.auth_user(id).username
     query = ((db.persona.state_collaboration == 'accepted') & (db.persona.state_publication == 'draft'))
 
     persona_grid = SQLFORM.grid(  # selectable=lambda ids: redirect(URL('sugerencia',
@@ -147,13 +149,15 @@ def display_organizacion():
     label_dict_organizacion = \
         {'tipoOrganizacion.name': T('Tipo Organización')}
 
-    show_fields_organizacion = [db.Organizacion.id,
-                                db.Organizacion.tipoOrg,
+    show_fields_organizacion = [db.Organizacion.tipoOrg,
                                 # db.tipoOrganizacion.name,
                                 db.Organizacion.hasSocialReason,
-                                db.Organizacion.alias]
+                                db.Organizacion.alias,
+                                db.Organizacion.created_by]
 
+    db.Organizacion.created_by.readable=True
     db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
+    db.Organizacion.created_by.represent=lambda id,row: db.auth_user(id).username
 
     query = ((db.Organizacion.tipoOrg == db.tipoOrganizacion.id) \
         & (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication == 'draft'))
@@ -275,13 +279,15 @@ def display_empresa():
 
     # Componente el cual muestra la grilla de empresas sugeridas
 
-    show_fields_empresa = [db.Organizacion.id,
-                                db.Organizacion.tipoOrg,
+    show_fields_empresa = [db.Organizacion.tipoOrg,
                                 # db.tipoOrganizacion.name,
                                 db.Organizacion.hasSocialReason,
-                                db.Organizacion.alias]
+                                db.Organizacion.alias,
+                                db.Organizacion.created_by]
 
+    db.Organizacion.created_by.readable=True
     db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
+    db.Organizacion.created_by.represent=lambda id,row: db.auth_user(id).username
 
     query = ((db.Organizacion.tipoOrg == 2) \
         & (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication == 'draft'))
@@ -322,6 +328,61 @@ def display_empresa():
 
     return dict(empresa_grid=empresa_grid)
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def display_caso():
+
+    label_dict_empresa = \
+        {'tipoOrganizacion.name': T('Tipo Organización')}
+
+
+
+    # Componente el cual muestra la grilla de empresas sugeridas
+
+    show_fields_caso = [db.caso.id,
+                                db.caso.name,
+                                db.caso.country,
+                                db.caso.city]
+
+    # db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
+
+    query = ((db.caso.state_collaboration == 'accepted') & (db.caso.state_publication == 'draft'))
+
+    caso_grid = SQLFORM.grid(
+        query,
+        editable=True,
+        details=False,
+        user_signature=True,
+        deletable=False,
+        fields=show_fields_caso,
+        # headers=label_dict_empresa,
+        create=False,
+        csv=False,
+        paginate=10,
+        searchable=False,
+        links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
+               , _href=URL('editor', 'accept_caso',
+               vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
+               _class='w2p_trap button btn', _href=URL('editor',
+               'reject_caso', vars=dict(id=row.id))),
+               lambda row: A(T('Programar'), **{'_href':'../load_display_caso#Lightbox_schedulecaso#Lightbox_schedulecaso','_class':'w2p_trap button btn programar_caso','_data-toggle':'modal','_id':str(row.id)})],
+        links_in_grid=True,
+        formname='caso_grid_form',
+        )
+
+    if caso_grid.element('.web2py_counter'):
+        caso_grid.element('.web2py_counter')[0] = ''
+
+    if caso_grid.element('.web2py_table input[type=submit]'):
+
+        caso_grid.element('.web2py_table input[type=submit]'
+                                  )['_value'] = \
+            T('Aceptar Empresas Seleccionadas')
+    elif caso_grid.element('.web2py_grid input[type=submit]'):
+        caso_grid.element('.web2py_grid input[type=submit]'
+                                  )['_value'] = T('Aceptar')
+
+    return dict(caso_grid=caso_grid)
+
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
@@ -338,3 +399,7 @@ def load_display_organizacion():
 def load_display_empresa():
     return locals()
 
+#funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def load_display_caso():
+    return locals()
