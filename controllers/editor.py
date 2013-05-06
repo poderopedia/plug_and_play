@@ -119,23 +119,27 @@ def reject_persona():
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def schedule_persona():
-    # Formulario de ingreso de sugerencia para personas
+    # Formulario de programacion para publicacion de personas
     my_dict = dict()
     my_dict['a_error'] = ''
     a_form = ''
-    db.persona.date_publication.writable=True; 
-    if 'id' in request.vars:
-        a_id = request.vars['id']
-        persona = db.persona(a_id)
-        db.persona.id.default = persona.id
-        db.persona.state_collaboration.default = 'acccepted'
-        db.persona.state_publication.default = 'programmed'
-        label_dict = dict(date_publication=T('Fecha de Publicación'))
-        fields_dict = ['date_publication']
-    
-        a_form = SQLFORM(db.persona,persona,submit_button=T('Programar Publicación'))
-        if a_form.accepts(request.vars,session):
-            response.flash = T('Su publicación se hará pública en la fecha elegida')
+    db.persona.id.readable = False
+    db.persona.firstName.writable = False
+    db.persona.firstLastName.writable  = False
+    db.persona.otherLastName.writable  = False
+    db.persona.date_publication.writable=True
+    label_dict = dict(date_publication=T('Fecha de Publicación'))
+    fields_dict = ['firstName','firstLastName','otherLastName','date_publication']
+
+    a_form = SQLFORM(db.persona,request.args(0),labels =label_dict,fields = fields_dict,submit_button=T('Programar Publicación'),_id='schedule_form')
+    a_form.vars.state_publication = 'programmed'
+    a_form.vars.state_collaboration = 'accepted'
+    if a_form.process().accepted:
+        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        redirect('../admin_collaboration',client_side=True)
+    elif a_form.errors:
+        my_dict['a_error'] = T('Oops! ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
     my_dict['form'] = a_form
     return my_dict
 
@@ -245,26 +249,26 @@ def reject_organizacion():
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def schedule_organizacion():
-
+    # Formulario de programacion de publicacion para organizaciones
+    my_dict = dict()
     my_dict['a_error'] = ''
+    a_form = ''
+    db.Organizacion.id.readable = False
+    db.Organizacion.hasSocialReason.writable = False
+    db.Organizacion.date_publication.writable=True
+    label_dict = dict(date_publication=T('Fecha de Publicación'))
+    fields_dict = ['hasSocialReason','date_publication']
 
-    if 'id' in request.vars:
-        a_id = request.vars['id']
-        db.Organizacion.state_collaboration.default = 'acccepted'
-        db.Organizacion.state_publication.default = 'programmed'
-        fields_dict = ['date_publication']
-
-
-        a_form = SQLFORM(db.Organizacion,a_id,fields_dict);
-        
-        if a_form.process().accepted:
-            response.flash = 'Su publicación se hará pública en la fecha elegida'
-        elif a_form.errors:
-            my_dict['a_error'] = 'Oops! ocurrió un error'
-            response.flash = 'Hay errores en el formulario'
-
-        my_dict['form'] = a_form
-
+    a_form = SQLFORM(db.Organizacion,request.args(0),labels =label_dict,fields = fields_dict,submit_button=T('Programar Publicación'),_id='schedule_form')
+    a_form.vars.state_publication = 'programmed'
+    a_form.vars.state_collaboration = 'accepted'
+    if a_form.process().accepted:
+        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        redirect('../admin_collaboration/organizacion',client_side=True)
+    elif a_form.errors:
+        my_dict['a_error'] = T('Oops! ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
+    my_dict['form'] = a_form
     return my_dict
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
@@ -307,7 +311,7 @@ def display_empresa():
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
                _class='w2p_trap button btn', _href=URL('editor',
                'reject_organizacion', vars=dict(id=row.id))),
-               lambda row: A(T('Programar'), **{'_href':'../load_display_empresa#Lightbox_scheduleempresa#Lightbox_scheduleempresa','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
+               lambda row: A(T('Programar'), **{'_href':'../load_display_empresa#Lightbox_scheduleempresa#Lightbox_scheduleempresa','_class':'w2p_trap button btn programar_empresa','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
         formname='empresa_grid_form',
         )
@@ -325,6 +329,32 @@ def display_empresa():
                                   )['_value'] = T('Aceptar')
 
     return dict(empresa_grid=empresa_grid)
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def schedule_empresa():
+    # Formulario de programacion de publicacion para empresas
+    my_dict = dict()
+    my_dict['a_error'] = ''
+    a_form = ''
+    db.Organizacion.id.readable=False
+    db.Organizacion.hasSocialReason.writable=False
+    db.Organizacion.date_publication.writable=True
+    label_dict = dict(date_publication=T('Fecha de Publicación'))
+    fields_dict = ['hasSocialReason','date_publication']
+
+    a_form = SQLFORM(db.Organizacion,request.args(0),labels =label_dict,fields = fields_dict,submit_button=T('Programar Publicación'),_id='schedule_form')
+    a_form.vars.state_publication = 'programmed'
+    a_form.vars.state_collaboration = 'accepted'
+    if a_form.process().accepted:
+        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        redirect('../admin_collaboration/empresa',client_side=True)
+    elif a_form.errors:
+        my_dict['a_error'] = T('Oops! ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
+    my_dict['form'] = a_form
+    return my_dict
+
+
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_caso():
@@ -380,6 +410,30 @@ def display_caso():
                                   )['_value'] = T('Aceptar')
 
     return dict(caso_grid=caso_grid)
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def schedule_caso():
+    # Formulario de programacion de publicacion para casos
+    my_dict = dict()
+    my_dict['a_error'] = ''
+    a_form = ''
+    db.caso.id.readable = False
+    db.caso.name.writable= False
+    db.caso.date_publication.writable=True
+    label_dict = dict(date_publication=T('Fecha de Publicación'))
+    fields_dict = ['name','date_publication']
+
+    a_form = SQLFORM(db.caso,request.args(0),labels =label_dict,fields = fields_dict,submit_button=T('Programar Publicación'),_id='schedule_form')
+    a_form.vars.state_publication = 'programmed'
+    a_form.vars.state_collaboration = 'accepted'
+    if a_form.process().accepted:
+        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        redirect('../admin_collaboration/caso',client_side=True)
+    elif a_form.errors:
+        my_dict['a_error'] = T('Oops! ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
+    my_dict['form'] = a_form
+    return my_dict
 
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div

@@ -1,0 +1,14 @@
+<div class="tab-pane {{if request.args(0) == 'caso':}} active {{pass}}" id="caso">
+        <!-- <h3> {{ =T("Casos") }}</h3> -->
+        {{ =LOAD(c='editor',f='display_caso.load', ajax=True, user_signature=True) }}
+        <!--Lightbox_schedulecaso-->
+        <div class="modal hide fade" id="Lightbox_schedulecaso">
+            <div class="modal-header clearfix">
+                <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+            </div>
+            <div class="modal-body">
+                <div id="schedule_caso"></div>
+            </div>
+        </div>
+        <!--Fin Schedule Caso-->
+</div>

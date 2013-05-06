@@ -5,7 +5,7 @@
     $('.programar_persona').click(function (e){ 
         e.preventDefault();
         _id = this.id;
-        web2py_component("/plug_and_play/editor/schedule_persona.load?id="+_id,"schedule_persona");
+        web2py_component("/plug_and_play/editor/schedule_persona.load/"+_id,"schedule_persona");
     });
 </script>
 {{end}}

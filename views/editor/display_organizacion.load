@@ -1,1 +1,12 @@
 {{ =organizacion_grid }}
+
+{{block content}}
+<script type="text/javascript">
+    $('.programar_organizacion').click(function (e){
+        e.preventDefault();
+        _id = this.id;
+        web2py_component("/plug_and_play/editor/schedule_organizacion.load/"+_id,"schedule_organizacion");
+    });
+</script>
+{{end}}
+
