@@ -29,7 +29,7 @@ def display_persona():
                            db.persona.firstLastName,
                            db.persona.created_by]
 
-    db.persona.created_by.represent=lambda id,row: db.auth_user(id).username
+    # db.persona.created_by.represent=lambda id,row: db.auth_user(id).username
     query = ((db.persona.state_collaboration == 'accepted') & (db.persona.state_publication == 'draft'))
 
     persona_grid = SQLFORM.grid(  # selectable=lambda ids: redirect(URL('sugerencia',
@@ -159,9 +159,9 @@ def display_organizacion():
 
     db.Organizacion.created_by.readable=True
     db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
-    db.Organizacion.created_by.represent=lambda id,row: db.auth_user(id).username
+    # db.Organizacion.created_by.represent=lambda id,row: db.auth_user(id).username
 
-    query = ((db.Organizacion.tipoOrg == db.tipoOrganizacion.id) \
+    query = ((db.Organizacion.tipoOrg != 2) \
         & (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication == 'draft'))
 
     organizacion_grid = SQLFORM.grid(
@@ -289,7 +289,7 @@ def display_empresa():
 
     db.Organizacion.created_by.readable=True
     db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
-    db.Organizacion.created_by.represent=lambda id,row: db.auth_user(id).username
+    # db.Organizacion.created_by.represent=lambda id,row: db.auth_user(id).username
 
     query = ((db.Organizacion.tipoOrg == 2) \
         & (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication == 'draft'))
@@ -359,17 +359,17 @@ def schedule_empresa():
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_caso():
 
-    label_dict_empresa = \
-        {'tipoOrganizacion.name': T('Tipo Organización')}
-
-
+    # label_dict_empresa = \
+    #     {'tipoOrganizacion.name': T('Tipo Organización')}
 
     # Componente el cual muestra la grilla de empresas sugeridas
 
     show_fields_caso = [db.caso.id,
-                                db.caso.name,
-                                db.caso.country,
-                                db.caso.city]
+                        db.caso.name,
+                        db.caso.country,
+                        db.caso.city,
+                        db.caso.created_by]
+    db.caso.created_by.readable=True
 
     # db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
 
@@ -410,6 +410,51 @@ def display_caso():
                                   )['_value'] = T('Aceptar')
 
     return dict(caso_grid=caso_grid)
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def accept_caso():
+
+    # Funcion que pasa el estado de colaboracion de revision a aceptado
+    # para las personas seleccionadas en la grilla
+
+    if 'id' in request.vars:
+        ids_to_accept = request.vars['id']
+    else:
+        session.flash = T('Ni un Caso seleccionado')
+
+    # if len(ids_to_accept) == 1:
+    a_id = int(ids_to_accept)
+    a_caso = db(db.caso.id == a_id).select().first()
+    a_caso.state_publication ='published'
+    a_caso.update_record()
+
+    session.flash = T('Colaboración Publicada')
+    redirect(URL('display_caso'))
+
+    return dict()
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def reject_caso():
+
+    # Funcion que pasa el estado de colaboracion de revision a aceptado
+    # para las personas seleccionadas en la grilla
+
+    if 'id' in request.vars:
+        ids_to_accept = request.vars['id']
+    else:
+        session.flash = T('Ni un Caso seleccionado')
+
+    # if len(ids_to_accept) == 1:
+    a_id = int(ids_to_accept)
+    a_caso = db(db.caso.id == a_id).select().first()
+    a_caso.state_collaboration ='rejected'
+    a_caso.state_publication ='draft'
+    a_caso.update_record()
+
+    session.flash = T('Colaboración Rechazada')
+    redirect(URL('display_caso'))
+
+    return dict()
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def schedule_caso():

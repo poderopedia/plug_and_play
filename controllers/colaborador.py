@@ -160,6 +160,7 @@ def long_profile_organizacion():
 @auth.requires_login()
 def long_profile_case():
 
+    db.caso.state_collaboration.default = 'accepted';
     my_dict = dict()
 
     # db.persona.state_collaboration.default = 'accepted';
