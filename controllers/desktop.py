@@ -211,7 +211,7 @@ def display_caso():
 
     # db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
 
-    query = ((db.Organizacion.created_by == auth.user_id ))
+    query = ((db.caso.created_by == auth.user_id ))
 
     caso_grid = SQLFORM.grid(
         query,

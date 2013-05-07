@@ -203,10 +203,10 @@ def display_caso():
     # Componente el cual muestra la grilla de empresas sugeridas
 
     show_fields_caso = [db.caso.id,
-                                db.caso.name,
-                                db.caso.country,
-                                db.caso.city,
-                                db.caso.created_by]
+                        db.caso.name,
+                        db.caso.country,
+                        db.caso.city,
+                        db.caso.created_by]
     db.caso.created_by.readable=True
 
     # db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
