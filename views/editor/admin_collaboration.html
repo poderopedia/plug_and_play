@@ -10,10 +10,10 @@ Listado de Colaboraciones
     }
 </style> 
 <ul class="nav nav-tabs" id="colaboration_tab">
-  <li id="nav_persona" {{if request.args(0) == 'persona':}} class = "active" {{pass}}><a href="#persona">Personas</a></li>
-  <li id="nav_organizacion" {{if request.args(0) == 'organizacion':}} class = "active" {{pass}}><a href="#organizacion">Organizaciones</a></li>
-  <li id="nav_empresa" {{if request.args(0) == 'empresa':}} class = "active" {{pass}}><a href="#empresa">Empresas</a></li>
-  <li id="nav_caso" {{if request.args(0) == 'caso':}} class = "active" {{pass}}><a href="#caso">Casos</a></li>
+    <li id="nav_persona" {{if request.args(0) == 'persona':}} class = "active" {{pass}}><a href="#persona">{{=T('Personas')}}</a></li>
+    <li id="nav_organizacion" {{if request.args(0) == 'organizacion':}} class = "active" {{pass}}><a href="#organizacion">{{=T('Organizaciones')}}</a></li>
+    <li id="nav_empresa" {{if request.args(0) == 'empresa':}} class = "active" {{pass}}><a href="#empresa">{{=T('Empresas')}}</a></li>
+    <li id="nav_caso" {{if request.args(0) == 'caso':}} class = "active" {{pass}}><a href="#caso">{{=T('Casos')}}</a></li>
 </ul>
  
 <div class="tab-content">
@@ -25,7 +25,7 @@ Listado de Colaboraciones
     <!--Lightbox_schedulepersona-->
     <div class="modal hide fade" id="Lightbox_schedulepersona">
         <div class="modal-header clearfix">
-            <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="close" data-dismiss="modal">{{=T('Cerrar')}}</button>
         </div>
         <div class="modal-body">
         <div id="schedule_persona"></div>
@@ -43,7 +43,7 @@ Listado de Colaboraciones
     <!--Lightbox_scheduleorganizacion-->
     <div class="modal hide fade" id="Lightbox_scheduleorganizacion">
         <div class="modal-header clearfix">
-            <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="close" data-dismiss="modal">{{=T('Cerrar')}}</button>
         </div>
         <div class="modal-body">
         <div id="schedule_organizacion"></div>
@@ -61,7 +61,7 @@ Listado de Colaboraciones
     <!--Lightbox_scheduleempresa-->
     <div class="modal hide fade" id="Lightbox_scheduleempresa">
         <div class="modal-header clearfix">
-            <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="close" data-dismiss="modal">{{=T('Cerrar')}}</button>
         </div>
         <div class="modal-body">
         <div id="schedule_empresa"></div>
@@ -78,7 +78,7 @@ Listado de Colaboraciones
     <!--Lightbox_scheduleempresa-->
     <div class="modal hide fade" id="Lightbox_scheduleempresa">
         <div class="modal-header clearfix">
-            <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="close" data-dismiss="modal">{{=T('Cerrar')}}</button>
         </div>
         <div class="modal-body">
         <div id="schedule_caso"></div>

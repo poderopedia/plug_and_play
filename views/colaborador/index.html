@@ -3,10 +3,10 @@
 Contribuir Perfil
 {{end}}
 
-<a href="{{ =URL('quick_profile_persona') }}">Perfil Rápido Persona</a><br />
-<a href="{{ =URL('quick_profile_organizacion') }}">Perfil Rápido Organización</a><br />
-<a href="{{ =URL('long_profile_persona') }}">Perfil Largo Persona</a><br />
-<a href="{{ =URL('long_profile_organizacion') }}">Perfil Largo Organización</a><br />
+<a href="{{ =URL('quick_profile_persona') }}">{{=T(Perfil Rápido Persona)}}</a><br />
+<a href="{{ =URL('quick_profile_organizacion') }}">{{=T(Perfil Rápido Organización)}}</a><br />
+<a href="{{ =URL('long_profile_persona') }}">{{=T(Perfil Largo Persona)}}</a><br />
+<a href="{{ =URL('long_profile_organizacion') }}">{{=T(Perfil Largo Organización)}}</a><br />
 {{if request.is_local:}}
 {{=response.toolbar()}}
 {{pass}}

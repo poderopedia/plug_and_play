@@ -1,10 +1,10 @@
 {{extend '_index.html'}}
 {{block title}}
-Sugerir Perfil
+{{=T('Sugerir Perfil')}}
 {{end}}
 
-<a href="{{ =URL('persona') }}">Sugerir Persona</a><br>
-<a href="{{ =URL('organizacion') }}">Sugerir Organización</a>
+<a href="{{ =URL('persona') }}">{{=T('Sugerir Persona')}}</a><br>
+<a href="{{ =URL('organizacion') }}">{{=T('Sugerir Organización')}}</a>
 
 {{if request.is_local:}}
 {{=response.toolbar()}}

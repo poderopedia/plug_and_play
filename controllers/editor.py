@@ -24,7 +24,7 @@ def display_persona():
                           )}
 
     db.persona.created_by.readable = True
-    show_fields_persona = [ db.persona.ICN,
+    show_fields_persona = [db.persona.ICN,
                            db.persona.firstName,
                            db.persona.firstLastName,
                            db.persona.created_by]

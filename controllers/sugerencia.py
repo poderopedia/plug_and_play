@@ -19,8 +19,8 @@ def persona():
 
     my_dict['a_error'] = ''
 
-    label_dict = dict(ICN='Rut', firstLastName='Apellido Paterno',
-                      otherLastName='Apellido Materno')
+    label_dict = dict(ICN=T('Rut'), firstLastName=T('Apellido Paterno'),
+                      otherLastName=T('Apellido Materno'))
     fields_dict = [
         'ICN',
         'firstName',
@@ -37,10 +37,10 @@ def persona():
                      submit_button=T('Sugerir'))
 
     if a_form.process().accepted:
-        response.flash = 'Sugerencia Aceptada'
+        response.flash = T('Sugerencia Aceptada')
     elif a_form.errors:
         my_dict['a_error'] = T('Ocurrio un error en el formulario')
-        response.flash = 'Formulario con errores'
+        response.flash = T('Formulario con errores')
 
     my_dict['form'] = a_form
     return my_dict
@@ -70,12 +70,12 @@ def organizacion():
                      submit_button=T('Sugerir'))
 
     if a_form.process().accepted:
-        response.flash = 'Sugerencia Aceptada'
+        response.flash = T('Sugerencia Aceptada')
     elif a_form.errors:
 
         # redirect(URL('accepted'))
 
-        response.flash = 'Formulario con errores'
+        response.flash = T('Formulario con errores')
 
     my_dict['form'] = a_form
     return my_dict
@@ -103,12 +103,12 @@ def empresa():
                      submit_button=T('Sugerir'))
 
     if a_form.process().accepted:
-        response.flash = 'Sugerencia Aceptada'
+        response.flash = T('Sugerencia Aceptada')
     elif a_form.errors:
 
         # redirect(URL('accepted'))
 
-        response.flash = 'Formulario con errores'
+        response.flash = T('Formulario con errores')
 
     my_dict['form'] = a_form
     return my_dict
