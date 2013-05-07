@@ -375,6 +375,104 @@ def display_empresa():
 
 
 
+def display_caso():
+
+    # Componente el cual muestra la grilla de personas sugeridas
+
+    label_dict_persona = {'persona.ICN': T('Rut'),
+                          'persona.firstLastName': T('Apellido Paterno'
+                          ),
+                          'persona.otherLastName': T('Apellido Materno'
+                          )}
+
+    show_fields_caso = [db.caso.id,
+                                db.caso.name,
+                                db.caso.country,
+                                db.caso.city,
+                                db.caso.created_by]
+    db.caso.created_by.readable=True
+
+    caso_grid = SQLFORM.grid(  # selectable=lambda ids: redirect(URL('sugerencia',
+                                  #         'accept_persona', vars=dict(id=ids))),
+        db.caso.state_collaboration == 'for_revision',
+        editable=True,
+        details=False,
+        deletable=False,
+        user_signature=True,
+        # fields=show_fields_persona,
+        create=False,
+        # headers=label_dict_persona,
+        csv=False,
+        paginate=10,
+        searchable=False,
+        formname='persona_grid_form',
+        links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
+               , _href=URL('sugerencia', 'accept_caso',
+               vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
+               _class='w2p_trap button btn', _href=URL('sugerencia',
+               'reject_caso', vars=dict(id=row.id)))],
+        )
+
+    if caso_grid.element('.web2py_counter'):
+        caso_grid.element('.web2py_counter')[0] = ''
+
+    if caso_grid.element('.web2py_table input[type=submit]'):
+
+        caso_grid.element('.web2py_table input[type=submit]'
+                             )['_value'] = \
+            T('Aceptar Casos Seleccionadas')
+
+        caso_grid.element('.web2py_table input[type=submit]'
+                             )['_class'] = 'buttontext button'
+    elif caso_grid.element('.web2py_grid input[type=submit]'):
+
+        caso_grid.element('.web2py_grid input[type=submit]')['_value'
+                ] = T('Aceptar')
+
+    return dict(caso_grid=caso_grid)
+
+
+def accept_caso():
+
+    # Funcion que pasa el estado de colaboracion de revision a aceptado
+    # para las personas seleccionadas en la grilla
+
+    if 'id' in request.vars:
+        ids_to_accept = request.vars['id']
+    else:
+        session.flash = T('Ni un Caso seleccionada')
+
+    # if len(ids_to_accept) == 1:
+    a_id = int(ids_to_accept)
+    a_caso = db(db.caso.id == a_id).select().first()
+    a_caso.state_collaboration ='accepted'
+    a_caso.update_record()
+
+    session.flash = T('Sugerencia Aceptada')
+    redirect(URL('display_caso'))
+
+    return dict()
+
+def reject_caso():
+
+    # Funcion que pasa el estado de colaboracion de revision a aceptado
+    # para las personas seleccionadas en la grilla
+
+    if 'id' in request.vars:
+        ids_to_accept = request.vars['id']
+    else:
+        session.flash = T('Ni un Caso seleccionada')
+
+    # if len(ids_to_accept) == 1:
+    a_id = int(ids_to_accept)
+    a_caso = db(db.caso.id == a_id).select().first()
+    a_caso.state_collaboration ='rejected'
+    a_caso.update_record()
+
+    session.flash = T('Sugerencia Rechazada')
+    redirect(URL('display_caso'))
+
+    return dict()
 def publicaciones_general():
 
     # grilla publicaciones general

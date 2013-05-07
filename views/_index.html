@@ -214,10 +214,10 @@
                                 <ul id="collapseSuggestion" class="accordion-body collapse">
                                     <li><a href={{=URL('sugerencia','admin_suggestion')}} class="accordion-toggle">{{=T('Todas las sugerencias')}}</a></li>
                                     <li><a href={{=URL('sugerencia','admin_suggestion',args='persona')}} class="accordion-toggle">{{=T('Personas')}}</a></li>
-<!--                                     <li><a href="#" class="accordion-toggle">{{=T('Empresas')}}</a></li>
- -->                                    <li><a href={{=URL('sugerencia','admin_suggestion',args='organizacion')}} class="accordion-toggle">{{=T('Organizaciones')}}</a></li>
-<!--                                     <li><a href="#" class="accordion-toggle">{{=T('Casos')}}</a></li>
- -->                                </ul>
+                                    <li><a href={{=URL('sugerencia','admin_suggestion',args='organizacion')}} class="accordion-toggle">{{=T('Organizaciones')}}</a></li>
+                                    <li><a href={{=URL('sugerencia','admin_suggestion',args='empresa')}} class="accordion-toggle">{{=T('Empresas')}}</a></li>
+                                    <li><a href={{=URL('sugerencia','admin_suggestion',args='caso')}} class="accordion-toggle">{{=T('Casos')}}</a></li>
+                               </ul>
                             </li>
                             {{pass}}
                             {{ if auth.has_membership("admin"): }}
