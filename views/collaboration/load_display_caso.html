@@ -1,6 +1,6 @@
 <div class="tab-pane {{if request.args(0) == 'caso':}} active {{pass}}" id="caso">
         <!-- <h3> {{ =T("Casos") }}</h3> -->
-        {{ =LOAD(c='editor',f='display_caso.load', ajax=True, user_signature=True) }}
+        {{ =LOAD(c='collaboration',f='display_caso.load', ajax=True, user_signature=True) }}
         <!--Lightbox_schedulecaso-->
         <div class="modal hide fade" id="Lightbox_schedulecaso">
             <div class="modal-header clearfix">

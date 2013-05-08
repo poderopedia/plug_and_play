@@ -5,7 +5,7 @@
     $('.programar_empresa').click(function (e){
         e.preventDefault();
         _id = this.id;
-        web2py_component("/plug_and_play/editor/schedule_empresa.load/"+_id,"schedule_empresa");
+        web2py_component("/plug_and_play/collaboration/schedule_empresa.load/"+_id,"schedule_empresa");
     });
 </script>
 {{end}}
