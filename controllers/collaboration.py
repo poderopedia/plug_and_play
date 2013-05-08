@@ -299,6 +299,8 @@ def display_persona():
                           'persona.firstLastName': T('Apellido Paterno'
                           ),
                           'persona.otherLastName': T('Apellido Materno'
+                          ),
+                          'persona.created_by': T('Creado por'
                           )}
 
     db.persona.created_by.readable = True
@@ -430,7 +432,8 @@ def display_organizacion():
     # Componente el cual muestra la grilla de organizaciones sugeridas
 
     label_dict_organizacion = \
-        {'tipoOrganizacion.name': T('Tipo Organización')}
+        {'tipoOrganizacion.name': T('Tipo Organización'),
+        'Organizacion.created_by': T('Creado por')}
 
     show_fields_organizacion = [db.Organizacion.tipoOrg,
                                 # db.tipoOrganizacion.name,
@@ -560,7 +563,8 @@ def schedule_organizacion():
 def display_empresa():
 
     label_dict_empresa = \
-        {'tipoOrganizacion.name': T('Tipo Organización')}
+        {'tipoOrganizacion.name': T('Tipo Organización'),
+        'Organizacion.created_by': T('Creado por')}
 
     # Componente el cual muestra la grilla de empresas sugeridas
 
@@ -646,6 +650,9 @@ def display_caso():
 
     # Componente el cual muestra la grilla de empresas sugeridas
 
+    label_dict_caso = \
+        {'caso.created_by': T('Creado por')}
+
     show_fields_caso = [db.caso.id,
                         db.caso.name,
                         db.caso.country,
@@ -662,6 +669,7 @@ def display_caso():
         user_signature=True,
         deletable=False,
         fields=show_fields_caso,
+        headers=label_dict_caso,
         create=False,
         csv=False,
         paginate=10,
