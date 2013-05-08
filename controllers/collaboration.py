@@ -14,8 +14,8 @@ def quick_profile_persona():
 
     my_dict['a_error']=''
 
-    label_dict = dict(ICN='Rut', firstLastName='Apellido Paterno',
-                      otherLastName='Apellido Materno')
+    label_dict = dict(ICN=T('Rut'), firstLastName=T('Apellido Paterno'),
+                      otherLastName=T('Apellido Materno'))
     fields_dict = [
         'ICN',
         'firstName',
@@ -30,11 +30,11 @@ def quick_profile_persona():
     a_form = SQLFORM(db.persona, labels=label_dict, fields=fields_dict)
 
     if a_form.process().accepted:
-        response.flash = 'Perfil creado con éxito'
+        response.flash = T('Perfil creado con éxito')
         #redirect(URL('accepted'))
     elif a_form.errors:
-        my_dict['a_error'] = 'Ooops! Ocurrió un error'
-        response.flash = 'Hay errores en el formulario'
+        my_dict['a_error'] = T('Ooops! Ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
 
     my_dict['form']=a_form
     return my_dict
@@ -46,20 +46,20 @@ def long_profile_persona():
     db.persona.state_collaboration.default = 'accepted';
 
     # STEPS: A dict with fields for each step
-    mysteps = [dict(title='Datos Básicos',fields=['firstName','firstLastName', 'otherLastName','alias','shortBio','countryofResidence', 'depiction']),
-               dict(title='Más Información',fields=['Mainsector','birth','isDead','countryofBirth','city','shortBio']),
-               dict(title='Redes Sociales',fields=['web','twitterNick','facebookNick','linkedinNick']),
-               dict(title='Perfil Largo',fields=['longBio'])]
+    mysteps = [dict(title=T('Datos Básicos'),fields=['firstName','firstLastName', 'otherLastName','alias','shortBio','countryofResidence', 'depiction']),
+               dict(title=T('Más Información'),fields=['Mainsector','birth','isDead','countryofBirth','city','shortBio']),
+               dict(title=T('Redes Sociales'),fields=['web','twitterNick','facebookNick','linkedinNick']),
+               dict(title=T('Perfil Largo'),fields=['longBio'])]
     # IMPORT: Import the module
     from plugin_PowerFormWizard import PowerFormWizard
     # CREATE: Create the form object just like the SQLFORM
     form = PowerFormWizard(db.persona, steps=mysteps, options=dict(validate=True))
     if(request.args(0)):
         record=db.persona(request.args(0))
-        mysteps = [dict(title='Datos Básicos',fields=['firstName','firstLastName', 'otherLastName','alias','shortBio','countryofResidence', 'depiction']),
-                   dict(title='Más Información',fields=['Mainsector','birth','isDead','countryofBirth','city','shortBio']),
-                   dict(title='Redes Sociales',fields=['web','twitterNick','facebookNick','linkedinNick']),
-                   dict(title='Perfil Largo',fields=['longBio'])
+        mysteps = [dict(title=T('Datos Básicos'),fields=['firstName','firstLastName', 'otherLastName','alias','shortBio','countryofResidence', 'depiction']),
+                   dict(title=T('Más Información'),fields=['Mainsector','birth','isDead','countryofBirth','city','shortBio']),
+                   dict(title=T('Redes Sociales'),fields=['web','twitterNick','facebookNick','linkedinNick']),
+                   dict(title=T('Perfil Largo'),fields=['longBio'])
               ]
    
         form = PowerFormWizard(db.persona, steps=mysteps, options=dict(validate=True), record=record)
@@ -67,10 +67,10 @@ def long_profile_persona():
     
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
-        response.flash = "Persona creada con éxito"
+        response.flash = T("Persona creada con éxito")
     elif form.errors:
         form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
-        response.flash = "Hay errores en el formulario"
+        response.flash = T("Hay errores en el formulario")
 
     # Enjoy!
     return dict(form=form)
@@ -86,7 +86,15 @@ def quick_profile_organizacion():
 
     my_dict['a_error']=''
 
-    label_dict = dict(tipoOrg='Tipo de Organización', hasSocialReason= 'Nombre Legal(Razón Social)',alias= 'Nombre Corto',countryOfResidence= 'País',haslogo= 'Logotipo',shortBio= 'Reseña')
+    label_dict = dict(
+                tipoOrg=T('Tipo de Organización'), 
+                hasSocialReason= T('Nombre Legal (Razón Social)'),
+                alias= T('Nombre Corto'),
+                countryOfResidence= T('País'),
+                haslogo= T('Logotipo'),
+                shortBio= T('Reseña')
+                )
+
     fields_dict = [
         'tipoOrg',
         'haslogo',
@@ -101,11 +109,11 @@ def quick_profile_organizacion():
     a_form = SQLFORM(db.Organizacion, labels=label_dict, fields=fields_dict)
 
     if a_form.process().accepted:
-         response.flash = 'Organización creada con éxito'
+         response.flash = T('Organización creada con éxito')
         #redirect(URL('accepted'))
     elif a_form.errors:
-        my_dict['a_error'] = 'Ooops! Ocurrió un error'
-        response.flash = 'Hay errores en el formulario'
+        my_dict['a_error'] = T('Ooops! Ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
 
     my_dict['form']=a_form
     return my_dict
@@ -115,9 +123,9 @@ def long_profile_organizacion():
     db.Organizacion.state_collaboration.default = 'accepted';
 
     # STEPS: A dict with fields for each step
-    mysteps = [dict(title='Datos Básicos',fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
-               dict(title='Fuentes',fields=['hasdocumentation','documentSource','documentCloud']),
-               dict(title='Reseña',fields=['longBio','birth','is_active'])
+    mysteps = [dict(title=T('Datos Básicos'),fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
+               dict(title=T('Fuentes'),fields=['hasdocumentation','documentSource','documentCloud']),
+               dict(title=T('Reseña'),fields=['longBio','birth','is_active'])
               ]
     # IMPORT: Import the module
     from plugin_PowerFormWizard import PowerFormWizard
@@ -125,19 +133,19 @@ def long_profile_organizacion():
     form = PowerFormWizard(db.Organizacion, steps=mysteps, options=dict(validate=True))
     if(request.args(0)):
         record=db.Organizacion(request.args(0))
-        mysteps = [dict(title='Datos Básicos',fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
-                   dict(title='Fuentes',fields=['hasdocumentation','documentSource','documentCloud']),
-                   dict(title='Reseña',fields=['longBio','birth','is_active'])
+        mysteps = [dict(title=T('Datos Básicos'),fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
+                   dict(title=T('Fuentes'),fields=['hasdocumentation','documentSource','documentCloud']),
+                   dict(title=T('Reseña'),fields=['longBio','birth','is_active'])
                   ]
         form = PowerFormWizard(db.Organizacion, steps=mysteps, options=dict(validate=True), record=record)
 
 
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
-        response.flash = "Organización creada con éxito"
+        response.flash = T("Organización creada con éxito")
     elif form.errors:
         form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
-        response.flash = "Hay errores en el formulario"
+        response.flash = T("Hay errores en el formulario")
 
     # Enjoy!
     return dict(form=form)
@@ -152,7 +160,14 @@ def quick_profile_empresa():
 
     my_dict['a_error']=''
 
-    label_dict = dict(hasSocialReason= 'Nombre Legal(Razón Social)',alias= 'Nombre Corto',countryOfResidence= 'País',haslogo= 'Logotipo',shortBio= 'Reseña')
+    label_dict = dict(
+                    hasSocialReason= T('Nombre Legal(Razón Social)'),
+                    alias= T('Nombre Corto'),
+                    countryOfResidence= T('País'),
+                    haslogo= T('Logotipo'),
+                    shortBio= T('Reseña')
+                )
+
     fields_dict = [
         'hasSocialReason',
         'haslogo',
@@ -166,11 +181,11 @@ def quick_profile_empresa():
     a_form = SQLFORM(db.Organizacion, labels=label_dict, fields=fields_dict)
 
     if a_form.process().accepted:
-         response.flash = 'Empresa creada con éxito'
+         response.flash = T('Empresa creada con éxito')
         #redirect(URL('accepted'))
     elif a_form.errors:
-        my_dict['a_error'] = 'Ooops! Ocurrió un error'
-        response.flash = 'Hay errores en el formulario'
+        my_dict['a_error'] = T('Ooops! Ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
 
     my_dict['form']=a_form
     return my_dict
@@ -181,9 +196,9 @@ def long_profile_empresa():
     db.Organizacion.tipoOrg.default = 2;
 
     # STEPS: A dict with fields for each step
-    mysteps = [dict(title='Datos Básicos',fields=['hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
-               dict(title='Fuentes',fields=['hasdocumentation','documentSource','documentCloud']),
-               dict(title='Reseña',fields=['longBio','birth','is_active'])
+    mysteps = [dict(title=T('Datos Básicos'),fields=['hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
+               dict(title=T('Fuentes'),fields=['hasdocumentation','documentSource','documentCloud']),
+               dict(title=T('Reseña'),fields=['longBio','birth','is_active'])
               ]
     # IMPORT: Import the module
     from plugin_PowerFormWizard import PowerFormWizard
@@ -191,19 +206,19 @@ def long_profile_empresa():
     form = PowerFormWizard(db.Organizacion, steps=mysteps, options=dict(validate=True))
     if(request.args(0)):
         record=db.Organizacion(request.args(0))
-        mysteps = [dict(title='Datos Básicos',fields=['hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
-                   dict(title='Fuentes',fields=['hasdocumentation','documentSource','documentCloud']),
-                   dict(title='Reseña',fields=['longBio','birth','is_active'])
+        mysteps = [dict(title=T('Datos Básicos'),fields=['hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
+                   dict(title=T('Fuentes'),fields=['hasdocumentation','documentSource','documentCloud']),
+                   dict(title=T('Reseña'),fields=['longBio','birth','is_active'])
                   ]
         form = PowerFormWizard(db.Organizacion, steps=mysteps, options=dict(validate=True), record=record)
 
 
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
-        response.flash = "Empresa creada con éxito"
+        response.flash = T("Empresa creada con éxito")
     elif form.errors:
         form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
-        response.flash = "Hay errores en el formulario"
+        response.flash = T("Hay errores en el formulario")
 
     # Enjoy!
     return dict(form=form)
@@ -221,11 +236,11 @@ def quick_profile_case():
     a_form = SQLFORM(db.caso)
 
     if a_form.process().accepted:
-        response.flash = 'Caso creado con éxito'
+        response.flash = T('Caso creado con éxito')
         #redirect(URL('accepted'))
     elif a_form.errors:
-        my_dict['a_error'] = 'Ooops! Ocurrió un error'
-        response.flash = 'Hay errores en el formulario'
+        my_dict['a_error'] = T('Ooops! Ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
 
     my_dict['form']=a_form
     return my_dict
@@ -243,11 +258,11 @@ def long_profile_case():
     a_form = SQLFORM(db.caso)
 
     if a_form.process().accepted:
-        response.flash = 'Caso creado con éxito'
+        response.flash = T('Caso creado con éxito')
         #redirect(URL('accepted'))
     elif a_form.errors:
-        my_dict['a_error'] = 'Ooops! Ocurrió un error'
-        response.flash = 'Hay errores en el formulario'
+        my_dict['a_error'] = T('Ooops! Ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
 
     my_dict['form']=a_form
     return my_dict
