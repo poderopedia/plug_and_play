@@ -67,10 +67,10 @@ def long_profile_persona():
     
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
-        response.flash = T("Persona creada con éxito")
+        response.flash = T('Persona creada con éxito')
     elif form.errors:
         form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
-        response.flash = T("Hay errores en el formulario")
+        response.flash = T('Hay errores en el formulario')
 
     # Enjoy!
     return dict(form=form)
@@ -142,10 +142,10 @@ def long_profile_organizacion():
 
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
-        response.flash = T("Organización creada con éxito")
+        response.flash = T('Organización creada con éxito')
     elif form.errors:
         form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
-        response.flash = T("Hay errores en el formulario")
+        response.flash = T('Hay errores en el formulario')
 
     # Enjoy!
     return dict(form=form)
@@ -161,7 +161,7 @@ def quick_profile_empresa():
     my_dict['a_error']=''
 
     label_dict = dict(
-                    hasSocialReason= T('Nombre Legal(Razón Social)'),
+                    hasSocialReason= T('Nombre Legal (Razón Social)'),
                     alias= T('Nombre Corto'),
                     countryOfResidence= T('País'),
                     haslogo= T('Logotipo'),
@@ -215,10 +215,10 @@ def long_profile_empresa():
 
     # VALIDATE: web2py form validation
     if form.accepts(request.vars, session):
-        response.flash = T("Empresa creada con éxito")
+        response.flash = T('Empresa creada con éxito')
     elif form.errors:
         form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
-        response.flash = T("Hay errores en el formulario")
+        response.flash = T('Hay errores en el formulario')
 
     # Enjoy!
     return dict(form=form)
@@ -360,7 +360,7 @@ def accept_persona():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni una Persona seleccionada')
+        session.flash = T('Ninguna Persona seleccionada')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -382,7 +382,7 @@ def reject_persona():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni una Persona seleccionada')
+        session.flash = T('Ninguna Persona seleccionada')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -414,7 +414,7 @@ def schedule_persona():
     a_form.vars.state_publication = 'programmed'
     a_form.vars.state_collaboration = 'accepted'
     if a_form.process().accepted:
-        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        response.flash = T('Su perfil de persona se hará público en la fecha elegida')
         redirect('../admin_collaboration',client_side=True)
     elif a_form.errors:
         my_dict['a_error'] = T('Oops! ocurrió un error')
@@ -516,7 +516,7 @@ def reject_organizacion():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni una Organizacion seleccionada')
+        session.flash = T('Ninguna Organizacion seleccionada')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -547,7 +547,7 @@ def schedule_organizacion():
     a_form.vars.state_publication = 'programmed'
     a_form.vars.state_collaboration = 'accepted'
     if a_form.process().accepted:
-        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        response.flash = T('Su perfil de organización se hará público en la fecha elegida')
         redirect('../admin_collaboration/organizacion',client_side=True)
     elif a_form.errors:
         my_dict['a_error'] = T('Oops! ocurrió un error')
@@ -633,7 +633,7 @@ def schedule_empresa():
     a_form.vars.state_publication = 'programmed'
     a_form.vars.state_collaboration = 'accepted'
     if a_form.process().accepted:
-        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        response.flash = T('Su perfil de empresa se hará público en la fecha elegida')
         redirect('../admin_collaboration/empresa',client_side=True)
     elif a_form.errors:
         my_dict['a_error'] = T('Oops! ocurrió un error')
@@ -707,7 +707,7 @@ def accept_caso():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni un Caso seleccionado')
+        session.flash = T('Ningún Caso seleccionado')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -729,7 +729,7 @@ def reject_caso():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni un Caso seleccionado')
+        session.flash = T('Ningún Caso seleccionado')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -759,7 +759,7 @@ def schedule_caso():
     a_form.vars.state_publication = 'programmed'
     a_form.vars.state_collaboration = 'accepted'
     if a_form.process().accepted:
-        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        response.flash = T('Su caso se hará público en la fecha elegida')
         redirect('../admin_collaboration/caso',client_side=True)
     elif a_form.errors:
         my_dict['a_error'] = T('Oops! ocurrió un error')
