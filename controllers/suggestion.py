@@ -3,15 +3,15 @@
 
 __author__ = 'Evolutiva'
 
-
 def index():
-
     # Vista principal de sugerencia, contiene actualmente link a sugerencias
-
     return locals()
 
+################################################################################
+################################################################################
+# Funciones de Sugerencia de Perfiles
 
-def persona():
+def add_persona():
 
     # Formulario de ingreso de sugerencia para personas
 
@@ -46,7 +46,7 @@ def persona():
     return my_dict
 
 
-def organizacion():
+def add_organizacion():
 
     # Formulario de ingreso de sugerencia para organizaciones
 
@@ -80,7 +80,40 @@ def organizacion():
     my_dict['form'] = a_form
     return my_dict
 
-def empresa():
+def add_empresa():
+
+    # Formulario de ingreso de sugerencia para empresas
+    db.Organizacion.tipoOrg.default = 2;
+    my_dict = dict()
+
+    my_dict['a_error'] = ''
+
+    label_dict = dict(ICN=T('Rut'), firstLastName=T('Apellido Paterno'
+                      ), otherLastName=T('Apellido Materno'))
+    fields_dict = [
+        'hasSocialReason',
+        'alias',
+        'birth',
+        'shortBio',
+        'countryOfResidence',
+        'depiction',
+        ]
+
+    a_form = SQLFORM(db.Organizacion, fields=fields_dict,
+                     submit_button=T('Sugerir'))
+
+    if a_form.process().accepted:
+        response.flash = 'Sugerencia Aceptada'
+    elif a_form.errors:
+
+        # redirect(URL('accepted'))
+
+        response.flash = 'Formulario con errores'
+
+    my_dict['form'] = a_form
+    return my_dict
+
+def add_caso():
 
     # Formulario de ingreso de sugerencia para empresas
     db.Organizacion.tipoOrg.default = 2;
@@ -114,18 +147,27 @@ def empresa():
     return my_dict
 
 
-@auth.requires_login()
+################################################################################
+################################################################################
+# Seccion de administracion de los perfiles sugeridos
+################################################################################
+################################################################################
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def admin_suggestion():
 
     # Vista para mostrar el listado de personas y organizaciones sugeridas
 
     if len(request.args) == 0:
-        redirect(URL('sugerencia','admin_suggestion', args='persona'))
-
+        redirect(URL('suggestion','admin_suggestion', args='persona'))
 
     return locals()
 
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de personas
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_persona():
 
     # Componente el cual muestra la grilla de personas sugeridas
@@ -156,9 +198,9 @@ def display_persona():
         searchable=False,
         formname='persona_grid_form',
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('sugerencia', 'accept_persona',
+               , _href=URL('suggestion', 'accept_persona',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('sugerencia',
+               _class='w2p_trap button btn', _href=URL('suggestion',
                'reject_persona', vars=dict(id=row.id)))],
         )
 
@@ -180,7 +222,7 @@ def display_persona():
 
     return dict(persona_grid=persona_grid)
 
-
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def accept_persona():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -202,6 +244,7 @@ def accept_persona():
 
     return dict()
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def reject_persona():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -223,7 +266,11 @@ def reject_persona():
 
     return dict()
 
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de organizaciones
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_organizacion():
 
     # Componente el cual muestra la grilla de organizaciones sugeridas
@@ -255,9 +302,9 @@ def display_organizacion():
         paginate=10,
         searchable=False,
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('sugerencia', 'accept_organizacion',
+               , _href=URL('suggestion', 'accept_organizacion',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('sugerencia',
+               _class='w2p_trap button btn', _href=URL('suggestion',
                'reject_organizacion', vars=dict(id=row.id)))],
         links_in_grid=True,
         formname='organizacion_grid_form',
@@ -277,7 +324,7 @@ def display_organizacion():
 
     return dict(organizacion_grid=organizacion_grid)
 
-
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def accept_organizacion():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -299,6 +346,7 @@ def accept_organizacion():
 
     return dict()
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def reject_organizacion():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -320,6 +368,11 @@ def reject_organizacion():
 
     return dict()
 
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de empresas
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_empresa():
 
     # Componente el cual muestra la grilla de empresas sugeridas
@@ -351,9 +404,9 @@ def display_empresa():
         paginate=10,
         searchable=False,
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('sugerencia', 'accept_organizacion',
+               , _href=URL('suggestion', 'accept_organizacion',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('sugerencia',
+               _class='w2p_trap button btn', _href=URL('suggestion',
                'reject_organizacion', vars=dict(id=row.id)))],
         links_in_grid=True,
         formname='empresa_grid_form',
@@ -373,23 +426,20 @@ def display_empresa():
 
     return dict(empresa_grid=empresa_grid)
 
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de casos
 
-
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_caso():
 
-    # Componente el cual muestra la grilla de personas sugeridas
-
-    label_dict_persona = {'persona.ICN': T('Rut'),
-                          'persona.firstLastName': T('Apellido Paterno'
-                          ),
-                          'persona.otherLastName': T('Apellido Materno'
-                          )}
+    # Componente el cual muestra la grilla de casos sugeridos
 
     show_fields_caso = [db.caso.id,
-                                db.caso.name,
-                                db.caso.country,
-                                db.caso.city,
-                                db.caso.created_by]
+                        db.caso.name,
+                        db.caso.country,
+                        db.caso.city]
+
     db.caso.created_by.readable=True
 
     caso_grid = SQLFORM.grid(  # selectable=lambda ids: redirect(URL('sugerencia',
@@ -399,17 +449,16 @@ def display_caso():
         details=False,
         deletable=False,
         user_signature=True,
-        # fields=show_fields_persona,
+        fields=show_fields_caso,
         create=False,
-        # headers=label_dict_persona,
         csv=False,
         paginate=10,
         searchable=False,
         formname='persona_grid_form',
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('sugerencia', 'accept_caso',
+               , _href=URL('suggestion', 'accept_caso',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('sugerencia',
+               _class='w2p_trap button btn', _href=URL('suggestion',
                'reject_caso', vars=dict(id=row.id)))],
         )
 
@@ -431,7 +480,7 @@ def display_caso():
 
     return dict(caso_grid=caso_grid)
 
-
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def accept_caso():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -440,7 +489,7 @@ def accept_caso():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni un Caso seleccionada')
+        session.flash = T('Ni un Caso seleccionado')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -453,6 +502,7 @@ def accept_caso():
 
     return dict()
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def reject_caso():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -461,9 +511,8 @@ def reject_caso():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni un Caso seleccionada')
+        session.flash = T('Ni un Caso seleccionado')
 
-    # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
     a_caso = db(db.caso.id == a_id).select().first()
     a_caso.state_collaboration ='rejected'
@@ -473,50 +522,4 @@ def reject_caso():
     redirect(URL('display_caso'))
 
     return dict()
-def publicaciones_general():
 
-    # grilla publicaciones general
-
-    return locals()
-
-
-def paginas_general():
-
-    # grilla páginas general
-
-    return locals()
-
-
-def publicaciones_empresas():
-
-    # grilla de publiaciones general
-
-    return locals()
-
-
-def usuarios_general():
-
-    # lista de usuarios
-
-    return locals()
-
-
-def publicaciones_casos():
-
-    # grilla de publicaciones casos
-
-    return locals()
-
-
-def publicaciones_organizaciones():
-
-    # grilla de publicaciones organizaciones
-
-    return locals()
-
-
-def usuarios_historial():
-
-    # historial de usuarios
-
-    return locals()
