@@ -230,6 +230,27 @@ def quick_profile_case():
     my_dict['form']=a_form
     return my_dict
 
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def long_profile_case():
+
+    db.caso.state_collaboration.default = 'accepted';
+    my_dict = dict()
+
+    my_dict['a_error']=''
+
+    label_dict = dict(graph='')
+
+    a_form = SQLFORM(db.caso)
+
+    if a_form.process().accepted:
+        response.flash = 'Caso creado con éxito'
+        #redirect(URL('accepted'))
+    elif a_form.errors:
+        my_dict['a_error'] = 'Ooops! Ocurrió un error'
+        response.flash = 'Hay errores en el formulario'
+
+    my_dict['form']=a_form
+    return my_dict
 
 ################################################################################
 ################################################################################
