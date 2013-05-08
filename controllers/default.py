@@ -5,12 +5,12 @@ def user():
     groupadd('super_admin')
     groupadd('admin')
     groupadd('editor')
-    groupadd('author')
-    groupadd('collaborator')
+    groupadd('autor')
+    groupadd('colaborador')
     if request.args(0) == 'register':
         auth.settings.create_user_groups = False
         auth.settings.register_onaccept=[lambda form:
-        auth.add_membership(auth.id_group('collaborator'),form.vars.id)]
+        auth.add_membership(auth.id_group('colaborador'),form.vars.id)]
     return dict(form=auth())
 
 def download(): return response.download(request,db)
