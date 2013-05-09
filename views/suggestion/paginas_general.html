@@ -1,33 +1,33 @@
 {{extend '_index.html'}}
 {{block title}}
-Publicaciones Casos
+Páginas General
 {{end}}
 
-
-                    <!-- Menú superior -->
                     <div class="nav-content clearfix">
+                        <!-- Barra de navegación superior -->
                         <ul class="clearfix pull-left">
-                              <li class="active"><a href="#">Todas</a></li>
-                              <li><a href="#">Publicados</a></li>
-                              <li><a href="#">Borradores</a></li>
-                              <li><a href="#">Programados</a></li>
+                            <li class="active"><a href="#">{{=T('Todas')}}</a></li>
+                            <li><a href="#">{{=T('Publicadas')}}</a></li>
+                            <li><a href="#" rel="tooltip" title="345 Borradores">{{=T('Borradores')}}</a></li>
+                            <li><a href="#">{{=T('Programadas')}}</a></li>
+                            <li><a href="#">{{=T('Eliminadas'}}</a></li>
                         </ul>
-                    <!-- end menú superior -->
+                        <!-- END Barra -->
 
-                    <!-- Cuadro de búsqueda -->
+                        <!-- Cuadro de búsqueda -->
                         <form class="form-search pull-right">
                             <div class="input-append">
-                                <input type="text" class="input-small search-query">
-                                <button type="submit" class="btn">Buscar</button>
+                                <input type="text" name="search" class="input-small search-query">
+                                <button type="submit" class="btn">{{=T('Buscar'}}</button>
                             </div>
                         </form>
-                        <!-- End cuadro de búsqueda -->
+                        <!-- END cuadro de búsqueda -->
                     </div>
 
-                    <!-- toolbar -->
+                    <!-- Alternativas de flitro -->
                     <div class="btn-toolbar">
                         <div class="btn-group">
-                            <button class="btn large">Acciones</button>
+                            <button class="btn large">{{=T('Acciones'}}</button>
                             <button class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                             </button>
@@ -36,11 +36,11 @@ Publicaciones Casos
                             </ul>
                         </div>
                     
-                        <button class="btn" type="button">Aplicar</button>
+                        <button class="btn" type="button">{{=T('Aplicar')}}</button>
                         <span class="vertical-break"></span>
 
                         <div class="btn-group">
-                            <button class="btn large">Todos</button>
+                            <button class="btn large">{{=T('Todos')}}</button>
                             <button class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                             </button>
@@ -50,7 +50,7 @@ Publicaciones Casos
                         </div>
                     
                         <div class="btn-group">
-                            <button class="btn large">Fecha</button>
+                            <button class="btn large">{{=T('Fecha')}}</button>
                             <button class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                             </button>
@@ -59,11 +59,11 @@ Publicaciones Casos
                             </ul>
                         </div>
 
-                        <button class="btn" type="button">Filtrar</button>
+                        <button class="btn" type="button">{{=T('Filtrar')}}</button>
                         <span class="vertical-break"></span>
                         
                         <div class="btn-group">
-                            <button class="btn btn-primary">Crear</button>
+                            <button class="btn btn-primary">{{=T('Crear')}}</button>
                             <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                             </button>
@@ -72,227 +72,221 @@ Publicaciones Casos
                             </ul>
                         </div>
                     </div>
-                    <!-- End toolbar -->
-
-                    <!-- Main table -->
-                    <table class="table table-striped table-bordered">
+                    <!-- END Flitro -->
+ <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th class="align-center">S</th>
-                                <th class="align-center">E</th>
-                                <th>Nombre</th>
-                                <th>Estado</th>
-                                <th>Autor</th>
-                                <th>Fecha</th>
-                                <th class="align-center">Acciones</th>
+                                <th>{{=T('E')}}</th>
+                                <th>{{=T('Título Página')}}</th>
+                                <th>{{=T('Estado')}}</th>
+                                <th>{{=T('Autor')}}</th>
+                                <th>{{=T('Fecha')}}</th>
+                                <th class="align-center">{{=T('Acciones')}}</th>
                             </tr>
                         </thead>
                     
                         <tbody>
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso la Polar</a></td>
-                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">{{=T('Qué es poderopedia')}}</a></td>
+                                <td><span class="label label-success">{{=T('Publicado')}}</span></td>
                                 <td><a href="#">Miguel Paz</a></td>
-                                <td>hace 44 min.</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Sit Amet Consecuenteir Adem</a></td>
-                                <td><span class="label label-warning">Programado</span></td>
-                                <td><a href="#">Mónica Ventura</a></td>
-                                <td>hace 1 hora</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Farmacias</a></td>
-                                <td><span class="label">Borrador</span></td>
-                                <td><a href="#">Nombre apellido</a></td>
-                                <td>18/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Zamudio</a></td>
-                                <td><span class="label label-success">Publicado</span></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td>14/04/2012</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso la Polar</a></td>
-                                <td><span class="label label-success">Publicado</span></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td>hace 44 min.</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Sit Amet Consecuenteir Adem</a></td>
-                                <td><span class="label label-warning">Programado</span></td>
-                                <td><a href="#">Mónica Ventura</a></td>
-                                <td>hace 1 hora</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Farmacias</a></td>
-                                <td><span class="label">Borrador</span></td>
-                                <td><a href="#">Nombre apellido</a></td>
-                                <td>18/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Zamudio</a></td>
-                                <td><span class="label label-success">Publicado</span></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td>14/04/2012</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso la Polar</a></td>
-                                <td><span class="label label-success">Publicado</span></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td>hace 44 min.</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Sit Amet Consecuenteir Adem</a></td>
-                                <td><span class="label label-warning">Programado</span></td>
-                                <td><a href="#">Mónica Ventura</a></td>
-                                <td>hace 1 hora</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Farmacias</a></td>
-                                <td><span class="label">Borrador</span></td>
-                                <td><a href="#">Nombre apellido</a></td>
-                                <td>18/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Zamudio</a></td>
-                                <td><span class="label label-success">Publicado</span></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td>14/04/2012</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso la Polar</a></td>
-                                <td><span class="label label-success">Publicado</span></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td>hace 44 min.</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Sit Amet Consecuenteir Adem</a></td>
-                                <td><span class="label label-warning">Programado</span></td>
-                                <td><a href="#">Mónica Ventura</a></td>
-                                <td>hace 1 hora</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Farmacias</a></td>
-                                <td><span class="label">Borrador</span></td>
-                                <td><a href="#">Nombre apellido</a></td>
-                                <td>18/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso la Polar</a></td>
-                                <td><span class="label label-success">Publicado</span></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td>14/04/2012</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso la Polar</a></td>
-                                <td><span class="label label-success">Publicado</span></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td>hace 44 min.</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Sit Amet Consecuenteir Adem</a></td>
-                                <td><span class="label label-warning">Programado</span></td>
-                                <td><a href="#">Mónica Ventura</a></td>
-                                <td>hace 1 hora</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Farmacias</a></td>
-                                <td><span class="label">Borrador</span></td>
-                                <td><a href="#">Nombre apellido</a></td>
-                                <td>18/04/2013</td>
-                                <td class="align-center"><i class="icon-cog"></i></td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><i class=""></i></td>
-                                <td><a href="#">Caso Zamudio</a></td>
-                                <td><span class="label label-success">Publicado</span></td>
-                                <td><a href="#">Miguel Paz</a></td>
-                                <td>14/04/2012</td>
+                                <td>{{=T('hace')}} 44 min.</td>
                                 <td class="align-center"><i class="icon-cog"></i></td>
                             </tr>
                     
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Equipo</a></td>
+                                <td><span class="label label-success">{{=T('Publicado')}}</span></td>
+                                <td><a href="#">Mónica Ventura</a></td>
+                                <td>{{=T('hace')}} 1 hora</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">{{=T('Prensa')}}</a></td>
+                                <td><span class="label label-success">{{=T('Publicado'}}</span></td>
+                                <td><a href="#">{{=T('Nombre Apellido')}}</a></td>
+                                <td>h18/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">{{=T('Crea Poderopedia en tu País')}}</a></td>
+                                <td><span class="label label-success">{{=T('Publicado')}}</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>14/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">- Página hija de ítem superior</a></td>
+                                <td><span class="label label-success">{{=T('Publicado')}}</span></td>
+                                <td><a href="#">Estefanía Trisotti</a></td>
+                                <td>13/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">{{=T('Qué es poderopedia')}}</a></td>
+                                <td><span class="label label-success">{{=T('Publicado')}}</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>04/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>hace 44 min.</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Equipo</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Mónica Ventura</a></td>
+                                <td>hace 1 hora</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Prensa</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Nombre Apellido</a></td>
+                                <td>h18/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Crea Poderopedia en tu País</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>14/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">- Página hija de ítem superior</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Estefanía Trisotti</a></td>
+                                <td>13/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>04/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>hace 44 min.</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Equipo</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Mónica Ventura</a></td>
+                                <td>hace 1 hora</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Prensa</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Nombre Apellido</a></td>
+                                <td>h18/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Crea Poderopedia en tu País</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>14/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">- Página hija de ítem superior</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Estefanía Trisotti</a></td>
+                                <td>13/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>04/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Qué es poderopedia</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>hace 44 min.</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Equipo</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Mónica Ventura</a></td>
+                                <td>hace 1 hora</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Prensa</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Nombre Apellido</a></td>
+                                <td>h18/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
+                    
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td><a href="#">Crea Poderopedia en tu País</a></td>
+                                <td><span class="label label-success">Publicado</span></td>
+                                <td><a href="#">Miguel Paz</a></td>
+                                <td>14/04/2013</td>
+                                <td class="align-center"><i class="icon-cog"></i></td>
+                            </tr>
                         </tbody>
                     </table>
-                    <!-- End table -->
-
+                    <!-- END páginas estáticas -->
+                    
                     <div class="pagination pagination-centered">
                         <ul>
                             <li class="disabled"><a href="#">«</a></li>
@@ -306,3 +300,10 @@ Publicaciones Casos
                     </div>
 
                     <small>(8.520 Publicaciones)</small>
+                    
+                </div>
+                <!-- END span9 -->
+            </div>
+            <!-- END row -->
+
+

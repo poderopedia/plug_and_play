@@ -1,16 +1,294 @@
 def index():
     return locals()
 
+################################################################################
+################################################################################
+# Funciones de Creacion de Perfiles
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def quick_profile_persona():
+
+    my_dict = dict()
+
+    db.persona.state_collaboration.default = 'accepted';
+
+    my_dict['a_error']=''
+
+    label_dict = dict(ICN=T('Rut'), firstLastName=T('Apellido Paterno'),
+                      otherLastName=T('Apellido Materno'))
+    fields_dict = [
+        'ICN',
+        'firstName',
+        'firstLastName',
+        'otherLastName',
+        'alias',
+        'shortBio',
+        'countryofResidence',
+        'depiction'
+    ]
+
+    a_form = SQLFORM(db.persona, labels=label_dict, fields=fields_dict)
+
+    if a_form.process().accepted:
+        response.flash = T('Perfil creado con éxito')
+        #redirect(URL('accepted'))
+    elif a_form.errors:
+        my_dict['a_error'] = T('Ooops! Ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
+
+    my_dict['form']=a_form
+    return my_dict
+
+
+    
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def long_profile_persona():
+    db.persona.state_collaboration.default = 'accepted';
+
+    # STEPS: A dict with fields for each step
+    mysteps = [dict(title=T('Datos Básicos'),fields=['firstName','firstLastName', 'otherLastName','alias','shortBio','countryofResidence', 'depiction']),
+               dict(title=T('Más Información'),fields=['Mainsector','birth','isDead','countryofBirth','city','shortBio']),
+               dict(title=T('Redes Sociales'),fields=['web','twitterNick','facebookNick','linkedinNick']),
+               dict(title=T('Perfil Largo'),fields=['longBio'])]
+    # IMPORT: Import the module
+    from plugin_PowerFormWizard import PowerFormWizard
+    # CREATE: Create the form object just like the SQLFORM
+    form = PowerFormWizard(db.persona, steps=mysteps, options=dict(validate=True))
+    if(request.args(0)):
+        record=db.persona(request.args(0))
+        mysteps = [dict(title=T('Datos Básicos'),fields=['firstName','firstLastName', 'otherLastName','alias','shortBio','countryofResidence', 'depiction']),
+                   dict(title=T('Más Información'),fields=['Mainsector','birth','isDead','countryofBirth','city','shortBio']),
+                   dict(title=T('Redes Sociales'),fields=['web','twitterNick','facebookNick','linkedinNick']),
+                   dict(title=T('Perfil Largo'),fields=['longBio'])
+              ]
+   
+        form = PowerFormWizard(db.persona, steps=mysteps, options=dict(validate=True), record=record)
+
+    
+    # VALIDATE: web2py form validation
+    if form.accepts(request.vars, session):
+        response.flash = T('Persona creada con éxito')
+    elif form.errors:
+        form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
+        response.flash = T('Hay errores en el formulario')
+
+    # Enjoy!
+    return dict(form=form)
+
+
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def quick_profile_organizacion():
+    
+    db.Organizacion.state_collaboration.default = 'accepted';
+    my_dict = dict()
+
+
+    my_dict['a_error']=''
+
+    label_dict = dict(
+                tipoOrg=T('Tipo de Organización'), 
+                hasSocialReason= T('Nombre Legal (Razón Social)'),
+                alias= T('Nombre Corto'),
+                countryOfResidence= T('País'),
+                haslogo= T('Logotipo'),
+                shortBio= T('Reseña')
+                )
+
+    fields_dict = [
+        'tipoOrg',
+        'haslogo',
+        'hasSocialReason',
+        'hasTaxId',
+        'alias',
+        'countryOfResidence',
+        'shortBio'
+   ]
+
+    #modificar Organizacion para que tambien tenga estado de publicacion
+    a_form = SQLFORM(db.Organizacion, labels=label_dict, fields=fields_dict)
+
+    if a_form.process().accepted:
+         response.flash = T('Organización creada con éxito')
+        #redirect(URL('accepted'))
+    elif a_form.errors:
+        my_dict['a_error'] = T('Ooops! Ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
+
+    my_dict['form']=a_form
+    return my_dict
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def long_profile_organizacion():
+    db.Organizacion.state_collaboration.default = 'accepted';
+
+    # STEPS: A dict with fields for each step
+    mysteps = [dict(title=T('Datos Básicos'),fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
+               dict(title=T('Fuentes'),fields=['hasdocumentation','documentSource','documentCloud']),
+               dict(title=T('Reseña'),fields=['longBio','birth','is_active'])
+              ]
+    # IMPORT: Import the module
+    from plugin_PowerFormWizard import PowerFormWizard
+    # CREATE: Create the form object just like the SQLFORM
+    form = PowerFormWizard(db.Organizacion, steps=mysteps, options=dict(validate=True))
+    if(request.args(0)):
+        record=db.Organizacion(request.args(0))
+        mysteps = [dict(title=T('Datos Básicos'),fields=['tipoOrg', 'hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
+                   dict(title=T('Fuentes'),fields=['hasdocumentation','documentSource','documentCloud']),
+                   dict(title=T('Reseña'),fields=['longBio','birth','is_active'])
+                  ]
+        form = PowerFormWizard(db.Organizacion, steps=mysteps, options=dict(validate=True), record=record)
+
+
+    # VALIDATE: web2py form validation
+    if form.accepts(request.vars, session):
+        response.flash = T('Organización creada con éxito')
+    elif form.errors:
+        form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
+        response.flash = T('Hay errores en el formulario')
+
+    # Enjoy!
+    return dict(form=form)
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def quick_profile_empresa():
+    
+    db.Organizacion.state_collaboration.default = 'accepted';
+    db.Organizacion.tipoOrg.default = 2;
+    my_dict = dict()
+
+
+    my_dict['a_error']=''
+
+    label_dict = dict(
+                    hasSocialReason= T('Nombre Legal (Razón Social)'),
+                    alias= T('Nombre Corto'),
+                    countryOfResidence= T('País'),
+                    haslogo= T('Logotipo'),
+                    shortBio= T('Reseña')
+                )
+
+    fields_dict = [
+        'hasSocialReason',
+        'haslogo',
+        'hasTaxId',
+        'alias',
+        'countryOfResidence',
+        'shortBio'
+   ]
+
+    #modificar Empresa para que tambien tenga estado de publicacion
+    a_form = SQLFORM(db.Organizacion, labels=label_dict, fields=fields_dict)
+
+    if a_form.process().accepted:
+         response.flash = T('Empresa creada con éxito')
+        #redirect(URL('accepted'))
+    elif a_form.errors:
+        my_dict['a_error'] = T('Ooops! Ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
+
+    my_dict['form']=a_form
+    return my_dict
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def long_profile_empresa():
+    db.Organizacion.state_collaboration.default = 'accepted';
+    db.Organizacion.tipoOrg.default = 2;
+
+    # STEPS: A dict with fields for each step
+    mysteps = [dict(title=T('Datos Básicos'),fields=['hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
+               dict(title=T('Fuentes'),fields=['hasdocumentation','documentSource','documentCloud']),
+               dict(title=T('Reseña'),fields=['longBio','birth','is_active'])
+              ]
+    # IMPORT: Import the module
+    from plugin_PowerFormWizard import PowerFormWizard
+    # CREATE: Create the form object just like the SQLFORM
+    form = PowerFormWizard(db.Organizacion, steps=mysteps, options=dict(validate=True))
+    if(request.args(0)):
+        record=db.Organizacion(request.args(0))
+        mysteps = [dict(title=T('Datos Básicos'),fields=['hasSocialReason','alias','hasTaxId','haslogo','Mainsector','countryOfResidence', 'depiction','shortBio']),
+                   dict(title=T('Fuentes'),fields=['hasdocumentation','documentSource','documentCloud']),
+                   dict(title=T('Reseña'),fields=['longBio','birth','is_active'])
+                  ]
+        form = PowerFormWizard(db.Organizacion, steps=mysteps, options=dict(validate=True), record=record)
+
+
+    # VALIDATE: web2py form validation
+    if form.accepts(request.vars, session):
+        response.flash = T('Empresa creada con éxito')
+    elif form.errors:
+        form.step_validation() # VERY IMPORTANT FOR VALIDATION!!!!
+        response.flash = T('Hay errores en el formulario')
+
+    # Enjoy!
+    return dict(form=form)
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def quick_profile_case():
+
+    db.caso.state_collaboration.default = 'accepted';
+    my_dict = dict()
+
+    my_dict['a_error']=''
+
+    label_dict = dict(graph='')
+
+    a_form = SQLFORM(db.caso)
+
+    if a_form.process().accepted:
+        response.flash = T('Caso creado con éxito')
+        #redirect(URL('accepted'))
+    elif a_form.errors:
+        my_dict['a_error'] = T('Ooops! Ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
+
+    my_dict['form']=a_form
+    return my_dict
+
+@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+def long_profile_case():
+
+    db.caso.state_collaboration.default = 'accepted';
+    my_dict = dict()
+
+    my_dict['a_error']=''
+
+    label_dict = dict(graph='')
+
+    a_form = SQLFORM(db.caso)
+
+    if a_form.process().accepted:
+        response.flash = T('Caso creado con éxito')
+        #redirect(URL('accepted'))
+    elif a_form.errors:
+        my_dict['a_error'] = T('Ooops! Ocurrió un error')
+        response.flash = T('Hay errores en el formulario')
+
+    my_dict['form']=a_form
+    return my_dict
+
+################################################################################
+################################################################################
+# Seccion de administracion de los perfiles colaborados
+################################################################################
+################################################################################
+
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def admin_collaboration():
 
-    # Vista para mostrar el listado de personas y organizaciones sugeridas
+    # Vista para mostrar el listado de personas, organizaciones, empresas
+    # y casos colaboradas.
 
+    # Por default muestra las personas, si no se elige ninguno.
     if len(request.args) == 0:
-        redirect(URL('editor','admin_collaboration', args='persona'))
+        redirect(URL('collaboration','admin_collaboration', args='persona'))
 
 
     return locals()
+
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de personas
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_persona():
@@ -21,10 +299,12 @@ def display_persona():
                           'persona.firstLastName': T('Apellido Paterno'
                           ),
                           'persona.otherLastName': T('Apellido Materno'
+                          ),
+                          'persona.created_by': T('Creado por'
                           )}
 
     db.persona.created_by.readable = True
-    show_fields_persona = [ db.persona.ICN,
+    show_fields_persona = [db.persona.ICN,
                            db.persona.firstName,
                            db.persona.firstLastName,
                            db.persona.created_by]
@@ -32,8 +312,7 @@ def display_persona():
     # db.persona.created_by.represent=lambda id,row: db.auth_user(id).username
     query = ((db.persona.state_collaboration == 'accepted') & (db.persona.state_publication == 'draft'))
 
-    persona_grid = SQLFORM.grid(  # selectable=lambda ids: redirect(URL('sugerencia',
-                                  #         'accept_persona', vars=dict(id=ids))),
+    persona_grid = SQLFORM.grid(
         query,
         editable=True,
         details=False,
@@ -47,9 +326,9 @@ def display_persona():
         searchable=False,
         formname='persona_grid_form',
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('editor', 'accept_persona',
+               , _href=URL('collaboration', 'accept_persona',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('editor',
+               _class='w2p_trap button btn', _href=URL('collaboration',
                'reject_persona', vars=dict(id=row.id))),
                lambda row: A(T('Programar'), **{'_href':'../load_display_persona#Lightbox_schedulepersona','_class':'w2p_trap button btn programar_persona','_data-toggle':'modal','_id':str(row.id)})]
         )
@@ -81,7 +360,7 @@ def accept_persona():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni una Persona seleccionada')
+        session.flash = T('Ninguna Persona seleccionada')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -103,7 +382,7 @@ def reject_persona():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni una Persona seleccionada')
+        session.flash = T('Ninguna Persona seleccionada')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -135,7 +414,7 @@ def schedule_persona():
     a_form.vars.state_publication = 'programmed'
     a_form.vars.state_collaboration = 'accepted'
     if a_form.process().accepted:
-        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        response.flash = T('Su perfil de persona se hará público en la fecha elegida')
         redirect('../admin_collaboration',client_side=True)
     elif a_form.errors:
         my_dict['a_error'] = T('Oops! ocurrió un error')
@@ -143,13 +422,18 @@ def schedule_persona():
     my_dict['form'] = a_form
     return my_dict
 
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de organizaciones
+
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_organizacion():
 
     # Componente el cual muestra la grilla de organizaciones sugeridas
 
     label_dict_organizacion = \
-        {'tipoOrganizacion.name': T('Tipo Organización')}
+        {'tipoOrganizacion.name': T('Tipo Organización'),
+        'Organizacion.created_by': T('Creado por')}
 
     show_fields_organizacion = [db.Organizacion.tipoOrg,
                                 # db.tipoOrganizacion.name,
@@ -177,9 +461,9 @@ def display_organizacion():
         paginate=10,
         searchable=False,
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('editor', 'accept_organizacion',
+               , _href=URL('collaboration', 'accept_organizacion',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('editor',
+               _class='w2p_trap button btn', _href=URL('collaboration',
                'reject_organizacion', vars=dict(id=row.id))),
                lambda row: A(T('Programar'), **{'_href':'../load_display_organizacion#Lightbox_scheduleorganizacion','_class':'w2p_trap button btn programar_organizacion','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
@@ -232,7 +516,7 @@ def reject_organizacion():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni una Organizacion seleccionada')
+        session.flash = T('Ninguna Organizacion seleccionada')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -263,7 +547,7 @@ def schedule_organizacion():
     a_form.vars.state_publication = 'programmed'
     a_form.vars.state_collaboration = 'accepted'
     if a_form.process().accepted:
-        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        response.flash = T('Su perfil de organización se hará público en la fecha elegida')
         redirect('../admin_collaboration/organizacion',client_side=True)
     elif a_form.errors:
         my_dict['a_error'] = T('Oops! ocurrió un error')
@@ -271,13 +555,16 @@ def schedule_organizacion():
     my_dict['form'] = a_form
     return my_dict
 
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de empresas
+
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_empresa():
 
     label_dict_empresa = \
-        {'tipoOrganizacion.name': T('Tipo Organización')}
-
-
+        {'tipoOrganizacion.name': T('Tipo Organización'),
+        'Organizacion.created_by': T('Creado por')}
 
     # Componente el cual muestra la grilla de empresas sugeridas
 
@@ -307,9 +594,9 @@ def display_empresa():
         paginate=10,
         searchable=False,
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('editor', 'accept_organizacion',
+               , _href=URL('collaboration', 'accept_organizacion',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('editor',
+               _class='w2p_trap button btn', _href=URL('collaboration',
                'reject_organizacion', vars=dict(id=row.id))),
                lambda row: A(T('Programar'), **{'_href':'../load_display_empresa#Lightbox_scheduleempresa#Lightbox_scheduleempresa','_class':'w2p_trap button btn programar_empresa','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
@@ -346,7 +633,7 @@ def schedule_empresa():
     a_form.vars.state_publication = 'programmed'
     a_form.vars.state_collaboration = 'accepted'
     if a_form.process().accepted:
-        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        response.flash = T('Su perfil de empresa se hará público en la fecha elegida')
         redirect('../admin_collaboration/empresa',client_side=True)
     elif a_form.errors:
         my_dict['a_error'] = T('Oops! ocurrió un error')
@@ -354,15 +641,17 @@ def schedule_empresa():
     my_dict['form'] = a_form
     return my_dict
 
-
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de casos
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_caso():
 
-    # label_dict_empresa = \
-    #     {'tipoOrganizacion.name': T('Tipo Organización')}
-
     # Componente el cual muestra la grilla de empresas sugeridas
+
+    label_dict_caso = \
+        {'caso.created_by': T('Creado por')}
 
     show_fields_caso = [db.caso.id,
                         db.caso.name,
@@ -370,8 +659,6 @@ def display_caso():
                         db.caso.city,
                         db.caso.created_by]
     db.caso.created_by.readable=True
-
-    # db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
 
     query = ((db.caso.state_collaboration == 'accepted') & (db.caso.state_publication == 'draft'))
 
@@ -382,15 +669,15 @@ def display_caso():
         user_signature=True,
         deletable=False,
         fields=show_fields_caso,
-        # headers=label_dict_empresa,
+        headers=label_dict_caso,
         create=False,
         csv=False,
         paginate=10,
         searchable=False,
         links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
-               , _href=URL('editor', 'accept_caso',
+               , _href=URL('collaboration', 'accept_caso',
                vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
-               _class='w2p_trap button btn', _href=URL('editor',
+               _class='w2p_trap button btn', _href=URL('collaboration',
                'reject_caso', vars=dict(id=row.id))),
                lambda row: A(T('Programar'), **{'_href':'../load_display_caso#Lightbox_schedulecaso#Lightbox_schedulecaso','_class':'w2p_trap button btn programar_caso','_data-toggle':'modal','_id':str(row.id)})],
         links_in_grid=True,
@@ -415,12 +702,12 @@ def display_caso():
 def accept_caso():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
-    # para las personas seleccionadas en la grilla
+    # para los casos seleccionadas en la grilla
 
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni un Caso seleccionado')
+        session.flash = T('Ningún Caso seleccionado')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -437,12 +724,12 @@ def accept_caso():
 def reject_caso():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
-    # para las personas seleccionadas en la grilla
+    # para los casos seleccionadas en la grilla
 
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni un Caso seleccionado')
+        session.flash = T('Ningún Caso seleccionado')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -472,7 +759,7 @@ def schedule_caso():
     a_form.vars.state_publication = 'programmed'
     a_form.vars.state_collaboration = 'accepted'
     if a_form.process().accepted:
-        response.flash = T('Su publicación se hará pública en la fecha elegida')
+        response.flash = T('Su caso se hará público en la fecha elegida')
         redirect('../admin_collaboration/caso',client_side=True)
     elif a_form.errors:
         my_dict['a_error'] = T('Oops! ocurrió un error')
@@ -480,6 +767,9 @@ def schedule_caso():
     my_dict['form'] = a_form
     return my_dict
 
+################################################################################
+################################################################################
+# Funciones Auxiliares para Ajax
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
@@ -500,3 +790,5 @@ def load_display_empresa():
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def load_display_caso():
     return locals()
+
+

@@ -5,13 +5,18 @@ def index():
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def admin_desktop():
 
-    # Vista para mostrar el listado de personas y organizaciones sugeridas
+    # Vista para mostrar el listado de personas, organizaciones, empresas
+    # y casos sugeridos anonimamente.
 
+    # Por default muestra las personas, si no se elige ninguno.
     if len(request.args) == 0:
         redirect(URL('desktop','admin_desktop', args='persona'))
 
-
     return locals()
+
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de personas
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_persona():
@@ -76,6 +81,10 @@ def display_persona():
 
     return dict(persona_grid=persona_grid)
 
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de organizaciones
+
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_organizacion():
 
@@ -133,15 +142,16 @@ def display_organizacion():
 
     return dict(organizacion_grid=organizacion_grid)
 
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de empresas
+
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_empresa():
+    # Componente el cual muestra la grilla de empresas sugeridas
 
     label_dict_empresa = \
         {'tipoOrganizacion.name': T('Tipo Organización')}
-
-
-
-    # Componente el cual muestra la grilla de empresas sugeridas
 
     show_fields_empresa = [db.Organizacion.id,
                                 db.Organizacion.tipoOrg,
@@ -192,13 +202,12 @@ def display_empresa():
 
     return dict(empresa_grid=empresa_grid)
 
+################################################################################
+################################################################################
+# Funciones para administrar perfiles de casos
+
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def display_caso():
-
-    label_dict_empresa = \
-        {'tipoOrganizacion.name': T('Tipo Organización')}
-
-
 
     # Componente el cual muestra la grilla de empresas sugeridas
 
@@ -208,8 +217,6 @@ def display_caso():
                         db.caso.city,
                         db.caso.state_publication,
                         db.caso.state_collaboration]
-
-    # db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
 
     query = ((db.caso.created_by == auth.user_id ))
 
@@ -249,6 +256,9 @@ def display_caso():
 
     return dict(caso_grid=caso_grid)
 
+################################################################################
+################################################################################
+# Funciones Auxiliares para Ajax
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))

@@ -67,7 +67,6 @@
     <!-- response.files.append(URL('static','css/bootstrap.min.css'))-->
     {{response.files.append(URL('static','css/web2py_bootstrap.css'))
     response.files.append(URL('static','css/bootstrap_designer.css'))
-    
     response.files.append(URL('static','css/style.css'))
     }}
 
@@ -105,8 +104,8 @@
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{=T('Crear')}}<b class="caret"></b></a>
                                         {{if auth.has_membership("collaborator"):}}
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{=URL('colaborador','quick_profile_persona')}}"> Crear Persona</a></li>
-                                            <li><a href="{{=URL('colaborador','quick_profile_organizacion')}}"> Crear Organizacion</a></li>
+                                            <li><a href="{{=URL('collaboration','quick_profile_persona')}}"> Crear Persona</a></li>
+                                            <li><a href="{{=URL('collaboration','quick_profile_organizacion')}}"> Crear Organizacion</a></li>
                                         </ul>
                                         {{elif auth.user is None:}}
                                         <ul class="dropdown-menu">
@@ -170,10 +169,10 @@
                                 {{if (auth.has_membership("collaborator")): }}
                                 <ul id="collapse_desktop" class="accordion-body collapse">
                                     <li><a href="{{=URL('desktop','admin_desktop')}}">{{=T('Mis Publicaciones')}}</a></li>
-                                    <li><a href="{{=URL('colaborador','long_profile_persona')}}">{{=T('Nueva Persona')}}</a></li>
-                                    <li><a href="{{=URL('colaborador','long_profile_organizacion')}}">{{=T('Nueva Organizacion')}}</a></li>
-                                    <li><a href="{{=URL('colaborador','long_profile_empresa')}}">{{=T('Nueva Empresa')}}</a></li>
-                                    <li><a href="{{=URL('colaborador','long_profile_case')}}">{{=T('Nuevo Caso')}}</a></li>
+                                    <li><a href="{{=URL('collaboration','long_profile_persona')}}">{{=T('Nueva Persona')}}</a></li>
+                                    <li><a href="{{=URL('collaboration','long_profile_organizacion')}}">{{=T('Nueva Organizacion')}}</a></li>
+                                    <li><a href="{{=URL('collaboration','long_profile_empresa')}}">{{=T('Nueva Empresa')}}</a></li>
+                                    <li><a href="{{=URL('collaboration','long_profile_case')}}">{{=T('Nuevo Caso')}}</a></li>
                                </ul>
                                {{pass}}
                             </li>
@@ -196,13 +195,13 @@
                                 <ul id="collapseThree" class="accordion-body collapse">
                                     
                                     
-                                    <li><a href="{{=URL('editor','admin_collaboration')}}">{{=T('Todas las Colaboraciones')}}</a></li>
-                                    <li><a href="{{=URL('editor','admin_collaboration',args='persona')}}">{{=T('Personas')}}</a></li>
+                                    <li><a href="{{=URL('collaboration','admin_collaboration')}}">{{=T('Todas las Colaboraciones')}}</a></li>
+                                    <li><a href="{{=URL('collaboration','admin_collaboration',args='persona')}}">{{=T('Personas')}}</a></li>
 <!--                                     <li><a href="#">{{=T('Empresas')}}</a></li>
  -->
-                                    <li><a href="{{=URL('editor','admin_collaboration',args='organizacion')}}">{{=T('Organizaciones')}}</a></li>
-                                    <li><a href="{{=URL('editor','admin_collaboration',args='empresa')}}">{{=T('Empresas')}}</a></li>
-                                    <li><a href="{{=URL('editor','admin_collaboration',args='caso')}}">{{=T('Casos')}}</a></li>
+                                    <li><a href="{{=URL('collaboration','admin_collaboration',args='organizacion')}}">{{=T('Organizaciones')}}</a></li>
+                                    <li><a href="{{=URL('collaboration','admin_collaboration',args='empresa')}}">{{=T('Empresas')}}</a></li>
+                                    <li><a href="{{=URL('collaboration','admin_collaboration',args='caso')}}">{{=T('Casos')}}</a></li>
                                     
 <!--                                     <li><a href="#">{{=T('Casos')}}</a></li>
  -->                                </ul>
@@ -212,11 +211,11 @@
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseSuggestion" data-toggle="collapse" data-parent="#accordion2">{{=T('Sugerencias Anónimas')}}</a>
                                 <ul id="collapseSuggestion" class="accordion-body collapse">
-                                    <li><a href={{=URL('sugerencia','admin_suggestion')}} class="accordion-toggle">{{=T('Todas las sugerencias')}}</a></li>
-                                    <li><a href={{=URL('sugerencia','admin_suggestion',args='persona')}} class="accordion-toggle">{{=T('Personas')}}</a></li>
-                                    <li><a href={{=URL('sugerencia','admin_suggestion',args='organizacion')}} class="accordion-toggle">{{=T('Organizaciones')}}</a></li>
-                                    <li><a href={{=URL('sugerencia','admin_suggestion',args='empresa')}} class="accordion-toggle">{{=T('Empresas')}}</a></li>
-                                    <li><a href={{=URL('sugerencia','admin_suggestion',args='caso')}} class="accordion-toggle">{{=T('Casos')}}</a></li>
+                                    <li><a href={{=URL('suggestion','admin_suggestion')}} class="accordion-toggle">{{=T('Todas las sugerencias')}}</a></li>
+                                    <li><a href={{=URL('suggestion','admin_suggestion',args='persona')}} class="accordion-toggle">{{=T('Personas')}}</a></li>
+                                    <li><a href={{=URL('suggestion','admin_suggestion',args='organizacion')}} class="accordion-toggle">{{=T('Organizaciones')}}</a></li>
+                                    <li><a href={{=URL('suggestion','admin_suggestion',args='empresa')}} class="accordion-toggle">{{=T('Empresas')}}</a></li>
+                                    <li><a href={{=URL('suggestion','admin_suggestion',args='caso')}} class="accordion-toggle">{{=T('Casos')}}</a></li>
                                </ul>
                             </li>
                             {{pass}}

@@ -1,0 +1,12 @@
+{{ =caso_grid }}
+
+{{block content}}
+<script type="text/javascript">
+    $('.programar_caso').click(function (e){
+        e.preventDefault();
+        _id = this.id;
+        web2py_component("/plug_and_play/collaboration/schedule_caso.load/"+_id,"schedule_caso");
+    });
+</script>
+{{end}}
+
