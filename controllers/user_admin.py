@@ -1,9 +1,9 @@
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def index():
     redirect(URL('user_admin','list_users'))
     return locals()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def list_users():
 
     label_dict_user = {'auth_user.username':T('Nombre de Usuario'),'auth_user.first_name':T('Nombre'),'auth_user.last_name':T('Apellido'),'auth_group.role':T('Rol'),'auth_user.email':T('Email')}
@@ -33,7 +33,7 @@ def list_users():
 
     return dict(table=grid)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def manage_user():
     user_id = request.args(0) or redirect(URL('list_users'))
     form = SQLFORM(db.auth_user, user_id)
@@ -43,7 +43,7 @@ def manage_user():
                             ajax=True)
     return dict(form=form,membership_panel=membership_panel)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def manage_membership():
     user_id = request.args(0) or redirect(URL('list_users'))
     db.auth_membership.user_id.default = int(user_id)

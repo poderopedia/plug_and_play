@@ -2,7 +2,7 @@ def index():
     redirect(URL('default','inicio'))
     return locals()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def admin_desktop():
 
     # Vista para mostrar el listado de personas, organizaciones, empresas
@@ -18,7 +18,7 @@ def admin_desktop():
 ################################################################################
 # Funciones para administrar perfiles de personas
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def display_persona():
 
     # Componente el cual muestra la grilla de personas sugeridas
@@ -85,7 +85,7 @@ def display_persona():
 ################################################################################
 # Funciones para administrar perfiles de organizaciones
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def display_organizacion():
 
     # Componente el cual muestra la grilla de organizaciones sugeridas
@@ -146,7 +146,7 @@ def display_organizacion():
 ################################################################################
 # Funciones para administrar perfiles de empresas
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def display_empresa():
     # Componente el cual muestra la grilla de empresas sugeridas
 
@@ -206,7 +206,7 @@ def display_empresa():
 ################################################################################
 # Funciones para administrar perfiles de casos
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def display_caso():
 
     # Componente el cual muestra la grilla de empresas sugeridas
@@ -261,21 +261,21 @@ def display_caso():
 # Funciones Auxiliares para Ajax
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def load_display_persona():
     return locals()
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def load_display_organizacion():
     return locals()
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def load_display_empresa():
     return locals()
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def load_display_caso():
     return locals()
