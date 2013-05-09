@@ -1,6 +1,6 @@
 <div class="tab-pane {{if request.args(0) == 'persona':}} active {{pass}}" id="persona">
         <!-- <h3> {{ =T("Personas") }}</h3> -->
-        {{ =LOAD(c='editor',f='display_persona.load', ajax=True, user_signature=True) }}
+        {{ =LOAD(c='collaboration',f='display_persona.load', ajax=True, user_signature=True) }}
         <!--Lightbox_schedulepersona-->
         <div class="modal hide fade" id="Lightbox_schedulepersona">
             <div class="modal-header clearfix">

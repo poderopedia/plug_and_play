@@ -231,7 +231,7 @@ def accept_persona():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni una Persona seleccionada')
+        session.flash = T('Ninguna Persona seleccionada')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -253,7 +253,7 @@ def reject_persona():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni una Persona seleccionada')
+        session.flash = T('Ninguna Persona seleccionada')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -333,7 +333,7 @@ def accept_organizacion():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni una Organizacion seleccionada')
+        session.flash = T('Ninguna Organizacion seleccionada')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -355,7 +355,7 @@ def reject_organizacion():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni una Organizacion seleccionada')
+        session.flash = T('Ninguna Organización seleccionada')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -489,7 +489,7 @@ def accept_caso():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni un Caso seleccionado')
+        session.flash = T('Ningún Caso seleccionado')
 
     # if len(ids_to_accept) == 1:
     a_id = int(ids_to_accept)
@@ -511,7 +511,7 @@ def reject_caso():
     if 'id' in request.vars:
         ids_to_accept = request.vars['id']
     else:
-        session.flash = T('Ni un Caso seleccionado')
+        session.flash = T('Ningún Caso seleccionado')
 
     a_id = int(ids_to_accept)
     a_caso = db(db.caso.id == a_id).select().first()

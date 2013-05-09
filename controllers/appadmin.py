@@ -199,7 +199,7 @@ def select():
     form = FORM(TABLE(TR(T('Query:'), '', INPUT(_style='width:400px',
                 _name='query', _value=request.vars.query or '',
                 requires=IS_NOT_EMPTY(
-                    error_message=T("Cannot be empty")))), TR(T('Update:'),
+                    error_message=T('Cannot be empty')))), TR(T('Update:'),
                 INPUT(_name='update_check', _type='checkbox',
                 value=False), INPUT(_style='width:400px',
                 _name='update_fields', _value=request.vars.update_fields
