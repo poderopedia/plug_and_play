@@ -1,0 +1,25 @@
+{{response.files.append(URL('static','js/jquery-1.7.1.js'))}}
+{{response.files.append(URL('static','js/jquery-ui.js'))}}
+{{response.files.append(URL('static','js/jquery-ui.triggeredAutocomplete.js'))}}
+{{response.files.append(URL('static','js/testBox.js'))}}
+{{response.files.append(URL('static','css/jquery-ui.css'))}}
+
+
+{{include 'web2py_ajax.html'}}
+
+<h1>Esta es la plantilla de autocompletar (symboltags)/index.html</h1>
+{{=BEAUTIFY(response._vars)}}
+
+
+
+<!-- <script>
+$('#SymbolTF').triggeredAutocomplete({
+    hidden: '#hidden_inputbox',
+   source: new Array({ "value": "1234", "label": 'Geech'}, {"value": "5312", "label": "Marf"}),
+    trigger: "@",
+    maxLength: 25
+});
+</script>
+-->
+<textarea id='inputbox' style='width: 400px; height: 90px;'></textarea>
+<!-- <textarea id="SymbolTF" rows="4" cols="50"></textarea> -->
