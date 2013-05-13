@@ -7,7 +7,7 @@ def index():
 def list_users():
 
     label_dict_user = {'auth_user.username':T('Nombre de Usuario'),'auth_user.first_name':T('Nombre'),'auth_user.last_name':T('Apellido'),'auth_group.role':T('Rol'),'auth_user.email':T('Email')}
-    
+   
     query = ( ((db.auth_user.id == db.auth_membership.user_id)) & ((db.auth_membership.group_id == db.auth_group.id)))
 
     fields_dict = [db.auth_user.username,
@@ -22,7 +22,7 @@ def list_users():
     deletable = True,
     user_signature = True,
     fields = fields_dict,
-    create = False,
+    create = True,
     headers = label_dict_user,
     csv = False,
     paginate = 10,
@@ -35,17 +35,30 @@ def list_users():
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def manage_user():
+    db.auth_user.id.readable = False
     user_id = request.args(0) or redirect(URL('list_users'))
-    form = SQLFORM(db.auth_user, user_id)
+    
+    label_dict_user = dict(username=T('Nombre de Usuario'),first_name=T('Nombre'),last_name=T('Apellido'),email=T('Email'))
+    fields_dict = ['username',
+                   'first_name',
+                   'last_name',
+                   'email']
+
+
+    form = SQLFORM(db.auth_user, user_id,fields = fields_dict, labels = label_dict_user,submit_button = T('Enviar'))
     membership_panel = LOAD(request.controller,
                             'manage_membership.html',
                             args=[user_id],
                             ajax=True)
-    return dict(form=form,membership_panel=membership_panel)
+    form.add_button(T('Atrás'),URL('user_admin','list_users'))
+    my_dict = dict(form=form,membership_panel=membership_panel)
+    return my_dict 
 
 @auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
 def manage_membership():
     user_id = request.args(0) or redirect(URL('list_users'))
+
+
     db.auth_membership.user_id.default = int(user_id)
     db.auth_membership.user_id.writable = False
 
