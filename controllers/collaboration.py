@@ -5,7 +5,7 @@ def index():
 ################################################################################
 # Funciones de Creacion de Perfiles
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def quick_profile_persona():
 
     my_dict = dict()
@@ -41,7 +41,7 @@ def quick_profile_persona():
 
 
     
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def long_profile_persona():
     db.persona.state_collaboration.default = 'accepted';
 
@@ -77,7 +77,7 @@ def long_profile_persona():
 
 
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def quick_profile_organizacion():
     
     db.Organizacion.state_collaboration.default = 'accepted';
@@ -118,7 +118,7 @@ def quick_profile_organizacion():
     my_dict['form']=a_form
     return my_dict
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def long_profile_organizacion():
     db.Organizacion.state_collaboration.default = 'accepted';
 
@@ -150,7 +150,7 @@ def long_profile_organizacion():
     # Enjoy!
     return dict(form=form)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def quick_profile_empresa():
     
     db.Organizacion.state_collaboration.default = 'accepted';
@@ -190,7 +190,7 @@ def quick_profile_empresa():
     my_dict['form']=a_form
     return my_dict
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def long_profile_empresa():
     db.Organizacion.state_collaboration.default = 'accepted';
     db.Organizacion.tipoOrg.default = 2;
@@ -223,7 +223,7 @@ def long_profile_empresa():
     # Enjoy!
     return dict(form=form)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def quick_profile_case():
 
     db.caso.state_collaboration.default = 'accepted';
@@ -245,7 +245,7 @@ def quick_profile_case():
     my_dict['form']=a_form
     return my_dict
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR) or auth.has_membership(group_id = ROLE_NAME_COLLABORATOR))
 def long_profile_case():
 
     db.caso.state_collaboration.default = 'accepted';
@@ -273,7 +273,7 @@ def long_profile_case():
 ################################################################################
 ################################################################################
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def admin_collaboration():
 
     # Vista para mostrar el listado de personas, organizaciones, empresas
@@ -290,7 +290,7 @@ def admin_collaboration():
 ################################################################################
 # Funciones para administrar perfiles de personas
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def display_persona():
 
     # Componente el cual muestra la grilla de personas sugeridas
@@ -351,7 +351,7 @@ def display_persona():
 
     return dict(persona_grid=persona_grid)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def accept_persona():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -373,7 +373,7 @@ def accept_persona():
 
     return dict()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def reject_persona():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -396,7 +396,7 @@ def reject_persona():
 
     return dict()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def schedule_persona():
     # Formulario de programacion para publicacion de personas
     my_dict = dict()
@@ -426,7 +426,7 @@ def schedule_persona():
 ################################################################################
 # Funciones para administrar perfiles de organizaciones
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def display_organizacion():
 
     # Componente el cual muestra la grilla de organizaciones sugeridas
@@ -484,7 +484,7 @@ def display_organizacion():
 
     return dict(organizacion_grid=organizacion_grid)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def accept_organizacion():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -507,7 +507,7 @@ def accept_organizacion():
 
     return dict()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def reject_organizacion():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -531,7 +531,7 @@ def reject_organizacion():
 
     return dict()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def schedule_organizacion():
     # Formulario de programacion de publicacion para organizaciones
     my_dict = dict()
@@ -559,7 +559,7 @@ def schedule_organizacion():
 ################################################################################
 # Funciones para administrar perfiles de empresas
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def display_empresa():
 
     label_dict_empresa = \
@@ -617,7 +617,7 @@ def display_empresa():
 
     return dict(empresa_grid=empresa_grid)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def schedule_empresa():
     # Formulario de programacion de publicacion para empresas
     my_dict = dict()
@@ -645,7 +645,7 @@ def schedule_empresa():
 ################################################################################
 # Funciones para administrar perfiles de casos
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def display_caso():
 
     # Componente el cual muestra la grilla de empresas sugeridas
@@ -698,7 +698,7 @@ def display_caso():
 
     return dict(caso_grid=caso_grid)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def accept_caso():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -720,7 +720,7 @@ def accept_caso():
 
     return dict()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def reject_caso():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -743,7 +743,7 @@ def reject_caso():
 
     return dict()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def schedule_caso():
     # Formulario de programacion de publicacion para casos
     my_dict = dict()
@@ -772,22 +772,22 @@ def schedule_caso():
 # Funciones Auxiliares para Ajax
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def load_display_persona():
     return locals()
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def load_display_organizacion():
     return locals()
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def load_display_empresa():
     return locals()
 
 #funcion auxiliar usada para mostrar el ajax sin que se recargue la pagina completa dentro del div
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def load_display_caso():
     return locals()
 

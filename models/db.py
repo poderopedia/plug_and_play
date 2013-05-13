@@ -103,18 +103,20 @@ db.auth_user.username.requires = IS_NOT_IN_DB(db, db.auth_user.username)
 db.auth_user.email.requires = \
     (IS_EMAIL(error_message=auth.messages.invalid_email),
      IS_NOT_IN_DB(db, db.auth_user.email))
-auth.define_tables(migrate=False)
+auth.define_tables(migrate=True)
 
 ## configure email
 
 mail = auth.settings.mailer
 
 ## configure auth policy
-auth.settings.create_user_groups = False;
-auth.settings.everybody_group_id = 5; #todo usuario nuevo tiene grupo colaborador
+auth.settings.create_user_groups = False
+#auth.settings.everybody_group_id = 5 #todo usuario nuevo tiene grupo colaborador ( se establece ahora en controller setup.py)
 auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
+
+
 
 ## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.
 ## register with janrain.com, write your domain:api_key in private/janrain.key
@@ -146,10 +148,11 @@ db.rdf_namespaces = \
     {'_xmlns:rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
      '_xmlns:relational': 'http://www.dbs.cs.uni-duesseldorf.de/RDF/relational.owl#',
      '_xmlns:rdfs': 'http://www.w3.org/2000/01/rdf-schema#'}
-
-def advanced_editor(field, value):
-    return TEXTAREA(_id = str(field).replace('.','_'), _name=field.name, _class='text ckeditor', value=value, _cols=80, _rows=10)
-
+     
+     
+from plugin_ckeditor import CKEditor
+ckeditor = CKEditor(db)
+ckeditor.define_tables()
 
 def select_datewidget(field, value):
     MINYEAR = 1900
@@ -355,7 +358,7 @@ db.define_table(  # #Field('birth', db.birthEvent, label='Fecha de Nacimiento', 
           ), requires=IS_IN_DB(db, 'sector.id', 'db.sector.name',
           multiple=True)),
     Field('depiction', 'upload', label=T('Foto'), required=False),
-    Field('shortBio', 'text', label=T('Reseña')),
+    Field('shortBio', 'text', label=T('Reseña'), widget = ckeditor.widget),
     Field('longBio', 'text', requires=IS_LENGTH(65536),
           label=T('Perfil largo')),
     Field('documentSource', 'list:reference document', required=False,
@@ -841,7 +844,7 @@ db.define_table('importer', Field('filename', 'upload',
 me = auth.user_id
 
 #listar los campos que usan ckeditor
-db.persona.shortBio.widget = advanced_editor
-db.persona.longBio.widget  = advanced_editor
-db.Organizacion.shortBio.widget = advanced_editor
-db.Organizacion.longBio.widget  = advanced_editor
+#db.persona.shortBio.widget = ckeditor.widget
+#db.persona.longBio.widget  = ckeditor.widget
+#db.Organizacion.shortBio.widget = ckeditor.widget
+#db.Organizacion.longBio.widget  = ckeditor.widget

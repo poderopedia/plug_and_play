@@ -17,6 +17,8 @@ def agregar_rol_colaborador():
     rol_autor = db(db.auth_group.role=='colaborador').select().first()
     if not rol_autor:
         id = db.auth_group.insert(role='colaborador',description='Este tipo de usuario  es el que crea colaboraciones. No requiere invitación.')
+        auth = Auth(db)        
+        auth.settings.everybody_group_id = id #todo usuario nuevo tiene grupo colaborador
     return id
 
 def agregar_rol_editor():

@@ -102,7 +102,7 @@
                                 <li>
                                     <div class="dropdown" >
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{=T('Crear')}}<b class="caret"></b></a>
-                                        {{if auth.has_membership("collaborator"):}}
+                                        {{if auth.has_membership(ROLE_NAME_COLLABORATOR):}}
                                         <ul class="dropdown-menu">
                                             <li><a href="{{=URL('collaboration','quick_profile_persona')}}"> Crear Persona</a></li>
                                             <li><a href="{{=URL('collaboration','quick_profile_organizacion')}}"> Crear Organizacion</a></li>
@@ -166,7 +166,7 @@
                         <ul id="accordion2" class="accordion">
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapse_desktop" data-toggle="collapse" >{{=T('Escritorio')}}</a>
-                                {{if (auth.has_membership("collaborator")): }}
+                                {{if (auth.has_membership(ROLE_NAME_COLLABORATOR)): }}
                                 <ul id="collapse_desktop" class="accordion-body collapse">
                                     <li><a href="{{=URL('desktop','admin_desktop')}}">{{=T('Mis Publicaciones')}}</a></li>
                                     <li><a href="{{=URL('collaboration','long_profile_persona')}}">{{=T('Nueva Persona')}}</a></li>
@@ -176,7 +176,7 @@
                                </ul>
                                {{pass}}
                             </li>
-                            {{if (auth.has_membership("admin")): }}
+                            {{if (auth.has_membership(ROLE_NAME_ADMIN)): }}
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapse_publications" data-toggle="collapse" data-parent="#accordion2">{{=T('Publicaciones')}}</a>
                                 <ul id="collapse_publications" class="accordion-body collapse">
@@ -189,7 +189,7 @@
                                </ul>
                             </li>
                             {{pass}}
-                            {{if (auth.has_membership("admin")): }}
+                            {{if (auth.has_membership(ROLE_NAME_ADMIN)): }}
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseThree" data-toggle="collapse" data-parent="#accordion2">{{=T('Colaboraciones')}}</a>
                                 <ul id="collapseThree" class="accordion-body collapse">
@@ -207,7 +207,7 @@
  -->                                </ul>
                             </li>
                             {{pass}}
-                            {{ if auth.has_membership("admin"): }}
+                            {{ if (auth.has_membership(ROLE_NAME_ADMIN)): }}
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseSuggestion" data-toggle="collapse" data-parent="#accordion2">{{=T('Sugerencias Anónimas')}}</a>
                                 <ul id="collapseSuggestion" class="accordion-body collapse">
@@ -219,7 +219,7 @@
                                </ul>
                             </li>
                             {{pass}}
-                            {{ if auth.has_membership("admin"): }}
+                            {{ if (auth.has_membership(ROLE_NAME_ADMIN)): }}
                             <!-- <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseFour" data-toggle="collapse" data-parent="#accordion2">{{=T('Páginas')}}</a>
                                 <ul id="collapseFour" class="accordion-body collapse">     
@@ -234,7 +234,7 @@
                                 </ul>
                             </li>
                             {{pass}}
-                            {{if (auth.has_membership("collaborator")): }}
+                            {{if (auth.has_membership(ROLE_NAME_SUPER_ADMIN) or auth.has_membership(ROLE_NAME_ADMIN) or auth.has_membership(ROLE_NAME_EDITOR) or auth.has_membership(ROLE_NAME_AUTOR) or auth.has_membership(ROLE_NAME_COLLABORATOR)): }}
                             <li class="collapsed">
                                 <a class="accordion-toggle accordion-heading" href="#collapseSix" data-toggle="collapse" data-parent="#accordion2">{{=T('Configuración')}}</a>
                                 <ul id="collapseSix" class="accordion-body collapse">

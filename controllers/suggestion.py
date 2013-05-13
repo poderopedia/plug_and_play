@@ -153,7 +153,7 @@ def add_caso():
 ################################################################################
 ################################################################################
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def admin_suggestion():
 
     # Vista para mostrar el listado de personas y organizaciones sugeridas
@@ -167,7 +167,7 @@ def admin_suggestion():
 ################################################################################
 # Funciones para administrar perfiles de personas
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def display_persona():
 
     # Componente el cual muestra la grilla de personas sugeridas
@@ -222,7 +222,7 @@ def display_persona():
 
     return dict(persona_grid=persona_grid)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def accept_persona():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -244,7 +244,7 @@ def accept_persona():
 
     return dict()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def reject_persona():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -270,7 +270,7 @@ def reject_persona():
 ################################################################################
 # Funciones para administrar perfiles de organizaciones
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def display_organizacion():
 
     # Componente el cual muestra la grilla de organizaciones sugeridas
@@ -324,7 +324,7 @@ def display_organizacion():
 
     return dict(organizacion_grid=organizacion_grid)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def accept_organizacion():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -346,7 +346,7 @@ def accept_organizacion():
 
     return dict()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def reject_organizacion():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -372,7 +372,7 @@ def reject_organizacion():
 ################################################################################
 # Funciones para administrar perfiles de empresas
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def display_empresa():
 
     # Componente el cual muestra la grilla de empresas sugeridas
@@ -430,7 +430,7 @@ def display_empresa():
 ################################################################################
 # Funciones para administrar perfiles de casos
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def display_caso():
 
     # Componente el cual muestra la grilla de casos sugeridos
@@ -480,7 +480,7 @@ def display_caso():
 
     return dict(caso_grid=caso_grid)
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def accept_caso():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
@@ -502,7 +502,7 @@ def accept_caso():
 
     return dict()
 
-@auth.requires(auth.has_membership(group_id = 'superadmin') or auth.has_membership(group_id = 'admin') or auth.has_membership(group_id = 'editor'))
+@auth.requires(auth.has_membership(group_id = ROLE_NAME_SUPER_ADMIN) or auth.has_membership(group_id = ROLE_NAME_ADMIN) or auth.has_membership(group_id = ROLE_NAME_EDITOR))
 def reject_caso():
 
     # Funcion que pasa el estado de colaboracion de revision a aceptado
