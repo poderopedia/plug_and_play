@@ -1,1 +1,4 @@
 {{=organizacion_grid}}
+<script type="text/javascript">
+    deleteCKEditorInstances();
+</script>
