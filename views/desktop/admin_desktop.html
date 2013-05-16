@@ -1,4 +1,12 @@
 {{extend '_index.html'}}
+<!-- El siguiente bloque es para que las vistas llamadas al "editar", 
+        puedan utilizar la función que muestra correctamente el
+        plugin de ckeditor -->
+{{
+response.files.insert(0,URL('static','plugin_ckeditor/ckeditor_basic.js'))
+response.include_meta()
+response.include_files()
+}}
 {{block title}}
 Mis Publicaciones
 {{end}}
@@ -10,8 +18,9 @@ Mis Publicaciones
   <li id="nav_empresa" {{if request.args(0) == 'empresa':}} class = "active" {{pass}}><a href="#empresa">{{=T('Empresas')}}</a></li>
   <li id="nav_caso" {{if request.args(0) == 'caso':}} class = "active" {{pass}}><a href="#caso">{{=T('Casos')}}</a></li>
 </ul>
- 
-<div class="tab-content">
+
+
+<div class="tab-content">  
   <div class="tab-pane {{if request.args(0) == 'persona':}} active {{pass}}" id="persona">
     <!-- <h3> {{ =T("Personas") }}</h3> -->
     {{ =LOAD(c='desktop',f='display_persona.load', ajax=True, user_signature=True) }}
@@ -92,7 +101,7 @@ Mis Publicaciones
         $(this).tab('show');
     });
 
-$('.programar_persona').click(function(e) {
+    $('.programar_persona').click(function(e) {
         e.preventDefault();
         _id = this.id
         web2py_component("{{=URL('editor','schedule_persona.load',args="+_id+")}}","schedule_persona")
@@ -109,7 +118,6 @@ $('.programar_empresa').click(function(e) {
         _id = this.id
         web2py_component("{{=URL('editor','schedule_organizacion.load',args="+_id+")}}","schedule_empresa")
     });
-
 </script>
 
 {{end}}

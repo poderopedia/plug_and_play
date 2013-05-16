@@ -422,5 +422,28 @@
         }} -->
 
         {{end}}
+        
+        <!-- Bloque Ckeditor -->
+        <script type="text/javascript">
+            function deleteCKEditorInstances() {
+                //Necesario para que funcione el plugin ckeditor en los grids
+                //El siguiente bloque "recarga" los widgets CKEditor. (en realidad, los elimina,  el plugin los recarga luego)
+                if (CKEDITOR && CKEDITOR.instances) {
+                    for (var oldName in CKEDITOR.instances) {
+                        //en la pagina de donde se sacó el código, se realiza un cambio de nombres
+                        //source: http://stackoverflow.com/questions/1794219/ckeditor-instance-already-exists
+                        //como utilizamos un plugin, la utilizacion no es la misma, y parece ser innecesario
+                        //var newName = "ajax"+oldName;
+                        //CKEDITOR.instances[newName] = CKEDITOR.instances[oldName];
+                        //CKEDITOR.instances[newName].name = newName;
+                        delete CKEDITOR.instances[oldName];
+                    }
+                }
+                //el bloque anterior, en funcionalidad es equivalente a 
+                //CKEDITOR.instances = new Array();
+                //pero pareciera mas apropiado en cuanto al manejo de memoria
+            }
+        </script>
+        <!-- END Bloque Ckeditor -->
     </body>
 </html>

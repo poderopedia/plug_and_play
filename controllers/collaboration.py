@@ -27,7 +27,7 @@ def quick_profile_persona():
         'depiction'
     ]
 
-    a_form = SQLFORM(db.persona, labels=label_dict, fields=fields_dict)
+    a_form = SQLFORM(db.persona, labels=label_dict, fields=fields_dict,sumbit_button=T('Enviar'))
 
     if a_form.process().accepted:
         response.flash = T('Perfil creado con éxito')

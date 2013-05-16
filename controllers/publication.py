@@ -33,6 +33,13 @@ def display_persona():
                           )}
 
     db.persona.created_by.readable = True
+    db.persona.state_collaboration.default = 'accepted'
+    db.persona.state_collaboration.readable = False
+    db.persona.state_publication.default   = 'published'
+    db.persona.state_publication.writable = True
+    db.persona.date_publication.writable = True
+    db.persona.date_publication.readable = True
+    	
     show_fields_persona = [db.persona.id, db.persona.ICN,
                            db.persona.firstName,
                            db.persona.firstLastName,
@@ -47,15 +54,15 @@ def display_persona():
                                   #         'accept_persona', vars=dict(id=ids))),
         query,
         editable=True,
-        details=False,
+        details=True,
         deletable=False,
         user_signature=True,
         fields=show_fields_persona,
-        create=False,
+        create=True,
         headers=label_dict_persona,
         csv=False,
         paginate=10,
-        searchable=False,
+        searchable=True,
         formname='persona_grid_form',
         # links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
         #        , _href=URL('editor', 'accept_persona',
@@ -105,6 +112,13 @@ def display_organizacion():
 
     db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
     db.Organizacion.created_by.readable=True
+    db.Organizacion.created_by.readable = True
+    db.Organizacion.state_collaboration.default = 'accepted'
+    db.Organizacion.state_collaboration.readable = False
+    db.Organizacion.state_publication.default   = 'published'
+    db.Organizacion.state_publication.writable = True
+    db.Organizacion.date_publication.writable = True
+    db.Organizacion.date_publication.readable = True
 
     query = ((db.Organizacion.tipoOrg != 2) & \
             (db.Organizacion.state_collaboration == 'accepted') & (db.Organizacion.state_publication != 'draft'))
@@ -112,15 +126,15 @@ def display_organizacion():
     organizacion_grid = SQLFORM.grid(
         query,
         editable=True,
-        details=False,
+        details=True,
         user_signature=True,
         deletable=False,
         fields=show_fields_organizacion,
         headers=label_dict_organizacion,
-        create=False,
+        create=True,
         csv=False,
         paginate=10,
-        searchable=False,
+        searchable=True,
         # links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
         #        , _href=URL('editor', 'accept_organizacion',
         #        vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
@@ -164,7 +178,14 @@ def display_empresa():
                                 db.Organizacion.alias,
                                 db.Organizacion.created_by]
     db.Organizacion.created_by.readable=True
-
+    db.Organizacion.created_by.readable=True
+    db.Organizacion.created_by.readable = True
+    db.Organizacion.state_collaboration.default = 'accepted'
+    db.Organizacion.state_collaboration.readable = False
+    db.Organizacion.state_publication.default   = 'published'
+    db.Organizacion.state_publication.writable = True
+    db.Organizacion.date_publication.writable = True
+    db.Organizacion.date_publication.readable = True
 
     db.Organizacion.tipoOrg.represent=lambda id,row: db.tipoOrganizacion(id).name
 
@@ -174,15 +195,15 @@ def display_empresa():
     empresa_grid = SQLFORM.grid(
         query,
         editable=True,
-        details=False,
+        details=True,
         user_signature=True,
         deletable=False,
         fields=show_fields_empresa,
         headers=label_dict_empresa,
-        create=False,
+        create=True,
         csv=False,
         paginate=10,
-        searchable=False,
+        searchable=True,
         # links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
         #        , _href=URL('editor', 'accept_organizacion',
         #        vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
@@ -224,21 +245,30 @@ def display_caso():
                         db.caso.city,
                         db.caso.created_by]
     db.caso.created_by.readable=True
+    db.caso.created_by.readable=True
+    db.caso.created_by.readable = True
+    db.caso.state_collaboration.default = 'accepted'
+    db.caso.state_collaboration.readable = False
+    db.caso.state_publication.default   = 'published'
+    db.caso.state_publication.writable = True
+    db.caso.date_publication.writable = True
+    db.caso.date_publication.readable = True
+
 
     query = ((db.caso.state_collaboration == 'accepted') & (db.caso.state_publication != 'draft'))
 
     caso_grid = SQLFORM.grid(
         query,
         editable=True,
-        details=False,
+        details=True,
         user_signature=True,
         deletable=False,
         fields=show_fields_caso,
         headers=label_dict_caso,
-        create=False,
+        create=True,
         csv=False,
         paginate=10,
-        searchable=False,
+        searchable=True,
         # links=[lambda row: A(T('Aceptar'), _class='w2p_trap button btn'
         #        , _href=URL('editor', 'accept_caso',
         #        vars=dict(id=row.id))), lambda row: A(T('Rechazar'),
