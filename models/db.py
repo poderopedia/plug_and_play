@@ -152,7 +152,7 @@ db.rdf_namespaces = \
      
 from plugin_ckeditor import CKEditor
 ckeditor = CKEditor(db)
-ckeditor.define_tables()
+# ckeditor.define_tables()
 
 def select_datewidget(field, value):
     MINYEAR = 1900
@@ -358,7 +358,7 @@ db.define_table(  # #Field('birth', db.birthEvent, label='Fecha de Nacimiento', 
           ), requires=IS_IN_DB(db, 'sector.id', 'db.sector.name',
           multiple=True)),
     Field('depiction', 'upload', label=T('Foto'), required=False),
-    Field('shortBio', 'text', label=T('Reseña'), widget = ckeditor.widget),
+    Field('shortBio', 'text', label=T('Reseña')),
     Field('longBio', 'text', requires=IS_LENGTH(65536),
           label=T('Perfil largo')),
     Field('documentSource', 'list:reference document', required=False,

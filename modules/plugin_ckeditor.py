@@ -63,6 +63,7 @@ class CKEditor(object):
             fake_migrate = fake_migrate,
             format = '%(title)s'
         )
+        
         self.settings.table_upload.upload.requires = [
             IS_NOT_EMPTY(),
             IS_LENGTH(maxsize=self.settings.file_length_max, minsize=self.settings.file_length_min),

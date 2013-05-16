@@ -68,6 +68,7 @@
     {{response.files.append(URL('static','css/web2py_bootstrap.css'))
     response.files.append(URL('static','css/bootstrap_designer.css'))
     response.files.append(URL('static','css/style.css'))
+    response.files.append(URL('static','css/jquery-ui.css'))
     }}
 
     <!-- inlcude javascript -->
@@ -375,17 +376,45 @@
         </footer>
         <!-- END footer-->
         {{block script}}
-        <!--<script src="{{=URL('static','js/jquery.js')}}"></script>-->
-
+        
+        <!-- <script src="{{=URL('static','js/jquery.js')}}"></script> -->
         <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
-        <!--  -->
         <script src="{{=URL('static','js/web2py_bootstrap.js')}}"></script>
+        
+
+        <script src="{{=URL('static','js/jquery-ui.js')}}"></script>
+        <script src="{{=URL('static','js/jquery-ui.triggeredAutocomplete.js')}}"></script>
 
         <script>
             $('a[rel="tooltip"]').tooltip();
             $(document).ready(function () {
                 $('.dropdown-toggle').dropdown();
             });
+        </script>
+
+        <script>
+        $('#persona_shortBio').triggeredAutocomplete({
+           hidden: '#hidden_inputbox',
+            source: [
+         "Asp",
+         "BASIC",
+         "COBOL",
+         "ColdFusion",
+         "Erlang",
+         "Fortran",
+         "Groovy",
+         "Java",
+         "JavaScript",
+         "Lisp",
+         "Perl",
+         "PHP",
+         "Python",
+         "Ruby",
+         "Scala",
+         "Scheme"
+         ],
+           trigger: "@" 
+        });
         </script>
 <!--         {{
         response.files.append(URL('static','js/jquery.js'))
