@@ -152,7 +152,7 @@ db.rdf_namespaces = \
      
 from plugin_ckeditor import CKEditor
 ckeditor = CKEditor(db)
-# ckeditor.define_tables()
+ckeditor.define_tables()
 
 def select_datewidget(field, value):
     MINYEAR = 1900
@@ -844,7 +844,7 @@ db.define_table('importer', Field('filename', 'upload',
 me = auth.user_id
 
 #listar los campos que usan ckeditor
-#db.persona.shortBio.widget = ckeditor.widget
-#db.persona.longBio.widget  = ckeditor.widget
-#db.Organizacion.shortBio.widget = ckeditor.widget
-#db.Organizacion.longBio.widget  = ckeditor.widget
+db.persona.shortBio.widget = ckeditor.widget
+db.persona.longBio.widget  = ckeditor.widget
+db.Organizacion.shortBio.widget = ckeditor.widget
+db.Organizacion.longBio.widget  = ckeditor.widget
